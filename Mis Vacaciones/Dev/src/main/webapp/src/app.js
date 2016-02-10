@@ -5,11 +5,11 @@
  */
 (function (ng){
 
-    var mod = ng.module("myApp",[
-        "ui.router",
-        "AndesoftModule",
-        "itinerarioModule",
-        "loginModule"
+    var mod = ng.module("mainApp",[
+        "ui.router"
+//        "AndesoftModule",
+//        "itinerarioModule",
+//        "loginModule"
     ]);
 
     mod.config(['$logProvider', function($logProvider){
@@ -17,17 +17,18 @@
         }]);
 
     mod.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
+            $urlRouterProvider.otherwise("/Andesoft");
             $stateProvider
                     .state('Andesoft',{
                         url:'/Andesoft',
-                        controller: "AndesoftCtrl",
-                        controllerAs: "ctrl",
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
                         templateUrl:"src/modules/Andesoft/Equipo.html"
                     })
                     .state('itinerario',{
                         url:'/itinerario',
-                        controller: "itinerarioCtrl",
-                        controllerAs: "ctrl",
+//                        controller: "itinerarioCtrl",
+//                        controllerAs: "ctrl",
                         templateUrl:"src/modules/itinerario/misItinerarios.html"
                     });
     }]);
