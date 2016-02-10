@@ -17,8 +17,14 @@
         }]);
 
     mod.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
-            $urlRouterProvider.otherwise("/Andesoft");
+            $urlRouterProvider.otherwise("/principal");
             $stateProvider
+                    .state('principal',{
+                        url:'/principal',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/principal/principal.tpl.html"
+                    })
                     .state('Andesoft',{
                         url:'/Andesoft',
 //                        controller: "AndesoftCtrl",
