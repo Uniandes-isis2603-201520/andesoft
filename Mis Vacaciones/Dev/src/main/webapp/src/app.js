@@ -17,13 +17,19 @@
         }]);
 
     mod.config(['$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
-            $urlRouterProvider.otherwise("/Andesoft");
+            $urlRouterProvider.otherwise("/misVacaciones");
             $stateProvider
-                    .state('Andesoft',{
-                        url:'/Andesoft',
+                    .state('misVacaciones',{
+                        url:'/misVacaciones',
 //                        controller: "AndesoftCtrl",
 //                        controllerAs: "ctrl",
                         templateUrl:"src/modules/Andesoft/index.html"
+                    })
+                    .state('equipo',{
+                        url:'/equipo',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/Andesoft/Equipo.html"
                     })
                     .state('itinerario',{
                         url:'/itinerario',
