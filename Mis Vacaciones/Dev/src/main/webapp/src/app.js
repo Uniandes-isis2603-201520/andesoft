@@ -31,6 +31,12 @@
 //                        controllerAs: "ctrl",
                         templateUrl:"src/modules/Andesoft/Equipo.html"
                     })
+                     .state('login',{
+                        url:'/login',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/login/login.html"
+                    })
                     .state('itinerario',{
                         url:'/itinerario',
 //                        controller: "itinerarioCtrl",
