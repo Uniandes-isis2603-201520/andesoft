@@ -23,7 +23,7 @@
                         url:'/Andesoft',
 //                        controller: "AndesoftCtrl",
 //                        controllerAs: "ctrl",
-                        templateUrl:"src/modules/Andesoft/Equipo.html"
+                        templateUrl:"src/modules/Andesoft/index.html"
                     })
                     .state('itinerario',{
                         url:'/itinerario',
