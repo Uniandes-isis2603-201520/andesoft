@@ -23,7 +23,7 @@
                         url:'/misVacaciones',
 //                        controller: "AndesoftCtrl",
 //                        controllerAs: "ctrl",
-                        templateUrl:"src/modules/Andesoft/index.html"
+                        templateUrl:"src/modules/principal/principal.tpl.html"
                     })
                     .state('equipo',{
                         url:'/equipo',
@@ -36,6 +36,24 @@
 //                        controller: "AndesoftCtrl",
 //                        controllerAs: "ctrl",
                         templateUrl:"src/modules/login/login.html"
+                    })
+                     .state('registro',{
+                        url:'/registro',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/login/Registro.html"
+                    })
+                     .state('miPerfil',{
+                        url:'/miPerfil',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/login/miPerfil.html"
+                    })
+                     .state('nuevoItinerario',{
+                        url:'/nuevoItinerario',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/itinerario/nuevo.html"
                     })
                     .state('itinerario',{
                         url:'/itinerario',
