@@ -6,7 +6,8 @@
 (function (ng){
 
     var mod = ng.module("mainApp",[
-        "ui.router"
+        "ui.router",
+        "AppItinerario"
 //        "AndesoftModule",
 //        "itinerarioModule",
 //        "loginModule"

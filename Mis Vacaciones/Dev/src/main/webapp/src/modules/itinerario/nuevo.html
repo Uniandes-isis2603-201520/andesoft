@@ -15,84 +15,86 @@
     </header>
 
     <!-- Post Content -->
-    <article>
-        <div class="container" ng-controller='MainController' >
+     <article>
+        <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<div class="collapse navbar-collapse" id="main-bar">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="agregarCiudad">Agregar Ciudad</a></li>
+                                <li><a ui-sref="agregarHotel">Agregar Hotel</a></li>
+                                <li><a ui-sref="agregarEvento">Agregar Evento</a></li>
+                                <li><a ui-sref="agregarPuntoInteres">Agregar Punto</a></li>
+                            </ul>
+                        </div>
 
-                    <p> Esto es lo más complejo, porque acá todo el diseño de la página debería ser distinto, podemos discutir esto un poquito más para cuadrar si ponemos una sidebar por ahora o qué hacemos</p>
 
-
-
-                    <ul>
-                         <li ng-repeat="x in datos.HotelInfoList.HotelInfo">
-                                {{ x.Name  }}
-                         </li>
-                    </ul>
-
-                    </div>
                 </div>
             </div>
         </div>
+          <article>
+         <div class="container" ng-controller='itinerarioCtrl'  >
+
+    <div style="float:left; width:50%;">
+<!--Left  Column some text goes here -->
+    <div class="tab-content">
+        <div id="tab1" class="tab active">
+             <form  ng-submit="newCiudad()">
+              <fieldset>
+                <legend ><b>Agregar ciudad:</b></legend>
+         <p id="label">Escribir ciudad:</p> <input ng-model="nombreCiudad">
+         <p id="label">Escribir fecha inicio:</p><input type="date"  ng-model="fechaInicio">
+          <p id="label">Escribir fecha final:</p><input type="date"  ng-model="fechaFinal">
+          <br>
+          <input type ="submit" value="Agregar">
+          </fieldset>
+         </form>
+
+        </div>
+
+        <div id="tab2" class="tab">
+
+
+        </div>
+
+        <div id="tab3" class="tab">
+
+        </div>
+
+        <div id="tab4" class="tab">
+
+        </div>
+        <div id="tab5" class="tab">
+
+        </div>
+    </div>
+
+    </div>
+
+ <div style="float:right; width:50%;"  >
+  <!--Right Column-->
+<fieldset>
+  <legend><b>Ciudades</b></legend>
+<select id="ciudadesSelect" size="10" ng-model="ciudadSeleccionada">
+  <option ng-repeat="ciudad in ciudades">{{ciudad.nombre }}</option>
+</select>
+</fieldset>
+
+<div>
+<button type="button" onclick="alert('Tu itinerario ha sido creado')">Guardar!</button>
+<button type="button" ng-click="borrar()">Borrar!</button>
+
+</div>
+
+                    </div>
+                </div>
+
+
     </article>
 
     <hr>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <ul class="list-inline text-center">
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="js/clean-blog.min.js"></script>
-
-    <!-- Modules -->
-    <script src="js/app.js"></script>
-
-    <!-- Controllers -->
-    <script src="js/controllers/MainController.js"></script>
-
-    <!-- Services -->
-  <script src='js/api.js'></script>
-
+    
 </body>
 
 </html>
