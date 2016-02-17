@@ -6,31 +6,35 @@
 (function(ng)
 {
     var mod = ng.module("AppItinerario");
-  mod.controller('itinerarioCtrl', function ($scope){
+  mod.controller('itinerarioCtrl', ['$scope','itinerarioSVC', function ($scope,svc){
     //Acordarse que estas variables no son universales, falta implementar
     //un servicio que las vuelvas de este carácter
-        $scope.ciudades =  [];
+        $scope.ciudades =  svc.darItinerario();
         $scope.newCiudad = function ()
         {
+           svc.agregarCiudad({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
+        //$scope.ciudades.push({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
 
-        $scope.ciudades.push({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
-           console.log($scope.ciudades[0].value);
+        console.log($scope.ciudades[0].nombre);
         $scope.nombreCiudad="";
 	$scope.fechaInicio="";
 	$scope.fechaFinal="";
-
+        $scope.ciudades =  svc.darItinerario();
         };
 
 
 
         $scope.borrar = function()
         {
-            var indice = $scope.ciudades.indexOf($scope.ciudadSeleccionada);
-            $scope.ciudades.splice(indice,1);
+            //var temp = $scope.ciudadSeleccionada;
+            svc.borrarCity($scope.ciudadSeleccionada);
+            //var indice = $scope.ciudades.indexOf($scope.ciudadSeleccionada);
+            //$scope.ciudades.splice(indice,1);
+            $scope.ciudades =  svc.darItinerario();
         };
 
 
-});
+}]);
 
 
 
