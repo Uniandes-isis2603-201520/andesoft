@@ -14,27 +14,27 @@
              * @type RegExp
              * recordUrl acepta cualquier url con el formato
              * api/(cualquierpalabra)/(numero)
-             * ej: api/books/1
+             * ej: api/usuarios/1
              */
-            var recordUrl = new RegExp('api/books/([0-9]+)');
+            var recordUrl = new RegExp('api/login/([0-9]+)');
 
             /*
              * @type Array
-             * records: Array con un libro por defecto
+             * records: Array con usuarios por defecto
              */
             var records = [
-                {id: 1,
-                    name: 'La nieve del Almirante',
-                    description: 'Libro Mock',
-                    isbn: '12345-1',
-                    image: 'http://unlibrocadadia.es/wp-content/uploads/2013/05/La_nieve_del_almirante_alvaro_mutis.jpg',
-                    publishDate: '2016-01-22'},
-                {id: 2,
-                    name: 'Java 8',
-                    description: 'Libro Mock 2',
-                    isbn: '12345-2',
+                {id: Rjc,
+                    name: 'Juan Sebastian',
+                    Lname: 'Arciniegas',
+                    Correo: 'juan_arciniegas13@hotmail.com',
+                    img: 'http://unlibrocadadia.es/wp-content/uploads/2013/05/La_nieve_del_almirante_alvaro_mutis.jpg',
+                    password: '123456'},
+                {id: Andres,
+                    name: 'Andres',
+                    Lname: 'Moreno',
+                    Correo: 'andres@hotmail.com',
                     image: 'http://image.casadellibro.com/a/l/t0/55/9788441536555.jpg',
-                    publishDate: '2015-01-22'}
+                    password: '654321'}
             ];
 
             function getQueryParams(url) {
@@ -53,11 +53,11 @@
             $httpBackend.whenGET(ignore_regexp).passThrough();
 
             /*
-             * Esta funcion se ejecuta al invocar una solicitud GET a la url "api/books"
+             * Esta funcion se ejecuta al invocar una solicitud GET a la url "api/usuarios"
              * Obtiene los parámetros de consulta "queryParams" para establecer
              * la pagina y la maxima cantida de records. Con los anteriores parametros
              * se realiza la simulacion de la paginacion.
-             * Response: 200 -> Status ok, array de libros y los headers.
+             * Response: 200 -> Status ok, array de usuariosy los headers.
              */
             $httpBackend.whenGET('api/login').respond(function (method, url) {
                 var queryParams = getQueryParams(url);
@@ -105,7 +105,7 @@
             });
 
             /*
-             * Esta funcion se ejecuta al invocar una solicitud DELETE a la url "api/books/[numero]"
+             * Esta funcion se ejecuta al invocar una solicitud DELETE a la url "api/login/[numero]"
              * Obtiene el id del la url y el registro asociado dentro del array records.
              * Luego realiza un splice "eliminar registro del array".
              * Response: 204, no retorna ningun dato ni headers.

@@ -9,9 +9,9 @@
 
      mod.service("loginService", ["$http", "loginContext", function ($http, context) {
         /**
-         * Obtener la lista de books.
-         * Hace una petición GET con $http a /books para obtener la lista
-         * de books
+         * Obtener la lista de Usuarios.
+         * Hace una petición GET con $http a /usuarios para obtener la lista
+         * de usuarios
          * @returns {promise} promise para leer la respuesta del servidor}
          * Devuelve una lista de objetos de books con sus atributos y reviews
          */
@@ -20,10 +20,10 @@
         };
 
         /**
-         * Obtener un registro de books.
-         * Hace una petición GET a /books/:id para obtener
-         * los datos de un registro específico de books
-         * @param {number} id del registro a obtener
+         * Obtener un registro de usuarios.
+         * Hace una petición GET a /usuario/:id para obtener
+         * los datos de un registro específico de usuario
+         * @param {string} id del registro a obtener
          * @returns {promise} promise para leer la respuesta del servidor
          * Devuelve un objeto de books con sus atributos y reviews
          */
@@ -32,14 +32,14 @@
         };
 
         /**
-         * Guardar un registro de books.
-         * Si currentRecord tiene la propiedad id, hace un PUT a /books/:id con los
+         * Guardar un registro de usuarios.
+         * Si currentRecord tiene la propiedad id, hace un PUT a /usuarios/:id con los
          * nuevos datos de la instancia de books.
-         * Si currentRecord no tiene la propiedad id, se hace un POST a /books
-         * para crear el nuevo registro de books
-         * @param {object} currentRecord instancia de book a guardar/actualizar
+         * Si currentRecord no tiene la propiedad id, se hace un POST a /usuarios
+         * para crear el nuevo registro de un usuario
+         * @param {object} currentRecord instancia de usuarios a guardar/actualizar
          * @returns {promise} promise para leer la respuesta del servidor
-         * Devuelve un objeto de books con sus datos incluyendo el id
+         * Devuelve un objeto de usuario con sus datos incluyendo el id
          */
         this.saveRecord = function (currentRecord) {
             if (currentRecord.id) {
@@ -50,8 +50,8 @@
         };
 
         /**
-         * Hace una petición DELETE a /books/:id para eliminar un book
-         * @param {number} id identificador de la instancia de book a eliminar
+         * Hace una petición DELETE a /usuario/:id para eliminar un usuario
+         * @param {string} id identificador de la instancia de book a eliminar
          * @returns {promise} promise para leer la respuesta del servidor
          * No devuelve datos.
          */
