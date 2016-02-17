@@ -8,7 +8,7 @@
     LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
     function LoginController($location, AuthenticationService, FlashService) {
         var vm = this;
-
+        var logueado = false;
         vm.login = login;
 
         (function initController() {
@@ -16,6 +16,10 @@
             AuthenticationService.ClearCredentials();
         })();
 
+function estaLogueado()
+{
+    logueado = true;
+}
         function login() {
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function (response) {
