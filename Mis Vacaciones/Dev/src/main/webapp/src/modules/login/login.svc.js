@@ -13,8 +13,11 @@
         service.Login = Login;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
+        service.logueado=false;
 
         return service;
+        
+        
 
         function Login(username, password, callback) {
 
@@ -144,6 +147,8 @@
             return output;
         }
     };
+    
+    
 
 })();
 

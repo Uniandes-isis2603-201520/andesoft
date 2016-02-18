@@ -10,6 +10,24 @@ var mod = ng.module("AppItinerario");
 mod.service('itinerarioSVC', [function ()
    {
        var itinerario = [];
+       var logueado=false;
+       
+       this.darLog= function()
+        {
+          // console.log("hola"+logueado);
+           return this.logueado;
+       };
+       
+       this.cambiarLog=function(){
+           this.logueado=true;
+          console.log("hola"+this.logueado);
+       };
+       
+       this.logout=function(){
+           this.logueado=false;
+          console.log("hola"+this.logueado);
+       };
+       
        this.agregarCiudad = function(ciudad)
        {
            console.log("entra a metodo agregar ciudad Servicio");

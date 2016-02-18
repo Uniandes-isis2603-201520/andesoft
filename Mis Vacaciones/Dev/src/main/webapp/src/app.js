@@ -12,6 +12,41 @@
 //        "itinerarioModule",
 //        "loginModule"
     ]);
+    
+//    var headerController = function($scope){
+//    $scope.scopeHeader = "Itinerario";
+//    var vm = this;
+//    $scope.log = true;
+//    };
+    
+    mod.controller("headerCtrl", ["$scope","itinerarioSVC",
+           function($scope,svc) {
+            $scope.scopeHeader = "Itinerario";
+            var vm = this;
+            $scope.login;
+            $scope.log = false;
+                      
+            $scope.darLogin= function(){
+                //console.log("dar"+$scope.login);
+               return svc.darLog(); 
+            };
+            $scope.cambiarLog=function() {
+            // reset login status
+            
+            svc.cambiarLog();
+           // console.log($scope.login);
+            };
+            
+             $scope.logout=function() {
+            // reset login status
+            
+            svc.logout();
+           // console.log($scope.login);
+            };
+        
+           }
+    ]);
+
 
     mod.config(['$logProvider', function($logProvider){
             $logProvider.debugEnabled(true);
