@@ -119,12 +119,7 @@
 //                        controllerAs: "ctrl",
                         templateUrl:"src/modules/puntoInteres/nuevo.html"
                     })
-                    .state('itinerario',{
-                        url:'/itinerario',
-//                        controller: "itinerarioCtrl",
-//                        controllerAs: "ctrl",
-                        templateUrl:"src/modules/itinerario/misItinerarios.html"
-                    });
+                    ;
     }]);
 })(window.angular);
 
