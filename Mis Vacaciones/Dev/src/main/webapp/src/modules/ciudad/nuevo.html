@@ -15,25 +15,9 @@
     </header>
 
     <!-- Post Content -->
-     <article>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class="collapse navbar-collapse" id="main-bar">
-                            <ul class="nav navbar-nav">
-                                <li><a ui-sref="ciudad"><button type="submit" class="btn btn-default">Agregar ciudad</button></a></li>
-                                <li><a ui-sref="hotel"><button type="submit" class="btn btn-default">Agregar hotel</button></a></li>
-                                <li><a ui-sref="evento"><button type="submit" class="btn btn-default">Agregar evento</button></a></li>
-                                <li> <a ui-sref="puntoInteres"><button type="submit" class="btn btn-default">Agregar punto interes</button></a></li>
-                            </ul>
-                        </div>
 
-
-                </div>
-            </div>
-        </div>
           <article>
-         <div class="container" ng-controller='itinerarioCtrl'  >
+         <div class="container" ng-controller='ciudadCtrl'  >
 
     <div style="float:left; width:50%;">
 <!--Left  Column some text goes here -->
@@ -41,19 +25,32 @@
         <div id="tab1" class="tab active">
              <form  ng-submit="newCiudad()">
               <fieldset>
-              <legend ><b>Agregar ciudad:</b></legend>
+                <legend ><b>Agregar ciudad:</b></legend>
          <p id="label">Escribir ciudad:</p> <input ng-model="nombreCiudad">
          <p id="label">Escribir fecha inicio:</p><input type="date"  ng-model="fechaInicio">
           <p id="label">Escribir fecha final:</p><input type="date"  ng-model="fechaFinal">
           <br>
           <input type ="submit" value="Agregar">
-              -->
           </fieldset>
          </form>
 
         </div>
 
+        <div id="tab2" class="tab">
 
+
+        </div>
+
+        <div id="tab3" class="tab">
+
+        </div>
+
+        <div id="tab4" class="tab">
+
+        </div>
+        <div id="tab5" class="tab">
+
+        </div>
     </div>
 
     </div>

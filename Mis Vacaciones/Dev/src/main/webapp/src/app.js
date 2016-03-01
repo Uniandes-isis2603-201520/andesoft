@@ -7,43 +7,47 @@
 
     var mod = ng.module("mainApp",[
         "ui.router",
-        "AppItinerario"
+        "AppItinerario",
+        "AppCiudad",
+        "AppEvento",
+        "AppHotel",
+        "AppPuntoInteres"
 //        "AndesoftModule",
 //        "itinerarioModule",
 //        "loginModule"
     ]);
-    
+
 //    var headerController = function($scope){
 //    $scope.scopeHeader = "Itinerario";
 //    var vm = this;
 //    $scope.log = true;
 //    };
-    
+
     mod.controller("headerCtrl", ["$scope","itinerarioSVC",
            function($scope,svc) {
             $scope.scopeHeader = "Itinerario";
             var vm = this;
             $scope.login;
             $scope.log = false;
-                      
+
             $scope.darLogin= function(){
                 //console.log("dar"+$scope.login);
-               return svc.darLog(); 
+               return svc.darLog();
             };
             $scope.cambiarLog=function() {
             // reset login status
-            
+
             svc.cambiarLog();
            // console.log($scope.login);
             };
-            
+
              $scope.logout=function() {
             // reset login status
-            
+
             svc.logout();
            // console.log($scope.login);
             };
-        
+
            }
     ]);
 
@@ -90,6 +94,30 @@
 //                        controller: "AndesoftCtrl",
 //                        controllerAs: "ctrl",
                         templateUrl:"src/modules/itinerario/nuevo.html"
+                    })
+                    .state('hotel',{
+                        url:'/hotel',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/hotel/nuevo.html"
+                    })
+                     .state('evento',{
+                        url:'/evento',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/evento/nuevo.html"
+                    })
+                    .state('ciudad',{
+                        url:'/ciudad',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/ciudad/nuevo.html"
+                    })
+                    .state('puntoInteres',{
+                        url:'/puntoInteres',
+//                        controller: "AndesoftCtrl",
+//                        controllerAs: "ctrl",
+                        templateUrl:"src/modules/puntoInteres/nuevo.html"
                     })
                     .state('itinerario',{
                         url:'/itinerario',
