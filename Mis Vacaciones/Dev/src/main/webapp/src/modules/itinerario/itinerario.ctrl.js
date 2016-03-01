@@ -9,30 +9,96 @@
   mod.controller('itinerarioCtrl', ['$scope','itinerarioSVC', function ($scope,svc){
     //Acordarse que estas variables no son universales, falta implementar
     //un servicio que las vuelvas de este carácter
-        $scope.ciudades =  svc.darItinerario();
-        $scope.newCiudad = function ()
+        $scope.idItinerario = 0;
+    
+        $scope.verCiudades = false;
+        $scope.verEventos = false;
+        $scope.verPuntos = false;
+        $scope.verHoteles = false;
+        
+        $scope.elementoSeleccionado = {};
+        
+        $scope.ciudades =  [];
+        $scope.eventos =  [];
+        $scope.puntos =  [];
+        $scope.hoteles =  [];
+       
+        
+        $scope.nombreItinerario = "";
+        
+	$scope.fechaInicio = "";
+	$scope.fechaFinal = "";
+        
+        
+        
+        $scope.actualizarItinerario = function()
         {
-           svc.agregarCiudad({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
-        //$scope.ciudades.push({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
+            
+            $scope.ciudades =  svc.darCiudades($scope.idItinerario);
+            $scope.eventos =  svc.darEventos($scope.idItinerario);
+            $scope.puntos =  svc.darPuntos($scope.idItinerario);
+            $scope.hoteles =  svc.darHoteles($scope.idItinerario);
 
-        console.log($scope.ciudades[0].nombre);
-        $scope.nombreCiudad="";
-	$scope.fechaInicio="";
-	$scope.fechaFinal="";
-        $scope.ciudades =  svc.darItinerario();
+
+            $scope.nombreItinerario= svc.darNombreItinerario($scope.idItinerario);
+            $scope.fechaInicio=svc.darFechaInicialItinerario($scope.idItinerario);
+            $scope.fechaFinal=svc.darFechaFinItinerario($scope.idItinerario);
+            
         };
-
-
-
-        $scope.borrar = function()
+        
+        $scope.borrarItinerario = function()
         {
-            //var temp = $scope.ciudadSeleccionada;
-            svc.borrarCity($scope.ciudadSeleccionada);
-            //var indice = $scope.ciudades.indexOf($scope.ciudadSeleccionada);
-            //$scope.ciudades.splice(indice,1);
-            $scope.ciudades =  svc.darItinerario();
+            svc.borrarItinerario($scope.idItinerario);
+            
         };
-
+        
+        $scope.guardarItinerario = function()
+        {
+            svc.guardarItineario(
+                    $scope.idItinerario,
+                    $scope.ciudades,
+                    $scope.eventos,
+                    $scope.puntos ,
+                    $scope.hoteles,
+                    $scope.nombreItinerario,
+                    $scope.fechaInicio,
+                    $scope.fechaFinal);
+            
+        };
+        
+   
+        
+        
+        $scope.mostrarCiudades = function()
+        {
+            $scope.verCiudades = true;
+            $scope.verEventos = false;
+            $scope.verPuntos = false;
+            $scope.verHoteles = false;
+        };
+        $scope.mostrarEventos = function()
+        {
+            $scope.verCiudades = false;
+            $scope.verEventos = true;
+            $scope.verPuntos = false;
+            $scope.verHoteles = false;
+        };
+        $scope.mostrarHoteles = function()
+        {
+            $scope.verCiudades = false;
+            $scope.verEventos = false;
+            $scope.verPuntos = false;
+            $scope.verHoteles = true;
+        };
+        $scope.mostrarPuntos = function()
+        {
+            $scope.verCiudades = false;
+            $scope.verEventos = false;
+            $scope.verPuntos = true;
+            $scope.verHoteles = false;
+        };
+        
+        
 
 }]);
 
