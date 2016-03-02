@@ -6,31 +6,27 @@
 (function(ng)
 {
     var mod = ng.module("AppEvento");
-  mod.controller('eventoCtrl', ['$scope','eventoSVC', function ($scope,svc){
-    //Acordarse que estas variables no son universales, falta implementar
-    //un servicio que las vuelvas de este carácter
-        $scope.ciudades =  svc.darItinerario();
-        $scope.newCiudad = function ()
+  mod.controller('eventoCtrl', ['$scope','eventoSVC','itinerarioSVC', function ($scope,svc, svcItinerario){
+        $scope.eventos =  svc.darListaEventos();
+        $scope.newEvento = function ()
         {
-           svc.agregarCiudad({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
-        //$scope.ciudades.push({nombre:$scope.nombreCiudad, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
-
-        console.log($scope.ciudades[0].nombre);
-        $scope.nombreCiudad="";
+           svc.agregarEvento({id:$scope.id,nombre:$scope.nombreEvento, fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal
+           });
+           //svcItinerario.agregarEventoaItinerario();
+        console.log($scope.eventos[0].nombre);
+        $scope.id="";
+        $scope.nombreEvento="";
 	$scope.fechaInicio="";
 	$scope.fechaFinal="";
-        $scope.ciudades =  svc.darItinerario();
+        $scope.eventos =  svc.darListaEventos();
         };
 
 
 
         $scope.borrar = function()
         {
-            //var temp = $scope.ciudadSeleccionada;
-            svc.borrarCity($scope.ciudadSeleccionada);
-            //var indice = $scope.ciudades.indexOf($scope.ciudadSeleccionada);
-            //$scope.ciudades.splice(indice,1);
-            $scope.ciudades =  svc.darItinerario();
+            svc.borrarEvento($scope.eventoSeleccionada);
+            $scope.eventos =  svc.darItinerario();
         };
 
 
