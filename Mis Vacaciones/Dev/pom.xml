@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>AndeSoft-MisVacaciones</groupId>
-    <artifactId>Dev</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>MisVacaciones.root</artifactId>
+    <version>1.0-Beta</version>
     <packaging>war</packaging>
 
     <name>Mis Vacaciones</name>
