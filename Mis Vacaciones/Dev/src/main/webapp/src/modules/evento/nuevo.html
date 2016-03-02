@@ -7,7 +7,7 @@
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
                         <h1>Crea tu nuevo itinerario</h1>
-                        <h2 class="subheading">Escoge entre un sinfín de opciones de ciudades y actividades<h2>
+                        <h2 class="subheading">Escoge entre un sinfín de opciones de ciudades y actividades</h2>
                     </div>
                 </div>
             </div>
@@ -24,10 +24,10 @@
 <!--Left  Column some text goes here -->
     <div class="tab-content">
         <div id="tab1" class="tab active">
-             <form  ng-submit="newCiudad()">
+             <form  ng-submit="newEvento()">
               <fieldset>
-                <legend ><b>Agregar ciudad:</b></legend>
-         <p id="label">Escribir ciudad:</p> <input ng-model="nombreCiudad">
+                <legend ><b>Agregar evento:</b></legend>
+         <p id="label">Escribir evento:</p> <input ng-model="nombreEvento">
          <p id="label">Escribir fecha inicio:</p><input type="date"  ng-model="fechaInicio">
           <p id="label">Escribir fecha final:</p><input type="date"  ng-model="fechaFinal">
           <br>
@@ -59,15 +59,15 @@
  <div style="float:right; width:50%;"  >
   <!--Right Column-->
 <fieldset>
-  <legend><b>Ciudades</b></legend>
-<select id="ciudadesSelect" size="10" ng-model="ciudadSeleccionada">
-  <option ng-repeat="ciudad in ciudades">{{ciudad.nombre }}</option>
+  <legend><b>Eventos</b></legend>
+<select id="eventosSelect" size="10" ng-model="eventoSeleccionada">
+  <option ng-repeat="evento in eventos">{{evento.nombre }}</option>
 </select>
 </fieldset>
 
 <div>
-<button type="button" onclick="alert('Tu itinerario ha sido creado')">Guardar!</button>
-<button type="button" ng-click="borrar()">Borrar!</button>
+<button type="button" onclick="alert('Tu itinerario ha sido creado')">Guardar</button>
+<button type="button" ng-click="borrar()">Borrar</button>
 
 </div>
 
