@@ -27,7 +27,7 @@
 
 <!-- Contenido principal de la página -->
 
-<div id="mainContent" style="display: inline">
+<div id="mainContent" ng-controller='miPerfilCtrl'>
 
     <!-- Contenido de itinerarios -->
     <div class="container-fluid-body bg-1 text-center">
@@ -61,7 +61,12 @@
                 <hr class="small" style="border-color:#BDBDBD">
                 <h6 style="font-size:150%;color:#BDBDBD"><small> Aquí podrás ver, editar y agregar fotos de tus viajes</small> </h6>
             </div>
-            <button class="btn btn-lg">Editar fotos</button>
+        </div>
+
+        <div>
+                <input type="text" ng-model="nombreFoto">Nombre <br>
+                <input type="text" ng-model="rutaFoto"> Ruta <br>
+                <button ng-click="nuevaFoto()" >Agregar</button>
         </div>
     </div>
 </div>
