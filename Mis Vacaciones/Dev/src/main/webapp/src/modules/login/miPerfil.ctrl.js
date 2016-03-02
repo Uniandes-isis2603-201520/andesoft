@@ -8,6 +8,23 @@
     var mod = ng.module("AppMiPerfil");
     mod.controller('miPerfilCtrl',['$scope', 'miPerfilSVC', function($scope, svc){
 
+            $scope.fotos = svc.darFotos();
+
+            $scope.nuevaFoto = function ()
+            {
+                $scope.nombreFoto="";
+                $scope.rutaFoto="";
+
+                var foto =[$scope.nombreFoto, $scope.rutaFoto];
+                svc.agregarFoto(foto);
+            };
+
+            $scope.eliminarFoto = fucntion()
+            {
+                svc.borrarFoto($scope.fotoSeleccionada);
+                $scope.fotos = svc.darFotos();
+            };
+
     }]);
 })(window.angular);
 
