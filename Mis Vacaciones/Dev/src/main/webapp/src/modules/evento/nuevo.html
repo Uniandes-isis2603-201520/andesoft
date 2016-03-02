@@ -27,6 +27,7 @@
              <form  ng-submit="newEvento()">
               <fieldset>
                 <legend ><b>Agregar evento:</b></legend>
+                <p id="label">ID del itinerario donde se quiere agregar el evento:</p> <input type="number" ng-model="id">
          <p id="label">Escribir evento:</p> <input ng-model="nombreEvento">
          <p id="label">Escribir fecha inicio:</p><input type="date"  ng-model="fechaInicio">
           <p id="label">Escribir fecha final:</p><input type="date"  ng-model="fechaFinal">
@@ -66,8 +67,8 @@
 </fieldset>
 
 <div>
-<button type="button" onclick="alert('Tu itinerario ha sido creado')">Guardar</button>
-<button type="button" ng-click="borrar()">Borrar</button>
+<button type="button" ng-click="guardarTodosLosEventos()" onclick="alert('Se han guardado todos los eventos')" ui-sref="nuevoItinerario">Guardar</button>
+<button type="button" ng-click="borrar()" onclick="alert('Se ha borrado el últim elemento')">Borrar</button>
 
 </div>
 
