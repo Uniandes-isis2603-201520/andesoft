@@ -8,7 +8,7 @@
     <packaging>war</packaging>
 <parent>
     <groupId>AndeSoft</groupId>
-    <artifactId>AndeSoft.POM</module>
+    <artifactId>AndeSoft.POM  </artifactId>
     <version>1.0-beta</version>
     <relativePath>../nombreproyecto.pom/pom.xml</relativePath>
   </parent>
