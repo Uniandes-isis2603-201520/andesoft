@@ -1,0 +1,108 @@
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('resources/img/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Crea tu nuevo itinerario</h1>
+                        <h2 class="subheading">Escoge entre un sinfín de opciones de ciudades y actividades</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+     <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                            <div class="collapse navbar-collapse" id="main-bar">
+                            
+				<ul class="nav navbar-nav">
+                                    <li><a ui-sref="ciudad"><button type="submit" class="btn btn-default" style='width:300px; height:50px'>Agregar ciudad</button></a></li>
+                                    <li><a ui-sref="evento"><button type="submit" class="btn btn-default" style='width:300px; height:50px'>Agregar evento</button></a></li>
+                                    </ul>
+                                <br>
+                                <ul class="nav navbar-nav">
+                                    <li> <a ui-sref="puntoInteres"><button type="submit" class="btn btn-default" style='width:300px; height:50px'>Agregar punto interes</button></a></li>
+                                    <li><a ui-sref="hotel"><button type="submit" class="btn btn-default" style='width:300px; height:50px'>Agregar hotel</button></a></li>
+                                    
+                                </ul>
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
+          </article>
+ <div class="container" ng-controller='itinerarioCtrl'  >
+
+                <div style="float:left; width:70%;">
+                                <!--Left  Column some text goes here -->
+                                <div class="tab-content">
+                                    <div id="tab1" class="tab active">
+                                         
+                                          <fieldset>
+                                       <h1>Mostrar estado itinerario:</h1>
+                                       <button ng-click="mostrarCiudades()"   style='width:300px; height:50px'> >Mostrar lista ciudades    </button>
+                                       <br>
+                                       <br>
+                                       <button ng-click="mostrarEventos()"   style='width:300px; height:50px'>Mostrar lista eventos      </button>
+                                       <br>
+                                       <br>
+                                       <button ng-click="mostrarHoteles()"   style='width:300px; height:50px'>Mostrar lista hoteles      </button>
+                                       <br>
+                                       <br>
+                                       <button ng-click="mostrarPuntos()"   style='width:300px; height:50px' >Mostrar lista puntos interes</button>
+                                       <br>
+                                       <br>
+                                       <p id="label">Nombre del itinerario:</p> <input type="string" ng-model="nombreItinerario" style='width:300px; height:50px'>
+                                       <p id="label">ID del itinerario:</p> <input  type="number" ng-model="idItinerario"  style='width:300px; height:50px'>
+                                       <p id="label">Escribir fecha inicio:</p><input type="string"  ng-model="fechaInicio" style='width:300px; height:50px'>
+                                       <p id="label">Escribir fecha final:</p><input type="string"  ng-model="fechaFinal"  style='width:300px; height:50px'>
+                                       <br>
+                                       <br>
+                                       
+                                      <button onClick="alert('Tu itinerario ha sido guardado')" ng-click="guardarItinerario()"> Guardar/ actualizar itinerario    </button>
+                                      <button onClick="alert('Tu itinerario ha sido borrado')" ng-click="borrarItinerario()"> Borrar itinerario     </button>
+                                      <button onClick="alert('Tu itinerario ha sido recuperado si existia')" ng-click="actualizarItinerario()">Recuperar itinerario por id    </button>
+                                      </fieldset>
+                                     
+                                    </div>
+
+
+                                </div>
+
+                </div>
+
+             <div style="float:right; width:30%;"  >
+              <!--Right Column-->
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <fieldset>
+                            
+                          <legend><b>Informacion</b></legend>
+                        <select id="ciudadesSelect" size="10" ng-model="elementoSeleccionado">
+                          <option ng_show = "verCiudades" ng-repeat="c in ciudades">{{c.nombre }}</option>
+                          <option ng_show = "verEventos" ng-repeat="e in eventos">{{e.nombre }}</option>
+                          <option ng_show = "verPuntos" ng-repeat="p in puntos">{{p.nombre }}</option>
+                          <option ng_show = "verHoteles" ng-repeat="h in hoteles">{{h.nombre }}</option>
+                        </select>
+                        </fieldset>
+
+              </div>
+</div>
+
+
+    <hr>
+
+</body>
+
+</html>
