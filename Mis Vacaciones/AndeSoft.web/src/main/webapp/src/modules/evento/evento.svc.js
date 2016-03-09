@@ -9,12 +9,34 @@
 var mod = ng.module("AppEvento");
 mod.service('eventoSVC', [function ()
    {
-       var itinerario = [];
+       
        var logueado=false;
-
+       
+//       var id0 = 0;
+//       var nom0 = "Museum of Modern Arts";
+//       var fechaIn0 = "01/06/2016";
+//       var fechaFin0 = "02/06/2016";
+       
+//       var id1 = 1;
+//       var nom1 = "Torre Eiffel";
+//       var fechaIn1 = "03/06/2016";
+//       var fechaFin1 = "04/06/2016";
+       
+//       var id2 = 2;
+//       var nom2 = "Disney";
+//       var fechaIn2 = "05/06/2016";
+//       var fechaFin2 = "10/06/2016";
+       
+//       var evento0 = {id: id0, nombre: nom0, fechaInicio: fechaIn0, fechaFinal: fechaFin0};
+//       var evento1 = {id: id1, nombre: nom1, fechaInicio: fechaIn1, fechaFinal: fechaFin1};
+//       var evento2 = {id: id2, nombre: nom2, fechaInicio: fechaIn2, fechaFinal: fechaFin2};
+       
+//       var listaEventos = [evento0,evento1,evento2];
+       var listaEventos = [];
+       //-----------------------------------------------------------------------
+       
        this.darLog= function()
         {
-          // console.log("hola"+logueado);
            return this.logueado;
        };
 
@@ -27,23 +49,24 @@ mod.service('eventoSVC', [function ()
            this.logueado=false;
           console.log("hola"+this.logueado);
        };
+       //-----------------------------------------------------------------------
 
-       this.agregarCiudad = function(ciudad)
+       this.agregarEvento = function(evento)
        {
-           console.log("entra a metodo agregar ciudad Servicio");
+           console.log("entra a metodo agregar evento Servicio");
 
-           itinerario.push(ciudad);
+           listaEventos.push(evento);
        };
 
-       this.borrarCity = function(ciudad)
+       this.borrarEvento = function(evento)
        {
-             var indice = itinerario.indexOf(ciudad);
-            itinerario.splice(indice,1);
+             var indice = listaEventos.indexOf(evento);
+            listaEventos.splice(indice,1);
        };
 
-       this.darItinerario= function()
+       this.darListaEventos= function()
         {
-           return itinerario;
+           return listaEventos;
        };
 
    }
