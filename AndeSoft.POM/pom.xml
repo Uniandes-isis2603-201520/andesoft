@@ -10,5 +10,6 @@
     </properties>
      <modules>
     <module>../Mis Vacaciones/AndeSoft.web</module>
-  </modules>
+          <module>AndeSoft.web</module>
+     </modules>
 </project>
