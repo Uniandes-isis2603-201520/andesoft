@@ -5,11 +5,8 @@
     <artifactId>AndeSoft.POM</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <modules>
-        <module>AndeSoft.web</module>
-    </modules>
+    <modules></modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-     
+    </properties>    
 </project>
