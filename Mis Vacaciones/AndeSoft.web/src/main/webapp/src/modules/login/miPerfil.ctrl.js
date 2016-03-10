@@ -19,7 +19,7 @@
                 svc.agregarFoto(foto);
             };
 
-            $scope.eliminarFoto = fucntion()
+            $scope.eliminarFoto = function()
             {
                 svc.borrarFoto($scope.fotoSeleccionada);
                 $scope.fotos = svc.darFotos();
