@@ -42,7 +42,7 @@ public class UsuarioDTO {
      * @param correo
      * @param password
      */
-    public UsuarioDTO(Long id, String name, String apellido, String usuario, String correo, String password ,List itinerarios) {
+    public UsuarioDTO(Long id, String name, String apellido, String usuario, String correo, String password ) {
 		super();
 		this.id = id;
 		this.name = name;
