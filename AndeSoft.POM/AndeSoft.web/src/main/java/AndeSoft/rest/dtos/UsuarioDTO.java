@@ -24,6 +24,7 @@ public class UsuarioDTO {
     private String correo;
     private String password;
     private List<ItinerarioDTO> itinerarios;
+    private List<FotoDTO> fotos;
 
 
     /**
@@ -50,6 +51,7 @@ public class UsuarioDTO {
                 this.correo = correo;
 		this.password = password;
                 this.itinerarios = null;
+                this.fotos = null;
 	}
 
 	/**
@@ -79,6 +81,7 @@ public class UsuarioDTO {
     public void setName(String name) {
         this.name = name;
     }
+    
      public String getApellido(){
         return apellido;
     }
@@ -94,6 +97,7 @@ public class UsuarioDTO {
     public void setCorreo(String cedula) {
         this.correo = correo;
     }
+    
     public String getUsuario(){
         return usuario;
     }
@@ -113,6 +117,10 @@ public class UsuarioDTO {
     public List<ItinerarioDTO> getItinerario() {
         return itinerarios;
     }
+    
+    public List<FotoDTO> getFotos(){
+        return fotos;
+    }
 
     public void setCitas(List<ItinerarioDTO> itinerarios) {
         this.itinerarios = itinerarios;
@@ -123,6 +131,13 @@ public class UsuarioDTO {
         if(itinerarios == null)
             itinerarios = new ArrayList<ItinerarioDTO>();
         itinerarios.add(itinerario);
+    }
+    
+    public void agregarFoto(FotoDTO foto)
+    {
+        if(fotos == null)
+            fotos = new ArrayList<FotoDTO>();
+        fotos.add(foto);
     }
 
     /**
