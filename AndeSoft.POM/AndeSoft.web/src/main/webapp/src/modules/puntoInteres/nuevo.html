@@ -25,12 +25,29 @@
         <div id="tab1" class="tab active">
              <form  ng-submit="newCiudad()">
               <fieldset>
-                <legend ><b>Agregar ciudad:</b></legend>
-         <p id="label">Escribir ciudad:</p> <input ng-model="nombreCiudad">
+                <legend ><b>Agregar Evento</b></legend>
+         <p id="label">Escoger itinerario </p> 
+         
+         <!--<input ng-model="nombreCiudad">-->
+                 
+         <select ng-options="item as item.itinerario for item in data track by item.id" ng-model="selectedItinerario"></select>
+          <!--<p ng-show="selectedItinerario!=null"> {{selectedItinerario}} </p>-->
+        
+          <p ng-show="selectedItinerario!=null">
+              Seleccione una ciudad:
+              <select ng-options="item as item.nombre for item in selectedItinerario.ciudades" ng-model="selectedCity"></select>
+         </p>
+         
+         
+         <p ng-show="selectedCity!=null">
+              Agregue su punto de Interes:
+              <select ng-options="item as item for item in selectedCity.puntos" ng-model="selectedPunto"></select>
+         </p>
+         
          <p id="label">Escribir fecha inicio:</p><input type="date"  ng-model="fechaInicio">
           <p id="label">Escribir fecha final:</p><input type="date"  ng-model="fechaFinal">
           <br>
-          <input type ="submit" value="Agregar">
+          <input type ="submit" value="Agregar" ng-click="nuevoPunto()">
           </fieldset>
          </form>
 
@@ -58,14 +75,15 @@
  <div style="float:right; width:50%;"  >
   <!--Right Column-->
 <fieldset>
-  <legend><b>Ciudades</b></legend>
+  <legend ><b>Puntos de interes</b></legend>
 <select id="ciudadesSelect" size="10" ng-model="ciudadSeleccionada">
-  <option ng-repeat="ciudad in ciudades">{{ciudad.nombre }}</option>
+  <option ng-repeat="punto in puntosInteres">{{punto}}</option>
 </select>
 </fieldset>
 
 <div>
-<button type="button" onclick="alert('Tu itinerario ha sido creado')">Guardar!</button>
+<!--<button type="button" ng-click="nuevoPunto()">Guardar!</button>-->
+<input type ="submit" value="Guardar!" ng-click="nuevoPunto()">
 <button type="button" ng-click="borrar()">Borrar!</button>
 
 </div>
