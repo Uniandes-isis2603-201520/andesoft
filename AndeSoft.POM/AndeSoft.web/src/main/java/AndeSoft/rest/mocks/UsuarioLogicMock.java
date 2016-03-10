@@ -1,7 +1,7 @@
 package AndeSoft.rest.mocks;
 
 /**
- * Mock del recurso Ciudades (Mock del servicio REST)
+ * Mock del recurso Usuarios (Mock del servicio REST)
  * @author Asistente
  */
 import AndeSoft.rest.dtos.UsuarioDTO;
@@ -18,7 +18,7 @@ import javax.inject.Named;
 
 
 /**
- * Mock del recurso Ciudades (Mock del servicio REST)
+ * Mock del recurso Usuarios (Mock del servicio REST)
  */
 @Named
 @ApplicationScoped
@@ -27,7 +27,7 @@ public class UsuarioLogicMock {
     // objeto para presentar logs de las operaciones
     private final static Logger logger = Logger.getLogger(UsuarioLogicMock.class.getName());
 
-    // listado de ciudades
+    // listado de usuarios
     private static ArrayList<UsuarioDTO> usuarios;
 
     /**
@@ -47,139 +47,139 @@ public class UsuarioLogicMock {
     	logger.setLevel(Level.INFO);
 
     	// muestra información
-    	logger.info("Inicializa la lista de ciudades");
-    	logger.info("ciudades" + usuarios );
+    	logger.info("Inicializa la lista de usuarios");
+    	logger.info("usuarios" + usuarios );
     }
 
     /**
      * Obtiene el listado de personas.
-     * @return lista de ciudades
-     * @throws CityLogicException cuando no existe la lista en memoria
+     * @return lista de usuarios
+     * @throws UsusarioLogicException cuando no existe la lista en memoria
      */
-    public List<UsuarioDTO> getCities() {
+    public List<UsuarioDTO> getUsers() {
     	if (usuarios == null) {
-    		logger.severe("Error interno: lista de ciudades no existe.");
-    		//throw new CityLogicException("Error interno: lista de ciudades no existe.");
+    		logger.severe("Error interno: lista de usuarios no existe.");
+    		//throw new UsusarioLogicException("Error interno: lista de ususarios no existe.");
     	}
 
-    	logger.info("retornando todas las ciudades");
+    	logger.info("retornando todos los ususarios");
     	return usuarios;
     }
 
     /**
-     * Obtiene una ciudad
-     * @param id identificador de la ciudad
-     * @return ciudad encontrada
-     * @throws CityLogicException cuando la ciudad no existe
+     * Obtiene un usuario
+     * @param id identificador del usuario
+     * @return usuario encontrado
+     * @throws UsuarioLogicException cuando el usuario no existe
      */
-    public UsuarioDTO getCity(Long id)  {
-    	logger.info("recibiendo solicitud de ciudad con id " + id);
+    public UsuarioDTO getUser(Long id)  {
+    	logger.info("recibiendo solicitud de usuario con id " + id);
 
-    	// busca la ciudad con el id suministrado
-        for (UsuarioDTO city : usuarios) {
-            if (Objects.equals(city.getId(), id)){
-            	logger.info("retornando ciudad " + city);
-                return city;
+    	// busca el usuario con el id suministrado
+        for (UsuarioDTO user : usuarios) {
+            if (Objects.equals(user.getId(), id)){
+            	logger.info("retornando usuario " + user);
+                return user;
             }
         }
 
-        // si no encuentra la ciudad
-        logger.severe("No existe ciudad con ese id");
+        // si no encuentra el ususario
+        logger.severe("No existe usuario con ese id");
         return  null;
-        //throw new CityLogicException("No existe ciudad con ese id");
+        //throw new UsuarioLogicException("No existe ususario con ese id");
     }
 
     /**
-     * Agrega una ciudad a la lista.
-     * @param newCity ciudad a adicionar
+     * Agrega un ususario a la lista.
+     * @param usuario ciudad a adicionar
      * @throws CityLogicException cuando ya existe una ciudad con el id suministrado
-     * @return ciudad agregada
+     * @return usuario agregado
      */
-    public UsuarioDTO createCity(UsuarioDTO usuario)  {
-    	logger.info("recibiendo solicitud de agregar ciudad " + usuario);
+    public UsuarioDTO createUser(UsuarioDTO usuario)  {
+    	logger.info("recibiendo solicitud de agregar usuario " + usuario);
 
-    	// la nueva ciudad tiene id ?
+    	// el nuevo usuario tiene id ?
     	if ( usuario.getId() == 0 ) {
-	    	// busca la ciudad con el id suministrado
-	        for (UsuarioDTO city : usuarios) {
-	        	// si existe una ciudad con ese id
-	            if (Objects.equals(city.getId(), usuario.getId())){
-	            	logger.severe("Ya existe una ciudad con ese id");
-	               // throw new CityLogicException("Ya existe una ciudad con ese id");
+	    	// busca el usuario con el id suministrado
+	        for (UsuarioDTO user : usuarios) {
+	        	// si existe un usuario con ese id
+	            if (Objects.equals(user.getId(), usuario.getId())){
+	            	logger.severe("Ya existe un usuario con ese id");
+	               // throw new UsuarioLogicException("Ya existe un usuario con ese id");
 	            }
 	        }
 
-	    // la nueva ciudad no tiene id ?
+	    // el nuevo usuario no tiene id ?
     	} else {
 
     		// genera un id para la ciudad
-    		logger.info("Generando id paa la nueva ciudad");
+    		logger.info("Generando id para el nuevo usuario");
     		Long newId = Long.MAX_VALUE;
-	        for (UsuarioDTO city : usuarios) {
-	            if (newId <= city.getId()){
-	                newId =  city.getId() + 1;
+	        for (UsuarioDTO user : usuarios) {
+	            if (newId <= user.getId()){
+	                newId =  user.getId() + 1;
 	            }
 	        }
 	        usuario.setId(newId);
     	}
 
-        // agrega la ciudad
-    	logger.info("agregando ciudad " + usuario);
+        // agrega el usuario
+    	logger.info("agregando usuario " + usuario);
         usuarios.add(usuario);
         return usuario;
     }
 
     /**
-     * Actualiza los datos de una ciudad
-     * @param id identificador de la ciudad a modificar
-     * @param city ciudad a modificar
-     * @return datos de la ciudad modificada
-     * @throws CityLogicException cuando no existe una ciudad con el id suministrado
+     * Actualiza los datos de un usuario
+     * @param id identificador del usuario a modificar
+     * @param user usuario a modificar
+     * @return datos de usuario modificado
+     * @throws UsuarioLogicException cuando no existe un usuario con el id suministrado
      */
-    public UsuarioDTO updateCity(Long id, UsuarioDTO updatedCity) {
-    	logger.info("recibiendo solictud de modificar ciudad " + updatedCity);
+    public UsuarioDTO updateUser(Long id, UsuarioDTO updatedUser) {
+    	logger.info("recibiendo solictud de modificar usuario " + updatedUser);
 
-    	// busca la ciudad con el id suministrado
-        for (UsuarioDTO city : usuarios) {
-            if (Objects.equals(city.getId(), id)) {
+    	// busca el usuario con el id suministrado
+        for (UsuarioDTO user : usuarios) {
+            if (Objects.equals(user.getId(), id)) {
 
-            	// modifica la ciudad
-            	city.setId(updatedCity.getId());
-                city.setName(updatedCity.getName());
+            	// modifica el usuario
+            	user.setId(updatedUser.getId());
+                user.setName(updatedUser.getName());
 
-                // retorna la ciudad modificada
-            	logger.info("Modificando ciudad " + city);
-                return city;
+                // retorna el usuario modificada
+            	logger.info("Modificando ciudad " + user);
+                return user;
             }
         }
         
-        // no encontró la ciudad con ese id ?
-        logger.severe("No existe una ciudad con ese id");
+        // no encontró usuario con ese id ?
+        logger.severe("No existe usuario con ese id");
         return null;
        // throw new CityLogicException("No existe una ciudad con ese id");
     }
 
     /**
-     * Elimina los datos de una ciudad
-     * @param id identificador de la ciudad a eliminar
-     * @throws CityLogicException cuando no existe una ciudad con el id suministrado
+     * Elimina los datos de un usuario
+     * @param id identificador del usuario a eliminar
+     * @throws UsuarioLogicException cuando no existe un usuario con el id suministrado
      */
-    public void deleteCity(Long id) {
-    	logger.info("recibiendo solictud de eliminar ciudad con id " + id);
+    public void deleteUser(Long id) {
+    	logger.info("recibiendo solictud de eliminar usuario con id " + id);
 
-    	// busca la ciudad con el id suministrado
-        for (UsuarioDTO city : usuarios) {
-            if (Objects.equals(city.getId(), id)) {
+    	// busca el usuario con el id suministrado
+        for (UsuarioDTO user : usuarios) {
+            if (Objects.equals(user.getId(), id)) {
 
-            	// elimina la ciudad
-            	logger.info("eliminando ciudad " + city);
-                usuarios.remove(city);
+            	// elimina el usuario
+            	logger.info("eliminando usuario " + user);
+                usuarios.remove(user);
                 return;
             }
         }
 
-        // no encontró la ciudad con ese id ?
-        logger.severe("No existe una ciudad con ese id");
+        // no encontró el usuario con ese id ?
+        logger.severe("No existe un usuario con ese id");
        // throw new CityLogicException("No existe una ciudad con ese id");
     }
 }

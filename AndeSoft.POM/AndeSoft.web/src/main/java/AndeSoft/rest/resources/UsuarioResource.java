@@ -27,72 +27,72 @@ import javax.ws.rs.Produces;
  * Note que la aplicación (definida en RestConfig.java) define la ruta
  * "/api" y este recurso tiene la ruta "cities". 
  * Al ejecutar la aplicación, el recurse será accesibe a través de la 
- * ruta "/api/cities" 
+ * ruta "/api/users" 
  * 
  * @author Asistente
  */
-@Path("cities")
+@Path("users")
 @Produces("application/json")
 public class UsuarioResource {
 
 	@Inject
-	UsuarioLogicMock cityLogic;
+	UsuarioLogicMock userLogic;
 
 	/**
 	 * Obtiene el listado de ciudades. 
-	 * @return lista de ciudades
-	 * @throws CityLogicException excepción retornada por la lógica  
+	 * @return lista de usuarios
+	 * @throws UsuarioLogicException excepción retornada por la lógica  
 	 */
     @GET
-    public List<UsuarioDTO> getCities() {
-        return cityLogic.getCities();
+    public List<UsuarioDTO> getUsers() {
+        return userLogic.getUsers();
     }
 
     /**
-     * Obtiene una ciudad
-     * @param id identificador de la ciudad
-     * @return ciudad encontrada
-     * @throws CityLogicException cuando la ciudad no existe
+     * Obtiene un ususario
+     * @param id identificador del ususario
+     * @return usuario encontrado
+     * @throws UsuarioLogicException cuando el usuario no existe
      */
     @GET
     @Path("{id: \\d+}")
-    public UsuarioDTO getCity(@PathParam("id") Long id)  {
-        return cityLogic.getCity(id);
+    public UsuarioDTO getUser(@PathParam("id") Long id)  {
+        return userLogic.getUser(id);
     }
 
     /**
-     * Agrega una ciudad
-     * @param city ciudad a agregar
-     * @return datos de la ciudad a agregar
-     * @throws CityLogicException cuando ya existe una ciudad con el id suministrado
+     * Agrega un usuario
+     * @param user usuario a agregar
+     * @return datos del usuario a agregar
+     * @throws UsuarioLogicException cuando ya existe un usuario con el id suministrado
      */
     @POST
-    public UsuarioDTO createCity(UsuarioDTO city)  {
-        return cityLogic.createCity(city);
+    public UsuarioDTO createUser(UsuarioDTO user)  {
+        return userLogic.createUser(user);
     }
 
     /**
-     * Actualiza los datos de una ciudad
-     * @param id identificador de la ciudad a modificar
-     * @param city ciudad a modificar
-     * @return datos de la ciudad modificada 
-     * @throws CityLogicException cuando no existe una ciudad con el id suministrado
+     * Actualiza los datos de un usuario
+     * @param id identificador del usuario a modificar
+     * @param user usuario a modificar
+     * @return datos del ususario modificado 
+     * @throws UsusarioLogicException cuando no existe un usuario con el id suministrado
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDTO updateCity(@PathParam("id") Long id, UsuarioDTO city)  {
-        return cityLogic.updateCity(id, city);
+    public UsuarioDTO updateUser(@PathParam("id") Long id, UsuarioDTO user)  {
+        return userLogic.updateUser(id, user);
     }
 
     /**
-     * Elimina los datos de una ciudad
-     * @param id identificador de la ciudad a eliminar
-     * @throws CityLogicException cuando no existe una ciudad con el id suministrado
+     * Elimina los datos de un ususario
+     * @param id identificador del ususario a eliminar
+     * @throws UsuarioLogicException cuando no existe un ususario con el id suministrado
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCity(@PathParam("id") Long id)  {
-    	cityLogic.deleteCity(id);
+    public void deleteUser(@PathParam("id") Long id)  {
+    	userLogic.deleteUser(id);
     }
 
 }
