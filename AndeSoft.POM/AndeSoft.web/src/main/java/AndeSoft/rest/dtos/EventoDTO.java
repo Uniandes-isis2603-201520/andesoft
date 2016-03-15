@@ -1,14 +1,90 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package AndeSoft.rest.dtos;
 
 /**
  *
- * @author Johan
+ * @author mm.gomez10
+ * EventoDTO
+ * Objeto de transferencia de datos de Eventos.
+ * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
  */
-class EventoDTO {
+public class EventoDTO {
+
+    private Long id;
+    private String nombre;
+    private String fechaInicio;
+    private String fechaFinal;
+    private String ciudad;
+
+    /**
+     * Constructor por defecto
+     */
+    public EventoDTO() {
+	}
+
+    /**
+     * Constructor con parámetros.
+     * @param pId 
+     * @param pNombre 
+     * @param pFechaInicio
+     * @param pFechaFinal
+     * @param pCiudad
+     */
+    public EventoDTO(Long pId, String pNombre, String pFechaInicio, String pFechaFinal, String pCiudad ) {
+		super();
+		this.id = pId;
+		this.nombre = pNombre;
+                this.fechaInicio = pFechaInicio;
+		this.fechaFinal = pFechaFinal;
+                this.ciudad = pCiudad;
+	}
+
+
+    public Long getId() {
+        return id;
+    }
+
+  
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+
+    public void setNombre(String pNombre) {
+        this.nombre = pNombre;
+    }
     
+     public String getFechaInicio(){
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(String pFechaInicio) {
+        this.fechaInicio = pFechaInicio;
+    }
+
+    public String getFechaFinal(){
+        return fechaFinal;
+    }
+
+    public void setFechaFinal(String pFechaFinal) {
+        this.fechaFinal = pFechaFinal;
+    }
+    
+    public String getCiudad(){
+        return ciudad;
+    }
+
+    public void setCiudad(String pCiudad) {
+        this.ciudad = pCiudad;
+    }
+
+   
+    @Override
+    public String toString() {
+    	return "{ id : " + getId() + ", name : \"" + getNombre() + "\" }" ;
+    }
 }

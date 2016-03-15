@@ -29,7 +29,7 @@ import javax.ws.rs.Produces;
  * Al ejecutar la aplicación, el recurse será accesibe a través de la 
  * ruta "/api/users" 
  * 
- * @author Asistente
+ * @author jg.tamura10
  */
 @Path("itinerarios")
 @Produces("application/json")
