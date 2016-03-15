@@ -30,6 +30,14 @@ public class UsuarioLogicMock {
     // listado de usuarios
     private static ArrayList<UsuarioDTO> usuarios;
 
+    static ArrayList getItinerariosDeUsuario(long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    static void setItinerariosDeUsuario(long id, ArrayList itinerarios) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Constructor. Crea los datos de ejemplo.
      */
