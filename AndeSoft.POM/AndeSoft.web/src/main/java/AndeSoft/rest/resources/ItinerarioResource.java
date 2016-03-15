@@ -1,15 +1,16 @@
 /*
- * CityResource.java
- * Clase que representa el recurso "/cities"
- * Implementa varios métodos para manipular las ciudades
+ * ItinerarioResource.java
+ * Clase que representa el recurso "/itinerario"
+ * Implementa varios métodos para manipular los itinerarios
+ * @autor: jg.tamura10
  */
 package AndeSoft.rest.resources;
 
 
 
-import AndeSoft.rest.dtos.UsuarioDTO;
-import AndeSoft.rest.mocks.UsuarioLogicMock;
-import java.util.List;
+import AndeSoft.rest.dtos.ItinerarioDTO;
+import AndeSoft.rest.mocks.ItinerarioLogicMock;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
@@ -22,77 +23,89 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- * Clase que implementa el recurso REST correspondiente a "cities".
+ * Clase que implementa el recurso REST correspondiente a "itinerarios".
+ * 
+ * SE SUPONE QUE ESTE ITINERARIO LO TIENE UN PERFIL
  * 
  * Note que la aplicación (definida en RestConfig.java) define la ruta
- * "/api" y este recurso tiene la ruta "cities". 
+ * "/api" y este recurso tiene la ruta "itinerarios". 
  * Al ejecutar la aplicación, el recurse será accesibe a través de la 
- * ruta "/api/users" 
+ * ruta "/api/itinerarios" 
  * 
- * @author jg.tamura10
  */
-@Path("itinerarios")
+@Path("Itinerarios")
 @Produces("application/json")
-public class ItinerarioResource {
+public class ItinerarioResource 
+{
 
 	@Inject
-	UsuarioLogicMock userLogic;
+	ItinerarioLogicMock itinerarioLogic;
 
 	/**
-	 * Obtiene el listado de ciudades. 
-	 * @return lista de usuarios
-	 * @throws UsuarioLogicException excepción retornada por la lógica  
+	 * Obtiene el listado de itinerarios. 
+	 * @return lista de itinerarios 
+	 * @throws ItinearioLogicException excepción retornada por la lógica  
 	 */
     @GET
-    public List<UsuarioDTO> getUsers() {
-        return userLogic.getUsers();
+    @Path("/perfil/{idP}/itinerarios")
+    public ArrayList getItinerarios(@PathParam("idP") Long id) 
+    {
+        return itinerarioLogic.getTodosItinerariosIDPerfil(id);
     }
 
     /**
-     * Obtiene un ususario
-     * @param id identificador del ususario
-     * @return usuario encontrado
-     * @throws UsuarioLogicException cuando el usuario no existe
+     * Obtiene un itinerario
+     * @param id identificador del itinerario
+     * @return itinerario encontrado
+     * @throws ItinerarioLogicException cuando la ciudad no existe
      */
     @GET
-    @Path("{id: \\d+}")
-    public UsuarioDTO getUser(@PathParam("id") Long id)  {
-        return userLogic.getUser(id);
+    @Path("/perfil/{idP}/itinerarios/{idI}")
+    public ItinerarioDTO getCity(@PathParam("idP") Long idP, @PathParam("idI") Long idI )
+    {
+        return itinerarioLogic.getItinerario(idP, idI);
     }
 
     /**
-     * Agrega un usuario
-     * @param user usuario a agregar
-     * @return datos del usuario a agregar
-     * @throws UsuarioLogicException cuando ya existe un usuario con el id suministrado
+     * Agrega un itinerario
+     * @param itinerario itinerario a agregar
+     * @return datos del itinerario a agregado
+     * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
      */
     @POST
-    public UsuarioDTO createUser(UsuarioDTO user)  {
-        return userLogic.createUser(user);
+    @Path("/perfil/{idP}/createIt")
+    public ItinerarioDTO createItinerario(ItinerarioDTO itinerario,@PathParam("idP") Long idP )  
+    {
+        return itinerarioLogic.createItinerario(itinerario, idP);
     }
 
     /**
-     * Actualiza los datos de un usuario
-     * @param id identificador del usuario a modificar
-     * @param user usuario a modificar
-     * @return datos del ususario modificado 
-     * @throws UsusarioLogicException cuando no existe un usuario con el id suministrado
+     * Actualiza los datos de un itinerario
+     * @param id identificador del itinerario
+     * @param itinerario  itinerario a modificar
+     * @return datos del itineario modificado 
+     * @throws ItinerarioLogicException cuando no existe una ciudad con el id suministrado
      */
     @PUT
-    @Path("{id: \\d+}")
-    public UsuarioDTO updateUser(@PathParam("id") Long id, UsuarioDTO user)  {
-        return userLogic.updateUser(id, user);
+    @Path("/perfil/{idP}/cambiarItinerario/{idI}")
+    public ItinerarioDTO updateItinerario(@PathParam("idP") Long idP,@PathParam("idI") Long idI, ItinerarioDTO itNuevo)
+    {
+        return itinerarioLogic.updateItinerario(idP,idI, itNuevo);
     }
 
     /**
-     * Elimina los datos de un ususario
-     * @param id identificador del ususario a eliminar
-     * @throws UsuarioLogicException cuando no existe un ususario con el id suministrado
+     * Elimina los datos de un itinerario
+     * @param idP identificador del usuario dueño del itinerario a eliminar
+     * @param idI identificador del itinerario a eliminar
+     * @throws CityLogicException cuando no existe una ciudad con el id suministrado
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteUser(@PathParam("id") Long id)  {
-    	userLogic.deleteUser(id);
+    @Path("/perfil/{idP}/eliminarItinerario/{idI}")
+    public void deleteItinerario(@PathParam("idP") Long idP, @PathParam("idI") Long idI) 
+    {
+    	itinerarioLogic.deleteItinerario(idP, idI);
     }
 
 }
+
+

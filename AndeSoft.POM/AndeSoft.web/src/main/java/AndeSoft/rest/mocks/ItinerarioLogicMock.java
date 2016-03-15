@@ -107,8 +107,8 @@ public class ItinerarioLogicMock
              {
                  itinerarios.remove(i);
                  
-                  UsuarioLogicMock.setItinerariosDeUsuario(idP, itinerarios);
-                  
+                  UsuarioLogicMock.setItinerariosDeUsuario(idP, itinerarios );
+                   
              }
          }
      }
