@@ -16,8 +16,8 @@ public class HotelDTO {
     
     private Long id;
     private String nombre;
-    private Date fechaLlegada;
-    private Date fechaSalida;
+    private String fechaLlegada;
+    private String fechaSalida;
     
     /**
      * Constructor por defecto
@@ -29,7 +29,7 @@ public class HotelDTO {
     /**
      * Constructor con parametros
      */
-    public HotelDTO(Long id, String nombre, Date fechaLlegada, Date fechaSalida){
+    public HotelDTO(Long id, String nombre, String fechaLlegada, String fechaSalida){
         this.id = id;
         this.nombre = nombre;
         this.fechaLlegada = fechaLlegada;
@@ -43,6 +43,10 @@ public class HotelDTO {
         return id;
     }
     
+    public void setId(Long id){
+        this.id = id;
+    }
+    
     /**
      * Retorna el nombre del hotel
      */
@@ -50,31 +54,35 @@ public class HotelDTO {
         return nombre;
     }
     
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+    
     /**
      * Retorna la fecha de llegada al hotel
      */
-    public Date getFechaLlegada(){
+    public String getFechaLlegada(){
         return fechaLlegada;
     }
     
     /**
      * Retorna la fech de salida del hotel
      */
-    public Date getFechaSalida(){
+    public String getFechaSalida(){
         return fechaSalida;
     }
     
     /**
      * Modifica la fecha de llegada al hotel
      */
-    public void setFechaLlegada(Date fechaLlegada){
+    public void setFechaLlegada(String fechaLlegada){
         this.fechaLlegada = fechaLlegada;
     }
     
     /**
      * Modifica la fecha de salida del hotel
      */
-    public void setFechaSalida(Date fechaSalida){
+    public void setFechaSalida(String fechaSalida){
         this.fechaSalida = fechaSalida;
     }
 }

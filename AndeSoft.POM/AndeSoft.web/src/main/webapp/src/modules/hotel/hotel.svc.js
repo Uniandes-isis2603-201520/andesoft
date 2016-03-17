@@ -9,7 +9,7 @@
 var mod = ng.module("AppHotel");
 mod.service('hotelSVC', [function ()
    {
-       var itinerario = [];
+       var hoteles = [];
        var logueado=false;
 
        this.darLog= function()
@@ -28,22 +28,22 @@ mod.service('hotelSVC', [function ()
           console.log("hola"+this.logueado);
        };
 
-       this.agregarCiudad = function(ciudad)
+       this.agregarHotel = function(hotel)
        {
-           console.log("entra a metodo agregar ciudad Servicio");
+           console.log("entra a metodo agregar hotel Servicio");
 
-           itinerario.push(ciudad);
+           hoteles.push(hotel);
        };
 
-       this.borrarCity = function(ciudad)
+       this.borrarHotel = function(hotel)
        {
-             var indice = itinerario.indexOf(ciudad);
-            itinerario.splice(indice,1);
+             var indice = hoteles.indexOf(hotel);
+            hoteles.splice(indice,1);
        };
 
-       this.darItinerario= function()
+       this.darHoteles= function()
         {
-           return itinerario;
+           return hoteles;
        };
 
    }
