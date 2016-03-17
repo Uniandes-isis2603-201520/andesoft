@@ -5,6 +5,7 @@
  */
 package AndeSoft.rest.mocks;
 
+import AndeSoft.rest.DB.ItinerarioSimuladorDB;
 import AndeSoft.rest.dtos.ItinerarioDTO;
 import java.util.ArrayList;
 import javax.enterprise.context.ApplicationScoped;
@@ -30,18 +31,17 @@ public class ItinerarioLogicMock
          itinerarios = new ArrayList();  
          
     }
-    public void agregarDatos()
+    
+    public ArrayList getTodosItinerariosIDPerfil(int id)
     {
-        
-    }
-    public ArrayList getTodosItinerariosIDPerfil(long id)
-    {
-        itinerarios = UsuarioLogicMock.getItinerariosDeUsuario(id);
+        ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
+        itinerarios = baseDatos.getItinerariosDeUsuario(id);
         return itinerarios;
     }
-     public ItinerarioDTO getItinerario(long idP, long idI)
+     public ItinerarioDTO getItinerario(int idP, int idI)
     {
-        itinerarios = UsuarioLogicMock.getItinerariosDeUsuario(idP);
+        ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
+        itinerarios = baseDatos.getItinerariosDeUsuario(idP);
         
         ItinerarioDTO buscado = null;
         
@@ -58,26 +58,27 @@ public class ItinerarioLogicMock
         return buscado;
     }
      
-     public ItinerarioDTO createItinerario(ItinerarioDTO it, long id)
+     public ItinerarioDTO createItinerario(ItinerarioDTO it, int id, int idP)
      {
-         itinerarios = UsuarioLogicMock.getItinerariosDeUsuario(id);
+         ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
+        itinerarios = baseDatos.getItinerariosDeUsuario(id);
          
-         if(itinerarios.contains(it))
-         {
-             return null;
-         }
+         ItinerarioDTO existe= getItinerario(idP, id);
+         
+         if(existe != null){return null;}
          
          itinerarios.add(it);
          
-         UsuarioLogicMock.setItinerariosDeUsuario(id, itinerarios);
+        baseDatos.setItinerariosDeUsuario(id, itinerarios);
          
          return it;
          
      }
      
-     public ItinerarioDTO updateItinerario(long idP, long idI, ItinerarioDTO itN) //throws Exception
+     public ItinerarioDTO updateItinerario(int idP, int idI, ItinerarioDTO itN) //throws Exception
      {
-         itinerarios = UsuarioLogicMock.getItinerariosDeUsuario(idP);
+         ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
+        itinerarios = baseDatos.getItinerariosDeUsuario(idP);
          
          for(int i=0;i< itinerarios.size();i++)
          {
@@ -112,5 +113,10 @@ public class ItinerarioLogicMock
              }
          }
      }
+     
+     public void setListaEventos(long idPerfil, long idItinerario)
+    {
+        
+    }
     
 }
