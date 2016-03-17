@@ -7,7 +7,7 @@
 (function(ng)
 {
 var mod = ng.module("AppItinerario");
-mod.service('itinerarioSVC', [function ()
+mod.service('itinerarioSVC', ["$http",function ($http)
    {
        var idItinerarioActual = 0;
        
@@ -37,36 +37,32 @@ mod.service('itinerarioSVC', [function ()
           console.log("hola"+this.logueado);
        };
        
-   
-       var hotel0 = {id: 0, nombre: "hotel Radisson"};
-       var hotel1 = {id: 1, nombre: "hotel welcome"};
-       var hotel2 = {id: 2, nombre: "hotel bienvenido"};
-       var hotel3 = {id: 3, nombre: "hotel konichiwa"};
-       
-       var ciudad0 = {id: 0, nombre: "Cali"};
-       var ciudad1 = {id: 1, nombre: "Palmira"};
-       var ciudad2 = {id: 2, nombre: "Londres"};
-       var ciudad3 = {id: 3, nombre: "Madrid"};
-       var ciudad4 = {id: 4, nombre: "Tokio"};
-       
-       var evento0 = {id: 0, nombre: "Rumba en Menga"};
-       var punto0 = {id: 0, nombre: "estatua: Sebastian de belalcazar"};
-       
-       var evento1 = {id: 0, nombre: "Excursion a las ruinas abandonadas"};
-       var evento2 = {id: 0, nombre: "Concierto de Ed sheeran"};
-       var evento3 = {id: 0, nombre: "Entrada al palacio imperial"};
-       var punto1 = {id: 0, nombre: "Puente de la victoria"};
-       var punto2 = {id: 0, nombre: "Mar blanco"};
-       var punto3 = {id: 0, nombre: "Ciclo ruta en las montañas y vista a la estatua"};
-       
-       var itinerario0 = {id:0, nombre: "Itinerario semana santa", fechaIni:"mayo 20 2016", fechaFin:"mayo 27 2016", ciudades:[ciudad0, ciudad1], eventos:[evento0], hoteles:[hotel0],puntos: [punto0]};
-       var itinerario1 = {id:1, nombre: "Itinerario Vacaciones largas", fechaIni:"junio 23 2016", fechaFin:"julio 30 2016", ciudades:[ciudad2, ciudad3, ciudad4], eventos:[evento1, evento2, evento3], hoteles:[hotel1, hotel2, hotel3],puntos: [punto1, punto2,punto3]};
-       var itinerarios = [itinerario0, itinerario1];
+    this.darItinerario = function(idPerfil, idItinerario)
+    {
+        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/{idPerfil}/itinerarios/{idIt}");
+        //return null;
+        return $http.get("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil +"/itinerarios/"+idItinerario);
+    };
+    this.crearItinerario = function(idDueño, itinerario)
+    {
+        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
+        //devuelve el itinerario creado
+        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idDueño+"/createIt" , itinerario);
+    };
+    this.borrarItinerario = function(idPerfil , idItEliminar)
+    {
+        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/eliminarItinerario/0");
+        
+        $http.delete("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil+"/eliminarItinerario/"+idItEliminar);
+    };
+    this.actualizarItinerario()
+    {
+        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/cambiarItinerario/0");
+        
+    }
        
        
-       
-       
-        this.darCiudades = function(idItinerario)
+        /*this.darCiudades = function(idItinerario)
         {
             console.log("Recupera ciudades");
             for(var i=0;i< itinerarios.length;i++)
@@ -192,7 +188,7 @@ mod.service('itinerarioSVC', [function ()
                                         eventos:eventos, hoteles:hoteles,puntos: puntos};
                     itinerarios.splice(itinerarios.length,0, itin);
             }
-       }
+       }*/
 
 
        

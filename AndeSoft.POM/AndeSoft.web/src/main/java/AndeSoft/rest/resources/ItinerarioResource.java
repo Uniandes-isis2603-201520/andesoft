@@ -23,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 
 /**
@@ -53,7 +54,6 @@ ItinerarioLogicMock itinerarioLogic;
          */
         @GET
         @Path("/itinerarios")
-        @Produces(MediaType.APPLICATION_JSON)
         public String getPrueba() 
         {
             System.out.println("Llega tener itinerarios");
@@ -72,13 +72,23 @@ ItinerarioLogicMock itinerarioLogic;
          * 
 */
     @GET
-    @Path("/perfil/{idP}/itinerarios")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList getItinerarios(@PathParam("idP") int id) 
+    @Path("/perfil/{idP}/itinerariosTodos")
+    public Response getItinerarios(@PathParam("idP") int id) 
     {
         System.out.println("Llega tener itinerarios");
         
-        return itinerarioLogic.getTodosItinerariosIDPerfil(id);
+       
+        ArrayList itinerarioL = new ArrayList();
+        try 
+	{
+               itinerarioL = itinerarioLogic.getTodosItinerariosIDPerfil(id);
+        } 
+	catch (Exception e) 
+	{
+            System.out.println("LLEGA A ESTE  ERROR " + e.getMessage());
+		return Response.status(500).entity((e.getMessage())).build();
+	}
+        return Response.status(200).entity(itinerarioL).build();
     }
 
     /**
@@ -92,7 +102,6 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    @Produces(MediaType.APPLICATION_JSON)
     public ItinerarioDTO getItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI )
     {
         System.out.println("Llega tener 1 itinerario");
@@ -110,11 +119,19 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @POST
     @Path("/perfil/{idP}/createIt")
-    @Produces(MediaType.APPLICATION_JSON)
-    public ItinerarioDTO createItinerario(ItinerarioDTO itinerario,@PathParam("idP") int idP )  
+    public  Response createItinerario(ItinerarioDTO itinerario,@PathParam("idP") int idP )  
     {
         System.out.println("Llega crear itinerario");
-        return itinerarioLogic.createItinerario(itinerario, idP);
+        ItinerarioDTO itinerarioN;
+        try 
+	{
+               itinerarioN = itinerarioLogic.createItinerario(itinerario, idP);
+        } 
+	catch (Exception e) 
+	{
+		return Response.status(500).entity((e.getMessage())).build();
+	}
+        return Response.status(200).entity(itinerarioN).build();
     }
 
     /**
@@ -129,8 +146,6 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @PUT
     @Path("/perfil/{idP}/cambiarItinerario/{idI}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public ItinerarioDTO updateItinerario(@PathParam("idP") int idP,@PathParam("idI") int idI, ItinerarioDTO itNuevo)
     {
         System.out.println("Llega cambiar itinerario");
@@ -149,11 +164,10 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @DELETE
     @Path("/perfil/{idP}/eliminarItinerario/{idI}")
-    @Produces(MediaType.APPLICATION_JSON)
     public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI) 
     {
         System.out.println("Llega borrar itinerario");
-    itinerarioLogic.deleteItinerario(idP, idI);
+        itinerarioLogic.deleteItinerario(idP, idI);
     }
 
 }
