@@ -16,47 +16,23 @@ import java.util.Date;
  */
 public class ItinerarioDTO
 {
-    /**
-     *  var hotel0 = {id: 0, nombre: "hotel Radisson"};
-       var hotel1 = {id: 1, nombre: "hotel welcome"};
-       var hotel2 = {id: 2, nombre: "hotel bienvenido"};
-       var hotel3 = {id: 3, nombre: "hotel konichiwa"};
-       
-       var ciudad0 = {id: 0, nombre: "Cali"};
-       var ciudad1 = {id: 1, nombre: "Palmira"};
-       var ciudad2 = {id: 2, nombre: "Londres"};
-       var ciudad3 = {id: 3, nombre: "Madrid"};
-       var ciudad4 = {id: 4, nombre: "Tokio"};
-       
-       var evento0 = {id: 0, nombre: "Rumba en Menga"};
-       var punto0 = {id: 0, nombre: "estatua: Sebastian de belalcazar"};
-       
-       var evento1 = {id: 0, nombre: "Excursion a las ruinas abandonadas"};
-       var evento2 = {id: 0, nombre: "Concierto de Ed sheeran"};
-       var evento3 = {id: 0, nombre: "Entrada al palacio imperial"};
-       var punto1 = {id: 0, nombre: "Puente de la victoria"};
-       var punto2 = {id: 0, nombre: "Mar blanco"};
-       var punto3 = {id: 0, nombre: "Ciclo ruta en las montañas y vista a la estatua"};
-       
-       var itinerario0 = {id:0, nombre: "Itinerario semana santa", fechaIni:"mayo 20 2016", fechaFin:"mayo 27 2016", ciudades:[ciudad0, ciudad1], eventos:[evento0], hoteles:[hotel0],puntos: [punto0]};
-       var itinerario1 = {id:1, nombre: "Itinerario Vacaciones largas", fechaIni:"junio 23 2016", fechaFin:"julio 30 2016", ciudades:[ciudad2, ciudad3, ciudad4], eventos:[evento1, evento2, evento3], hoteles:[hotel1, hotel2, hotel3],puntos: [punto1, punto2,punto3]};
-       var itinerarios = [itinerario0, itinerario1];
-       
-       */
+    
      private ArrayList ciudades;
      private ArrayList eventos;
      private ArrayList puntosI;
      private ArrayList hoteles;
      
-     private long id;
+     private int id;
+     private int idUsuarioDueño;
      private String nombreIt;
      
-     private Date fechaIni;
-     private Date fechaFin;
+     private String fechaIni;
+     private String fechaFin;
      
      
-     public ItinerarioDTO(Long idp, String nombreItp, Date ini, Date fin, ArrayList ciudadesp, ArrayList eventosp, ArrayList puntosp, ArrayList hotelesp)
+     public ItinerarioDTO(int idD, int idp, String nombreItp, String ini, String fin, ArrayList ciudadesp, ArrayList eventosp, ArrayList puntosp, ArrayList hotelesp)
      {
+         idUsuarioDueño = idD;
          id = idp;
          nombreIt = nombreItp;
          fechaIni = ini;
@@ -68,9 +44,13 @@ public class ItinerarioDTO
          
          
      }
-        public long darId()
+        public int darId()
         {
             return id;
+        }
+        public int darIdUsuarioDueño()
+        {
+            return idUsuarioDueño;
         }
        public String darNombre()
        {
@@ -92,11 +72,11 @@ public class ItinerarioDTO
         {
             return hoteles;
         }
-        public Date darFechaIni( )
+        public String darFechaIni( )
         {
             return fechaIni;
         }
-        public Date darFechaFin( )
+        public String darFechaFin( )
         {
             return fechaFin;
         }
@@ -119,11 +99,11 @@ public class ItinerarioDTO
         {
             hoteles = nuevaC;
         }
-        public void setFechaIni( Date nuevaC)
+        public void setFechaIni( String nuevaC)
         {
             fechaIni = nuevaC;
         }
-        public void setFechaFin( Date nuevaC)
+        public void setFechaFin( String nuevaC)
         {
             fechaFin = nuevaC;
         }

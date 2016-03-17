@@ -48,7 +48,7 @@ public class ItinerarioResource
 	 */
     @GET
     @Path("/perfil/{idP}/itinerarios")
-    public ArrayList getItinerarios(@PathParam("idP") Long id) 
+    public ArrayList getItinerarios(@PathParam("idP") int id) 
     {
         return itinerarioLogic.getTodosItinerariosIDPerfil(id);
     }
@@ -61,7 +61,7 @@ public class ItinerarioResource
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    public ItinerarioDTO getCity(@PathParam("idP") Long idP, @PathParam("idI") Long idI )
+    public ItinerarioDTO getItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI )
     {
         return itinerarioLogic.getItinerario(idP, idI);
     }
@@ -74,7 +74,7 @@ public class ItinerarioResource
      */
     @POST
     @Path("/perfil/{idP}/createIt")
-    public ItinerarioDTO createItinerario(ItinerarioDTO itinerario,@PathParam("idP") Long idP )  
+    public ItinerarioDTO createItinerario(ItinerarioDTO itinerario,@PathParam("idP") int idP )  
     {
         return itinerarioLogic.createItinerario(itinerario, idP);
     }
@@ -88,7 +88,7 @@ public class ItinerarioResource
      */
     @PUT
     @Path("/perfil/{idP}/cambiarItinerario/{idI}")
-    public ItinerarioDTO updateItinerario(@PathParam("idP") Long idP,@PathParam("idI") Long idI, ItinerarioDTO itNuevo)
+    public ItinerarioDTO updateItinerario(@PathParam("idP") int idP,@PathParam("idI") int idI, ItinerarioDTO itNuevo)
     {
         return itinerarioLogic.updateItinerario(idP,idI, itNuevo);
     }
@@ -101,7 +101,7 @@ public class ItinerarioResource
      */
     @DELETE
     @Path("/perfil/{idP}/eliminarItinerario/{idI}")
-    public void deleteItinerario(@PathParam("idP") Long idP, @PathParam("idI") Long idI) 
+    public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI) 
     {
     	itinerarioLogic.deleteItinerario(idP, idI);
     }

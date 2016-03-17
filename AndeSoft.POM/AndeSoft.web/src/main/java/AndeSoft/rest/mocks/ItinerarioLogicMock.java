@@ -58,18 +58,18 @@ public class ItinerarioLogicMock
         return buscado;
     }
      
-     public ItinerarioDTO createItinerario(ItinerarioDTO it, int id, int idP)
+     public ItinerarioDTO createItinerario(ItinerarioDTO it,  int idP)
      {
          ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
-        itinerarios = baseDatos.getItinerariosDeUsuario(id);
+        itinerarios = baseDatos.getItinerariosDeUsuario(idP);
          
-         ItinerarioDTO existe= getItinerario(idP, id);
+         ItinerarioDTO existe= getItinerario(idP, it.darId());
          
          if(existe != null){return null;}
          
          itinerarios.add(it);
          
-        baseDatos.setItinerariosDeUsuario(id, itinerarios);
+        baseDatos.setItinerariosDeUsuario(idP, itinerarios);
          
          return it;
          
@@ -85,10 +85,10 @@ public class ItinerarioLogicMock
              ItinerarioDTO actual = ( ItinerarioDTO)itinerarios.get(i);
              if(actual.darId() == idI)
              {
-                 itinerarios.remove(i);
+                 itinerarios.remove(actual);
                  itinerarios.add(itN);
                  
-                  UsuarioLogicMock.setItinerariosDeUsuario(idP, itinerarios);
+                  baseDatos.setItinerariosDeUsuario(idP, itinerarios);
                   
                   return itN;
              }
@@ -96,10 +96,10 @@ public class ItinerarioLogicMock
          return null;
          //throw new Exception(" No hay itinerario con ese id");
      }
-     public void deleteItinerario(long idP, long idI)
+     public void deleteItinerario(int idP, int idI)
      {
-
-         itinerarios = UsuarioLogicMock.getItinerariosDeUsuario(idP);
+         ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
+        itinerarios = baseDatos.getItinerariosDeUsuario(idP);
          
          for(int i=0;i< itinerarios.size();i++)
          {
@@ -108,15 +108,10 @@ public class ItinerarioLogicMock
              {
                  itinerarios.remove(i);
                  
-                  UsuarioLogicMock.setItinerariosDeUsuario(idP, itinerarios );
-                   
+                  baseDatos.setItinerariosDeUsuario(idP, itinerarios );
+                   break;
              }
          }
      }
-     
-     public void setListaEventos(long idPerfil, long idItinerario)
-    {
-        
-    }
     
 }
