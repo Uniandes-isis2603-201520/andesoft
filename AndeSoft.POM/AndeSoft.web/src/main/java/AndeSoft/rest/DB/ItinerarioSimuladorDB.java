@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author Usuario
+ * @author jg.tamura10
  */
 public class ItinerarioSimuladorDB 
 {

@@ -6,14 +6,14 @@
 package AndeSoft.rest.dtos;
 
 import java.util.ArrayList;
-import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author jg.tamura10
  * 
- * FUNCIONA AHORA COMO BD
  */
+@XmlRootElement
 public class ItinerarioDTO
 {
     
