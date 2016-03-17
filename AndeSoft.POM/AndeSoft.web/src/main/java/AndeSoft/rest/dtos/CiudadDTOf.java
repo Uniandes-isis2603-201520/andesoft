@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Johan
  */
-class CiudadDTO {
+class CiudadDTOf {
     
     private Long id;
     private String nombre;
@@ -22,11 +22,11 @@ class CiudadDTO {
     private ArrayList<HotelDTO> hoteles;
     private ArrayList<PuntoInteresDTO> puntosInteres;
     
-    public CiudadDTO(){
+    public CiudadDTOf(){
         
     }
     
-     public CiudadDTO(Long idN, String nombreN, String fechaInicioN, String fechaSalidaN){
+     public CiudadDTOf(Long idN, String nombreN, String fechaInicioN, String fechaSalidaN){
       id=idN;
      nombre=nombreN;
      fechaLLegada=fechaInicioN;
