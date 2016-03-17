@@ -43,11 +43,33 @@ public class ItinerarioResource
 
 	@Inject
 	ItinerarioLogicMock itinerarioLogic;
+        
+        /**
+         * 
+         * solo para veficar
+         * 
+         * funciona
+         * http://localhost:8080/AndeSoft.web/api/Itinerarios/itinerarios
+         */
+        @GET
+        @Path("/itinerarios")
+        @Produces(MediaType.APPLICATION_JSON)
+        public String getPrueba() 
+        {
+            System.out.println("Llega tener itinerarios");
+            return "llego";
+        }
 
 	/**
+         * 
+         * 
+         * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/itinerarios
+         * 
+         * 
 	 * Obtiene el listado de itinerarios. 
 	 * @return lista de itinerarios 
 	 * @throws ItinearioLogicException excepción retornada por la lógica  
+         * 
 	 */
     @GET
     @Path("/perfil/{idP}/itinerarios")
@@ -55,6 +77,7 @@ public class ItinerarioResource
     public ArrayList getItinerarios(@PathParam("idP") int id) 
     {
         System.out.println("Llega tener itinerarios");
+        
         return itinerarioLogic.getTodosItinerariosIDPerfil(id);
     }
 
