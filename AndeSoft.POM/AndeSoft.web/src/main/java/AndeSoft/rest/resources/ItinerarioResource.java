@@ -41,8 +41,8 @@ import javax.ws.rs.core.MediaType;
 public class ItinerarioResource 
 {
 
-	@Inject
-	ItinerarioLogicMock itinerarioLogic;
+@Inject
+ItinerarioLogicMock itinerarioLogic;
         
         /**
          * 
@@ -60,17 +60,17 @@ public class ItinerarioResource
             return "llego";
         }
 
-	/**
+/**
          * 
          * 
          * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/itinerarios
          * 
          * 
-	 * Obtiene el listado de itinerarios. 
-	 * @return lista de itinerarios 
-	 * @throws ItinearioLogicException excepción retornada por la lógica  
+* Obtiene el listado de itinerarios. 
+* @return lista de itinerarios 
+* @throws ItinearioLogicException excepción retornada por la lógica  
          * 
-	 */
+*/
     @GET
     @Path("/perfil/{idP}/itinerarios")
     @Produces(MediaType.APPLICATION_JSON)
@@ -82,6 +82,9 @@ public class ItinerarioResource
     }
 
     /**
+     * 
+     * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/itinerarios/0
+     * 
      * Obtiene un itinerario
      * @param id identificador del itinerario
      * @return itinerario encontrado
@@ -98,6 +101,9 @@ public class ItinerarioResource
 
     /**
      * Agrega un itinerario
+     * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt
+     * 
+     * 
      * @param itinerario itinerario a agregar
      * @return datos del itinerario a agregado
      * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
@@ -113,6 +119,9 @@ public class ItinerarioResource
 
     /**
      * Actualiza los datos de un itinerario
+     * 
+     *  http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/cambiarItinerario/0
+     * 
      * @param id identificador del itinerario
      * @param itinerario  itinerario a modificar
      * @return datos del itineario modificado 
@@ -129,6 +138,10 @@ public class ItinerarioResource
     }
 
     /**
+     * 
+     * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/eliminarItinerario/0
+     * 
+     * 
      * Elimina los datos de un itinerario
      * @param idP identificador del usuario dueño del itinerario a eliminar
      * @param idI identificador del itinerario a eliminar
@@ -140,9 +153,7 @@ public class ItinerarioResource
     public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI) 
     {
         System.out.println("Llega borrar itinerario");
-    	itinerarioLogic.deleteItinerario(idP, idI);
+    itinerarioLogic.deleteItinerario(idP, idI);
     }
 
 }
-
-
