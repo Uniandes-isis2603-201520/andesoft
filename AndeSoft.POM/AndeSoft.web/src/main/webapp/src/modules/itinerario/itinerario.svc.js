@@ -9,6 +9,16 @@
 var mod = ng.module("AppItinerario");
 mod.service('itinerarioSVC', [function ()
    {
+       var idItinerarioActual = 0;
+       
+       this.darIdItinerarioActual = function()
+       {
+           return idItinerarioActual;
+       };
+       this.setItinerarioActual = function( idN)
+       {
+           idItinerarioActual = idN;
+       };
        var logueado=false;
        
        this.darLog= function()

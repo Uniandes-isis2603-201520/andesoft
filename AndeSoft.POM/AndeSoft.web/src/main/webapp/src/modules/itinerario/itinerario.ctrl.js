@@ -33,7 +33,7 @@
         
         $scope.actualizarItinerario = function()
         {
-            
+            svc.setItinerarioActual($scope.idItinerario);
             $scope.ciudades =  svc.darCiudades($scope.idItinerario);
             $scope.eventos =  svc.darEventos($scope.idItinerario);
             $scope.puntos =  svc.darPuntos($scope.idItinerario);
@@ -43,6 +43,8 @@
             $scope.nombreItinerario= svc.darNombreItinerario($scope.idItinerario);
             $scope.fechaInicio=svc.darFechaInicialItinerario($scope.idItinerario);
             $scope.fechaFinal=svc.darFechaFinItinerario($scope.idItinerario);
+            
+            
             
         };
         
