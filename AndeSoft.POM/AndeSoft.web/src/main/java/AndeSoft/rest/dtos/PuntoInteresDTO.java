@@ -9,7 +9,7 @@ package AndeSoft.rest.dtos;
  *
  * @author Johan
  */
-class PuntoInteresDTO {
+public class PuntoInteresDTO {
   
     private Long id;
     private String nombre;
@@ -55,6 +55,10 @@ class PuntoInteresDTO {
 
     public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
+    }
+
+    public long getIdItinerario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
