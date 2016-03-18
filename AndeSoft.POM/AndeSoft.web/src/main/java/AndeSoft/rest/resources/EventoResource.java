@@ -21,6 +21,7 @@ import javax.ws.rs.PUT;
 
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "EVENTOS".
@@ -33,20 +34,20 @@ import javax.ws.rs.Produces;
  * ruta "/api/eventos" 
  * 
  */
-@Path("eventos")
+@Path("Eventos")
 @Produces("application/json")
 public class EventoResource 
 {
 
-	@Inject
-	EventoLogicMock eventoLogic;
+@Inject
+EventoLogicMock eventoLogic;
 
-	/**
-	 * Obtiene el listado de eventos dado el id de un itinerario. 
+/**
+* Obtiene el listado de eventos dado el id de un itinerario. 
          * @param idIt identificador del itinerario
-	 * @return lista de eventos 
-	 * @throws EventoLogicException excepción retornada por la lógica  
-	 */
+* @return lista de eventos 
+* @throws EventoLogicException excepción retornada por la lógica  
+*/
     @GET
     @Path("/itinerarios/{idIt}/eventos")
     public ArrayList getEventos(@PathParam("idIt") Long idIt) 
@@ -63,9 +64,10 @@ public class EventoResource
      */
     @GET
     @Path("/itinerarios/{idIt}/eventos/{idEv}")
-    public EventoDTO getEvento(@PathParam("idIt") Long idIt, @PathParam("idEv") Long idEv )
+    public String getEvento(@PathParam("idIt") Long idIt, @PathParam("idEv") Long idEv )
     {
-        return eventoLogic.getEvento(idIt, idEv);
+        EventoDTO eventico = eventoLogic.getEvento(idIt, idEv);
+        return eventico.toString();
     }
 
     /**
@@ -77,9 +79,18 @@ public class EventoResource
      */
     @POST
     @Path("/itinerarios/{idIt}/createEvento")
-    public EventoDTO createEvento(EventoDTO evento,@PathParam("idIt") Long idIt )  
+    public Response createEvento(@PathParam("idIt") Long idIt, EventoDTO evento )  
     {
-        return eventoLogic.createEvento(evento, idIt);
+        EventoDTO eventico=null;
+        try
+        {
+            eventico = eventoLogic.createEvento(evento, idIt);
+        }
+        catch (Exception e)
+        {
+            Response.status(500).entity((e.getMessage())).build();
+        }
+        return Response.status(200).entity(eventico).build();
     }
 
     /**
@@ -107,6 +118,6 @@ public class EventoResource
     @Path("/itinerarios/{idIt}/eliminarEvento/{idEv}")
     public void deleteEvento(@PathParam("idIt") Long idIt, @PathParam("idEv") Long idEv) 
     {
-    	eventoLogic.deleteEvento(idIt, idEv);
+    eventoLogic.deleteEvento(idIt, idEv);
     }
 }

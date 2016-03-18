@@ -7,10 +7,10 @@
 (function(ng)
 {
 var mod = ng.module("AppEvento");
-mod.service('eventoSVC', [function ()
+mod.service('eventoSVC', ["$http", "contextoEvento",function ($http, context)
    {
        
-       var logueado=false;
+     //  var logueado=false;
        
 //       var id0 = 0;
 //       var nom0 = "Museum of Modern Arts";
@@ -50,18 +50,30 @@ mod.service('eventoSVC', [function ()
           console.log("hola"+this.logueado);
        };
        //-----------------------------------------------------------------------
-
-       this.agregarEvento = function(evento)
+       this.fetchRecords = function () {
+            console.log("Entro a fetch records service");
+                return $http.get(context);
+            };
+       this.darEvento = function (idItinerario, idEvento)   
        {
-           console.log("entra a metodo agregar evento Servicio");
-
-           listaEventos.push(evento);
+         console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/{idItinerario}/eventos/{idEvento}");  
+         
+         return $http.get
+        ("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario +"/eventos/"+idEvento);
+       };
+       
+       this.agregarEvento = function(idItinerario,evento)
+       {
+            console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/0/createEvento");
+           
+            return $http.post("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario+"/createEvento" , evento);
        };
 
-       this.borrarEvento = function(evento)
+       this.borrarEvento = function(idItinerario, idEvento)
        {
-             var indice = listaEventos.indexOf(evento);
-            listaEventos.splice(indice,1);
+            console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/0/eventos/0");
+        
+            $http.delete("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario+"/eliminarEvento/"+idEvento);
        };
 
        this.darListaEventos= function()
@@ -72,3 +84,4 @@ mod.service('eventoSVC', [function ()
    }
     ]);
 })(window.angular);
+

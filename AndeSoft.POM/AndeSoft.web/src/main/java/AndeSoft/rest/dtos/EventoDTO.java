@@ -20,7 +20,7 @@ public class EventoDTO {
      * Constructor por defecto
      */
     public EventoDTO() {
-	}
+}
 
     /**
      * Constructor con parámetros.
@@ -32,14 +32,14 @@ public class EventoDTO {
      * @param pCiudad
      */
     public EventoDTO(Long pId, int pIdItinerario, String pNombre, String pFechaInicio, String pFechaFinal, String pCiudad ) {
-		super();
-		this.id = pId;
+super();
+this.id = pId;
                 this.idItinerario = pIdItinerario;
-		this.nombre = pNombre;
+this.nombre = pNombre;
                 this.fechaInicio = pFechaInicio;
-		this.fechaFinal = pFechaFinal;
+this.fechaFinal = pFechaFinal;
                 this.ciudad = pCiudad;
-	}
+}
 
 
     public Long getId() {
@@ -96,6 +96,8 @@ public class EventoDTO {
    
     @Override
     public String toString() {
-    	return "{ id : " + getId() + ", name : \"" + getNombre() + "\" }" ;
+        String total = "{\"id\":"+id+",\"idItinerario\":"+idItinerario+",\"nombre\":\""+nombre+"\",\"fechaInicio\":\""+fechaInicio+"\",\"fechaFinal\":\""+fechaFinal
+                    +"\",\"ciudad\":"+ciudad+"}";
+        return total;
     }
 }
