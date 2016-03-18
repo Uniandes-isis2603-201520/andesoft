@@ -21,15 +21,15 @@ public class EventoSimuladorDB
     {
         eventos = new ArrayList ();
         
-        EventoDTO evento1 = new EventoDTO ( Long.parseLong(""+0), Long.parseLong(1+""), 
+        EventoDTO evento1 = new EventoDTO ( Long.parseLong(""+0), (1), 
                 "Ir a la feria", "25/12/2016", "05/01/2017", "Cali");
-        EventoDTO evento2 = new EventoDTO ( Long.parseLong(""+1), Long.parseLong(""+5),
+        EventoDTO evento2 = new EventoDTO ( Long.parseLong(""+1), 5,
                 "Ir a la playa", "06/07/2016", "06/07/2016", "Cartagena");
-        EventoDTO evento3 = new EventoDTO ( Long.parseLong(""+2), Long.parseLong(""+4),
+        EventoDTO evento3 = new EventoDTO ( Long.parseLong(""+2), 4,
                 "Ir a Andrés Carne de Res", "08/10/2017", "06/10/2017", "Bogotá");
-        EventoDTO evento4 = new EventoDTO ( Long.parseLong(""+3), Long.parseLong(""+2),
+        EventoDTO evento4 = new EventoDTO ( Long.parseLong(""+3), 2,
                 "Ir a Disney", "04/05/2018", "10/05/2018", "Orlando");
-        EventoDTO evento5 = new EventoDTO ( Long.parseLong(""+4), Long.parseLong(""+2),
+        EventoDTO evento5 = new EventoDTO ( Long.parseLong(""+4),2,
                 "Ir a Sea World", "11/05/2018", "13/05/2018", "Orlando");
         
         eventos.add(evento1);

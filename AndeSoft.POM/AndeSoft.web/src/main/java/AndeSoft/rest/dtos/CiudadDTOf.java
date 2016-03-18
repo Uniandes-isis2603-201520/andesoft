@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Johan
  */
-class CiudadDTOf {
+public class CiudadDTOf {
     
     private Long id;
     private String nombre;

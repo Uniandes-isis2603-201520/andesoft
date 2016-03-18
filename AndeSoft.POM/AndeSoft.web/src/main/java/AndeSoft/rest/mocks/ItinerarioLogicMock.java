@@ -66,7 +66,7 @@ public class ItinerarioLogicMock
          
          ItinerarioDTO existe= getItinerario(idP, it.darId());
          
-         if(existe != null){return null;}
+         if(existe != null){baseDatos.eliminar(existe.darId());}
          
          itinerarios.add(it);
          

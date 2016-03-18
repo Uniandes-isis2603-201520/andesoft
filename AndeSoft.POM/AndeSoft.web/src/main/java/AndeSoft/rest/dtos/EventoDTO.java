@@ -10,7 +10,7 @@ package AndeSoft.rest.dtos;
 public class EventoDTO {
 
     private Long id;
-    private Long idItinerario;
+    private int idItinerario;
     private String nombre;
     private String fechaInicio;
     private String fechaFinal;
@@ -31,7 +31,7 @@ public class EventoDTO {
      * @param pFechaFinal
      * @param pCiudad
      */
-    public EventoDTO(Long pId, Long pIdItinerario, String pNombre, String pFechaInicio, String pFechaFinal, String pCiudad ) {
+    public EventoDTO(Long pId, int pIdItinerario, String pNombre, String pFechaInicio, String pFechaFinal, String pCiudad ) {
 		super();
 		this.id = pId;
                 this.idItinerario = pIdItinerario;
@@ -51,12 +51,12 @@ public class EventoDTO {
         this.id = id;
     }
 
-    public Long getIdItinerario() {
+    public int getIdItinerario() {
         return idItinerario;
     }
 
   
-    public void setIdItinerario(Long pIdItinerario) {
+    public void setIdItinerario(int pIdItinerario) {
         this.idItinerario = pIdItinerario;
     }
     

@@ -7,7 +7,7 @@
 (function(ng)
 {
 var mod = ng.module("AppItinerario");
-mod.service('itinerarioSVC', ["$http",function ($http)
+mod.service('itinerarioSVC', ["$http" ,function ($http)
    {
        var idItinerarioActual = 0;
        
@@ -41,9 +41,15 @@ mod.service('itinerarioSVC', ["$http",function ($http)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/{idPerfil}/itinerarios/{idIt}");
         //return null;
-        return $http.get("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil +"/itinerarios/"+idItinerario);
+        
+        return $http.get
+        ("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil +"/itinerarios/"+idItinerario);
+
+       // ctrllIti.$scope.setFechaFin();
+        //ctrllIti.$scope.setFechaIni();
+        //ctrllIti.$scope.setNombre();
     };
-    this.crearItinerario = function(idDueño, itinerario)
+    this.crearActualizarItinerario = function(idDueño, itinerario)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
         //devuelve el itinerario creado
@@ -55,11 +61,7 @@ mod.service('itinerarioSVC', ["$http",function ($http)
         
         $http.delete("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil+"/eliminarItinerario/"+idItEliminar);
     };
-    this.actualizarItinerario()
-    {
-        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/cambiarItinerario/0");
-        
-    }
+    
        
        
         /*this.darCiudades = function(idItinerario)
@@ -189,7 +191,7 @@ mod.service('itinerarioSVC', ["$http",function ($http)
                     itinerarios.splice(itinerarios.length,0, itin);
             }
        }*/
-
+       
 
        
    }

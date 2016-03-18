@@ -6,6 +6,7 @@
 package AndeSoft.rest.DB;
 
 import AndeSoft.rest.dtos.ItinerarioDTO;
+import AndeSoft.rest.dtos.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -49,7 +50,10 @@ public class ItinerarioSimuladorDB
          itinerarios  = new ArrayList();
         
         ArrayList ciudades = new ArrayList();
+        ciudades.add(new CiudadDTOf(Long.MIN_VALUE, "CALI ", "19 03 2016", "25 03 2016"));
+        ciudades.add(new CiudadDTOf(Long.MAX_VALUE, "Palmira ", "26 03 2016", "30 03 2016"));
         ArrayList eventos = new ArrayList();
+        eventos.add(new EventoDTO(Long.MIN_VALUE, 0, "Evento ir a cafe del sol", "19 03 2016", "19 03 2016", "CALI"));
         ArrayList puntos = new ArrayList();
         ArrayList hoteles = new ArrayList();
         
@@ -57,6 +61,8 @@ public class ItinerarioSimuladorDB
         
         
         ArrayList ciudades2 = new ArrayList();
+        ciudades2.add(new CiudadDTOf(Long.MIN_VALUE +1, "Bogota ", "19 05 2016", "25 03 2016"));
+        ciudades2.add(new CiudadDTOf(Long.MAX_VALUE -1, "Villa de leyva ", "26 05 2016", "30 03 2016"));
         ArrayList eventos2 = new ArrayList();
         ArrayList puntos2 = new ArrayList();
         ArrayList hoteles2 = new ArrayList();
@@ -101,6 +107,18 @@ public class ItinerarioSimuladorDB
             
             itinerarios.add(actual);
             
+        }
+    }
+    public void eliminar(int id)
+    {
+        for(int i =0; i< itinerarios.size();i++)
+        {
+            ItinerarioDTO actual = (ItinerarioDTO) itinerarios.get(i);
+            
+            if(actual.darIdUsuarioDueño() == id)
+            {
+                itinerarios.remove(actual);
+            }
         }
     }
 }

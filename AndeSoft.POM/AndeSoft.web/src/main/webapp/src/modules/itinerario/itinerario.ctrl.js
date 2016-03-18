@@ -2,6 +2,8 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * @autor jg.tamura10
  */
 (function(ng)
 {
@@ -29,42 +31,53 @@
 	$scope.fechaInicio = "";
 	$scope.fechaFinal = "";
         
+       
         
         
         $scope.actualizarItinerario = function()
         {
+            console.log("Llegaaaa ");
             svc.setItinerarioActual($scope.idItinerario);
-            $scope.ciudades =  svc.darCiudades($scope.idItinerario);
-            $scope.eventos =  svc.darEventos($scope.idItinerario);
-            $scope.puntos =  svc.darPuntos($scope.idItinerario);
-            $scope.hoteles =  svc.darHoteles($scope.idItinerario);
+            
+            svc.darItinerario(0, $scope.idItinerario).
+                then(function(response) 
+        {
+           $scope.nombreItinerario = response.data.nombreIt;
+           $scope.fechaInicio = response.data.fechaIni;
+           $scope.fechaFinal = response.data.fechaFin;
+           
+           console.log($scope.nombreItinerario + "    "+ $scope.fechaInicio + "    "+ $scope.fechaFinal);
+           
+            
+        }, function myError(response) {
+         console.log(response.statusText);
+        });
+            
+           // $scope.ciudades =  svc.darCiudades($scope.idItinerario);
+            //$scope.eventos =  svc.darEventos($scope.idItinerario);
+            //$scope.puntos =  svc.darPuntos($scope.idItinerario);
+            //$scope.hoteles =  svc.darHoteles($scope.idItinerario);
 
 
-            $scope.nombreItinerario= svc.darNombreItinerario($scope.idItinerario);
-            $scope.fechaInicio=svc.darFechaInicialItinerario($scope.idItinerario);
-            $scope.fechaFinal=svc.darFechaFinItinerario($scope.idItinerario);
-            
-            
+            //$scope.nombreItinerario= svc.darNombreItinerario($scope.idItinerario);
+            //$scope.fechaInicio=svc.darFechaInicialItinerario($scope.idItinerario);
+            //$scope.fechaFinal=svc.darFechaFinItinerario($scope.idItinerario);
             
         };
+        
         
         $scope.borrarItinerario = function()
         {
-            svc.borrarItinerario($scope.idItinerario);
+            svc.borrarItinerario(0, $scope.idItinerario);
             
         };
         
-        $scope.guardarItinerario = function()
+        $scope.crearActualizarItinerario = function()
         {
-            svc.guardarItineario(
-                    $scope.idItinerario,
-                    $scope.ciudades,
-                    $scope.eventos,
-                    $scope.puntos ,
-                    $scope.hoteles,
-                    $scope.nombreItinerario,
-                    $scope.fechaInicio,
-                    $scope.fechaFinal);
+            //si existe lo remplaza, si no, lo crea
+            var resp= "{\"idUsuario\":"+0+""+",\"id\":"+$scope.idItinerario+",\"nombreIt\":\""+ $scope.nombreItinerario+"\",\"fechaIni\":\""+$scope.fechaInicio+"\",\"fechaFin\":\""+$scope.fechaFinal
+                    +"\"}";
+            svc.guardarItineario(0, resp);
             
         };
         

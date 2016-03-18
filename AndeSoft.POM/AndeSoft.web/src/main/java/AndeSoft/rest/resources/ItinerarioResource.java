@@ -62,6 +62,7 @@ ItinerarioLogicMock itinerarioLogic;
 
 /**
          * 
+         *  no se usa, no se necesita
          * 
          * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/itinerarios
          * 
@@ -73,22 +74,17 @@ ItinerarioLogicMock itinerarioLogic;
 */
     @GET
     @Path("/perfil/{idP}/itinerariosTodos")
-    public Response getItinerarios(@PathParam("idP") int id) 
+    public ArrayList getItinerarios(@PathParam("idP") int id) 
     {
         System.out.println("Llega tener itinerarios");
         
        
         ArrayList itinerarioL = new ArrayList();
-        try 
-	{
-               itinerarioL = itinerarioLogic.getTodosItinerariosIDPerfil(id);
-        } 
-	catch (Exception e) 
-	{
-            System.out.println("LLEGA A ESTE  ERROR " + e.getMessage());
-		return Response.status(500).entity((e.getMessage())).build();
-	}
-        return Response.status(200).entity(itinerarioL).build();
+        
+        itinerarioL = itinerarioLogic.getTodosItinerariosIDPerfil(id);
+        
+        return itinerarioL;
+        
     }
 
     /**
@@ -102,10 +98,12 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    public ItinerarioDTO getItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI )
+    public String getItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI )
     {
         System.out.println("Llega tener 1 itinerario");
-        return itinerarioLogic.getItinerario(idP, idI);
+        ItinerarioDTO itinerario = itinerarioLogic.getItinerario(idP, idI);
+        
+        return itinerario.toString();
     }
 
     /**
@@ -119,7 +117,7 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @POST
     @Path("/perfil/{idP}/createIt")
-    public  Response createItinerario(ItinerarioDTO itinerario,@PathParam("idP") int idP )  
+    public  Response createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerario )  
     {
         System.out.println("Llega crear itinerario");
         ItinerarioDTO itinerarioN;
