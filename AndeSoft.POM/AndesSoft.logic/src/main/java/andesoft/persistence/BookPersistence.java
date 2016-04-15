@@ -14,7 +14,7 @@ public class BookPersistence {
 
     private static final Logger logger = Logger.getLogger(BookPersistence.class.getName());
 
-    @PersistenceContext(unitName = "BookStorePU")
+    @PersistenceContext(unitName = "AndeSoftPU")
     protected EntityManager em;
 
     public BookEntity find(Long id) {

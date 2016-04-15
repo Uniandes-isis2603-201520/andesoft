@@ -5,6 +5,8 @@
  */
 package AndeSoft.rest.dtos;
 
+import java.util.Date;
+
 /**
  *
  * @author Johan
@@ -13,17 +15,17 @@ public class PuntoInteresDTO {
   
     private Long id;
     private String nombre;
-    private String fechaLLegada;
-    private String fechaSalida;
+    private Date fechaLLegada;
+    private Date fechaSalida;
     
     
-    public PuntoInteresDTO(Long idN, String nombreN, String fechaInicioN, String fechaSalidaN){
+    /*public PuntoInteresDTO(Long idN, String nombreN, String fechaInicioN, String fechaSalidaN){
       id=idN;
      nombre=nombreN;
      fechaLLegada=fechaInicioN;
      fechaSalida=fechaSalidaN;
      
-    }
+    }*/
     
     public Long getId() {
         return id;
@@ -41,19 +43,19 @@ public class PuntoInteresDTO {
         this.nombre = nombre;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaLlegada() {
         return fechaLLegada;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaLlegada(Date fechaInicio) {
         this.fechaLLegada = fechaInicio;
     }
 
-    public String getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

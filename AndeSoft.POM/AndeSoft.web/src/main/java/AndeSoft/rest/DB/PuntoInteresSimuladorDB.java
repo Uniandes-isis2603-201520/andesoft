@@ -21,7 +21,7 @@ public class PuntoInteresSimuladorDB
     {
         puntosInteres = new ArrayList ();
         
-        PuntoInteresDTO punto1 = new PuntoInteresDTO ( Long.parseLong(""+0), 
+       /* PuntoInteresDTO punto1 = new PuntoInteresDTO ( Long.parseLong(""+0), 
                 "feria", "25/12/2016", "05/01/2017");
         PuntoInteresDTO punto2 = new PuntoInteresDTO ( Long.parseLong(""+1),
                 "playa", "06/07/2016", "06/07/2016");
@@ -36,7 +36,7 @@ public class PuntoInteresSimuladorDB
         puntosInteres.add(punto2);
         puntosInteres.add(punto3);
         puntosInteres.add(punto4);
-        puntosInteres.add(punto5);
+        puntosInteres.add(punto5);*/
         
     }
     public ArrayList getPuntosInteresDeItinerario(long idIt)

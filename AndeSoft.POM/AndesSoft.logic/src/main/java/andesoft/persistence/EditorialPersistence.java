@@ -14,7 +14,7 @@ public class EditorialPersistence {
 
     private static final Logger logger = Logger.getLogger(EditorialPersistence.class.getName());
 
-    @PersistenceContext(unitName = "BookStorePU")
+    @PersistenceContext(unitName = "AndeSoftPU")
     protected EntityManager em;
 
     public EditorialEntity create(EditorialEntity entity) {
