@@ -15,29 +15,29 @@ import javax.inject.Named;
  *
  * @author AndresFelipe
  */
-public class HotelLogicMock 
+public class HotelLogicMock
 {
     ArrayList <HotelDTO> hoteles;
-    
+
     public HotelLogicMock()
     {
         hoteles = new ArrayList();
     }
-    
-    public ArrayList getTodosHotelesIdItinerario(long idIt)
+
+    public ArrayList getTodosHotelesIdCiudad(long idCity)
     {
         HotelSimuladorDB baseDatos = new HotelSimuladorDB();
-        hoteles = baseDatos.getHotelesDeItinerario(idIt);
+        hoteles = baseDatos.getHotelesDeCiudad(idCity);
         return hoteles;
     }
-    
-    public HotelDTO getHotel(long id, long idHo)
+
+    public HotelDTO getHotel(long idCity, long idHo)
     {
         HotelSimuladorDB baseDatos = new HotelSimuladorDB();
-        hoteles = baseDatos.getHotelesDeItinerario(id);
-        
+        hoteles = baseDatos.getHotelesDeCiudad(idCity);
+
         HotelDTO buscado = null;
-        
+
         for(int i=0; i< hoteles.size() && buscado==null; i++)
         {
             HotelDTO actual =  hoteles.get(i);
@@ -48,28 +48,28 @@ public class HotelLogicMock
         }
         return buscado;
     }
-    
-     public HotelDTO createHotel(HotelDTO hotel, long idIt)
+
+     public HotelDTO createHotel(HotelDTO hotel, long idCity)
      {
          HotelSimuladorDB baseDatos = new HotelSimuladorDB();
-        hoteles = baseDatos.getHotelesDeItinerario(idIt);
-         
-         HotelDTO existe= getHotel(idIt, hotel.getId());
-         
+        hoteles = baseDatos.getHotelesDeCiudad(idCity);
+
+         HotelDTO existe= getHotel(idCity, hotel.getId());
+
          if(existe != null){return null;}
-         
+
          hoteles.add(hotel);
-         
-        baseDatos.setHotelesDeUsuario(idIt, hoteles);
-         
+
+        baseDatos.setHotelesDeUsuario(idCity, hoteles);
+
          return hotel;
      }
-     
-     public HotelDTO updateHotel(long idIt, long idHo, HotelDTO hotelNuevo) //throws Exception
+
+     public HotelDTO updateHotel(long idCity, long idHo, HotelDTO hotelNuevo) //throws Exception
      {
          HotelSimuladorDB baseDatos = new HotelSimuladorDB();
-        hoteles = baseDatos.getHotelesDeItinerario(idIt);
-         
+        hoteles = baseDatos.getHotelesDeCiudad(idCity);
+
          for(int i=0;i< hoteles.size();i++)
          {
              HotelDTO actual = hoteles.get(i);
@@ -77,32 +77,32 @@ public class HotelLogicMock
              {
                  hoteles.remove(actual);
                  hoteles.add(hotelNuevo);
-                 
-                  baseDatos.setHotelesDeUsuario(idIt, hoteles);
-                  
+
+                  baseDatos.setHotelesDeUsuario(idCity, hoteles);
+
                   return hotelNuevo;
              }
          }
          return null;
          //throw new Exception(" No hay evento con ese id");
      }
-     
-     public void deleteHotel(long idIt, long idHo)
+
+     public void deleteHotel(long idCity, long idHo)
      {
          HotelSimuladorDB baseDatos = new HotelSimuladorDB();
-        hoteles = baseDatos.getHotelesDeItinerario(idIt);
-         
+        hoteles = baseDatos.getHotelesDeCiudad(idCity);
+
          for(int i=0;i< hoteles.size();i++)
          {
              HotelDTO actual = hoteles.get(i);
              if(actual.getId() == idHo)
              {
                  hoteles.remove(i);
-                 
-                  baseDatos.setHotelesDeUsuario(idIt, hoteles );
+
+                  baseDatos.setHotelesDeUsuario(idCity, hoteles );
                    break;
              }
          }
      }
-    
+
 }
