@@ -35,10 +35,6 @@ public class HotelEntity extends BaseEntity implements Serializable
         /*@PodamExclude
 	@ManyToOne
 	private List<CiudadEntity> ciudades;
-
-	@PodamExclude
-	@ManyToOne
-	private List<ItinerarioEntity> itinerarios;
         */
 
 	public Long getId()
@@ -89,16 +85,6 @@ public class HotelEntity extends BaseEntity implements Serializable
 	public void setCiudades(List<CiudadEntity> ciudades)
 	{
 		this.ciudades = ciudades;
-	}
-
-	public List<ItinerarioEntity> getItinerarios()
-	{
-		return itinerarios;
-	}
-
-	public void setItinerarios(List<ItinerarioEntity> itinerarios)
-	{
-		this.itinerarios = itinerarios;
 	}
 */
 }
