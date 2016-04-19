@@ -6,6 +6,7 @@
 package AndeSoft.rest.dtos;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,19 +19,20 @@ public class ItinerarioDTO
 {
     
      private ArrayList ciudades;
-     private ArrayList eventos;
-     private ArrayList puntosI;
-     private ArrayList hoteles;
      
      private int id;
-     private int idUsuarioDueño;
+     private Long idUsuarioDueño;
      private String nombreIt;
      
-     private String fechaIni;
-     private String fechaFin;
+     private Date fechaIni;
+     private Date fechaFin;
      
+     public ItinerarioDTO()
+     {
+         
+     }
      
-     public ItinerarioDTO(int idD, int idp, String nombreItp, String ini, String fin, ArrayList ciudadesp, ArrayList eventosp, ArrayList puntosp, ArrayList hotelesp)
+     public ItinerarioDTO(Long idD, int idp, String nombreItp, Date ini, Date fin, ArrayList ciudadesp)
      {
          idUsuarioDueño = idD;
          id = idp;
@@ -38,9 +40,6 @@ public class ItinerarioDTO
          fechaIni = ini;
          fechaFin = fin;
          ciudades = ciudadesp;
-         eventos = eventosp;
-         puntosI = puntosp;
-         hoteles = hotelesp;
          
          
      }
@@ -48,7 +47,7 @@ public class ItinerarioDTO
         {
             return id;
         }
-        public int darIdUsuarioDueño()
+        public Long darIdUsuarioDueño()
         {
             return idUsuarioDueño;
         }
@@ -60,23 +59,12 @@ public class ItinerarioDTO
         {
             return ciudades;
         }
-        public ArrayList darEventos( )
-        {
-            return eventos;
-        }
-        public ArrayList darPuntos( )
-        {
-            return puntosI;
-        }
-        public ArrayList darHoteles( )
-        {
-            return hoteles;
-        }
-        public String darFechaIni( )
+       
+        public Date darFechaIni( )
         {
             return fechaIni;
         }
-        public String darFechaFin( )
+        public Date darFechaFin( )
         {
             return fechaFin;
         }
@@ -87,30 +75,28 @@ public class ItinerarioDTO
         {
             ciudades = nuevaC;
         }
-        public void setEventos( ArrayList nuevaC)
-        {
-            eventos = nuevaC;
-        }
-        public void setPuntos( ArrayList nuevaC)
-        {
-            puntosI = nuevaC;
-        }
-        public void setHoteles( ArrayList nuevaC)
-        {
-            hoteles = nuevaC;
-        }
-        public void setFechaIni( String nuevaC)
+       
+        public void setFechaIni( Date nuevaC)
         {
             fechaIni = nuevaC;
         }
-        public void setFechaFin( String nuevaC)
+        public void setFechaFin( Date nuevaC)
         {
             fechaFin = nuevaC;
+        }
+        public void setId(int idN)
+        {
+            id = idN;
+        }
+        public void setIdDueño(Long idN)
+        {
+            idUsuarioDueño = idN;
         }
         public void setNom( String nuevaC)
         {
             nombreIt = nuevaC;
         }
+        /**
         public String toString()
         {
            String eventosString = "[";
@@ -153,7 +139,7 @@ public class ItinerarioDTO
             
             System.out.println(resp);
             return resp;
-        }
+        }*/
         
       
 
