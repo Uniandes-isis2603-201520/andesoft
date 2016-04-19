@@ -12,7 +12,7 @@
     
             $scope.currentRecord = {
                 id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                nombre: '' /*Tipo String*/,
+                nombre: 'jua' /*Tipo String*/,
                 fechaSalida: '' /*Tipo String*/,
                 fechaLlegada: ''
             };
@@ -21,6 +21,7 @@
             $scope.alerts = [];
             
             $scope.salida='Juan';
+            $scope.mensaje=false;
             
             $scope.today = function () {
                 $scope.value = new Date();
@@ -28,6 +29,7 @@
 
             $scope.clear = function () {
                 $scope.value = null;
+                $scope.mensaje = true;
             };
 
             $scope.open = function ($event) {
@@ -74,8 +76,16 @@
 
             this.createRecord = function () {
                 this.editMode = true;
-                $scope.currentRecord = {};
-                $scope.$broadcast("post-create", $scope.currentRecord);
+                svc.saveRecord($scope.currentRecord)
+               // $scope.currentRecord = {};
+               // $scope.$broadcast("post-create", $scope.currentRecord);
+            };
+            
+            this.cambiar = function(){
+              this.editMode = true; 
+              $scope.mensaje=this.editMode;
+              $scope.currentRecord.nombre='Juan';
+              
             };
 
             this.editRecord = function (record) {
