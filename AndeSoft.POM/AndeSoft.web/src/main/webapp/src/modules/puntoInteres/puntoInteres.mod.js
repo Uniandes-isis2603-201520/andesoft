@@ -5,6 +5,8 @@
  */
 (function(ng){
 
-var appPuntoInteres = ng.module('AppPuntoInteres',["ui.bootstrap"]);
+//var appPuntoInteres = ng.module('AppPuntoInteres',["ui.bootstrap"]);
+var appPuntoInteres = ng.module('AppPuntoInteres',["ui.bootstrap","ngMessages"]);
+ appPuntoInteres.constant("puntoInteresContext", "api/puntosInteres");
 
 })(window.angular);

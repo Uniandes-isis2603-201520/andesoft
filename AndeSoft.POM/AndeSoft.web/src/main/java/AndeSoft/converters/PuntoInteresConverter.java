@@ -72,6 +72,7 @@ public abstract class PuntoInteresConverter {
             dto.setNombre(entity.getNombre());
             dto.setFechaLlegada(entity.getFechaLlegada());
             dto.setFechaSalida(entity.getFechaSalida());
+            
 
             return dto;
         } else {
@@ -152,6 +153,7 @@ public abstract class PuntoInteresConverter {
                 dtos.add(basicEntity2DTO(entity));
             }
         }
+        //System.out.println("dto: "+dtos.get(0).getNombre());
         return dtos;
     }
 

@@ -75,6 +75,8 @@ public class PuntoInteresResource
     
      @GET
     public List<PuntoInteresDTO> getPuntosInteres() {
+        List<PuntoInteresDTO> temp= PuntoInteresConverter.listEntity2DTO(puntoInteresLogic.getPuntosInteres());
+        System.err.println("dto: "+temp.get(0).getNombre());
         return PuntoInteresConverter.listEntity2DTO(puntoInteresLogic.getPuntosInteres());
     }
 
