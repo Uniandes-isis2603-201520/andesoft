@@ -57,7 +57,7 @@ public class ItinerarioSimuladorDB
         ArrayList puntos = new ArrayList();
         ArrayList hoteles = new ArrayList();
         
-        ItinerarioDTO primero = new ItinerarioDTO(0, 0,  "Itinerario semana santa", "mayo 20 2016", "mayo 27 2016",  ciudades,  eventos, puntos, hoteles);
+        //ItinerarioDTO primero = new ItinerarioDTO(0, 0,  "Itinerario semana santa", "mayo 20 2016", "mayo 27 2016",  ciudades,  eventos, puntos, hoteles);
         
         
         ArrayList ciudades2 = new ArrayList();
@@ -66,10 +66,10 @@ public class ItinerarioSimuladorDB
         ArrayList eventos2 = new ArrayList();
         ArrayList puntos2 = new ArrayList();
         ArrayList hoteles2 = new ArrayList();
-        ItinerarioDTO segundo = new ItinerarioDTO(0, 1,  "Itinerario Vacaciones largas", "junio 23 2016", "julio 30 2016",  ciudades2,  eventos2, puntos2, hoteles2);
+        //ItinerarioDTO segundo = new ItinerarioDTO(0, 1,  "Itinerario Vacaciones largas", "junio 23 2016", "julio 30 2016",  ciudades2,  eventos2, puntos2, hoteles2);
         
-        itinerarios.add(primero);
-        itinerarios.add(segundo);
+        //itinerarios.add(primero);
+        //itinerarios.add(segundo);
     }
     public ArrayList getItinerariosDeUsuario(int id)
     {
