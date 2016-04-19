@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,20 +21,24 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class ItinerarioEntity implements Serializable
 {
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy ="itinerario")
     private ArrayList ciudades;
      
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
      private int id;
-     private int idUsuarioDueño;
+     
+     @ManyToOne
+     private UsuarioEntity idUsuarioDueño;
+     
+     
      private String nombreIt;
      
      private String fechaIni;
      private String fechaFin;
      
-     
-     public ItinerarioEntity(int idD, int idp, String nombreItp, String ini, String fin, ArrayList ciudadesp)
+     /**
+     public ItinerarioEntity(UsuarioEntity idD, int idp, String nombreItp, String ini, String fin, ArrayList ciudadesp)
      {
          idUsuarioDueño = idD;
          id = idp;
@@ -43,12 +48,12 @@ public class ItinerarioEntity implements Serializable
          ciudades = ciudadesp;
          
          
-     }
+     }*/
         public int darId()
         {
             return id;
         }
-        public int darIdUsuarioDueño()
+        public UsuarioEntity darIdUsuarioDueño()
         {
             return idUsuarioDueño;
         }
