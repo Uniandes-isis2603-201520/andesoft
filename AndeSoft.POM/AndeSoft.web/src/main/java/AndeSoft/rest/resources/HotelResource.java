@@ -29,39 +29,39 @@ public class HotelResource
 {
 	@Inject
 	HotelLogicMock hotelLogic;
-        
+
     @GET
     @Path("/hoteles")
-    public ArrayList getEventos(@PathParam("idIt") Long idIt) 
+    public ArrayList getHoteles(@PathParam("idCity") Long idCity)
     {
-        return hotelLogic.getTodosHotelesIdItinerario(idIt);
+        return hotelLogic.getTodosHotelesIdCiudad(idCity);
     }
-    
+
     @GET
-    @Path("/itinerarios/{idIt}/hoteles/{idHo}")
-    public HotelDTO getEvento(@PathParam("idIt") Long idIt, @PathParam("idHo") Long idHo )
+    @Path("/ciudades/{idCity}/hoteles/{idHo}")
+    public HotelDTO getHotel(@PathParam("idCity") Long idCity, @PathParam("idHo") Long idHo )
     {
-        return hotelLogic.getHotel(idIt, idHo);
+        return hotelLogic.getHotel(idCity, idHo);
     }
-    
+
     @POST
-    @Path("/itinerarios/{idIt}/createHotel")
-    public HotelDTO createHotel(HotelDTO hotel,@PathParam("idIt") Long idIt )  
+    @Path("/ciudades/{idCity}/createHotel")
+    public HotelDTO createHotel(HotelDTO hotel,@PathParam("idCity") Long idCity )
     {
-        return hotelLogic.createHotel(hotel, idIt);
+        return hotelLogic.createHotel(hotel, idCity);
     }
-    
+
     @PUT
-    @Path("/itinerarios/{idIt}/cambiarHotel/{idHo}")
-    public HotelDTO updateHotel(@PathParam("idIt") Long idIt,@PathParam("idHo") Long idHo, HotelDTO hotelNuevo)
+    @Path("/ciudades/{idCity}/cambiarHotel/{idHo}")
+    public HotelDTO updateHotel(@PathParam("idCity") Long idCity,@PathParam("idHo") Long idHo, HotelDTO hotelNuevo)
     {
-        return hotelLogic.updateHotel(idIt,idHo, hotelNuevo);
+        return hotelLogic.updateHotel(idCity,idHo, hotelNuevo);
     }
-    
+
     @DELETE
-    @Path("/itinerarios/{idIt}/eliminarHotel/{idHo}")
-    public void deleteHotel(@PathParam("idIt") Long idIt, @PathParam("idHo") Long idHo) 
+    @Path("/ciudades/{idCity}/eliminarHotel/{idHo}")
+    public void deleteHotel(@PathParam("idCity") Long idCity, @PathParam("idHo") Long idHo)
     {
-    	hotelLogic.deleteHotel(idIt, idHo);
+    	hotelLogic.deleteHotel(idCity, idHo);
     }
 }
