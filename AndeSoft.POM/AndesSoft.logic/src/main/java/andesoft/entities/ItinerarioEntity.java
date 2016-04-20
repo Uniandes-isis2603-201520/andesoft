@@ -4,6 +4,8 @@ import co.edu.uniandes.csw.crud.api.podam.strategy.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,21 +23,28 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class ItinerarioEntity implements Serializable
 {
-    @OneToMany(mappedBy ="itinerario")
-    private ArrayList ciudades;
-     
-     @Id
+    
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int id;
+     private Long id;
+    
+    @OneToMany(mappedBy ="itinerario", cascade = CascadeType.ALL, orphanRemoval = true)
+   // private ArrayList ciudades;
+    private List<CiudadEntity> ciudades = new ArrayList<>();
      
+          
      @ManyToOne
      private UsuarioEntity idUsuarioDueño;
      
      
      private String nombreIt;
      
-     private String fechaIni;
-     private String fechaFin;
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+     private Date fechaIni;
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+     private Date fechaFin;
      
      /**
      public ItinerarioEntity(UsuarioEntity idD, int idp, String nombreItp, String ini, String fin, ArrayList ciudadesp)
@@ -49,7 +58,7 @@ public class ItinerarioEntity implements Serializable
          
          
      }*/
-        public int darId()
+        public Long darId()
         {
             return id;
         }
@@ -61,32 +70,25 @@ public class ItinerarioEntity implements Serializable
        {
            return nombreIt;
        }
-        public ArrayList darCiudades( )
-        {
-            return ciudades;
-        }
+        
        
-        public String darFechaIni( )
+        public Date darFechaIni( )
         {
             return fechaIni;
         }
-        public String darFechaFin( )
+        public Date darFechaFin( )
         {
             return fechaFin;
         }
         
         
-        
-        public void setCiudades( ArrayList nuevaC)
-        {
-            ciudades = nuevaC;
-        }
        
-        public void setFechaIni( String nuevaC)
+       
+        public void setFechaIni( Date nuevaC)
         {
             fechaIni = nuevaC;
         }
-        public void setFechaFin( String nuevaC)
+        public void setFechaFin( Date nuevaC)
         {
             fechaFin = nuevaC;
         }
@@ -94,4 +96,13 @@ public class ItinerarioEntity implements Serializable
         {
             nombreIt = nuevaC;
         }
+        
+        
+        public List<CiudadEntity> getCiudades() {
+           return ciudades;
+       }
+
+       public void setCiudades(List<CiudadEntity> ciudades) {
+           this.ciudades = ciudades;
+       }
 }

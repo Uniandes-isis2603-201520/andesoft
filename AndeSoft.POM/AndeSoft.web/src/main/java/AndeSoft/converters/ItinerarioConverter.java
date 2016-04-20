@@ -36,7 +36,8 @@ public abstract class ItinerarioConverter
             dto.setNom(entity.darNombre());
             dto.setFechaIni(entity.darFechaIni());
             dto.setFechaFin(entity.darFechaFin());
-            dto.setCiudades(entity.darCiudades());
+         //   dto.setCiudades(entity.getCiudades());
+            dto.setCiudades(CiudadConverter.listEntity2DTO(entity.getCiudades()));
 
             return dto;
         } else {

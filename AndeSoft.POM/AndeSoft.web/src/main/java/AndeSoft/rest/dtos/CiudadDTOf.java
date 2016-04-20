@@ -6,6 +6,7 @@
 package AndeSoft.rest.dtos;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,17 +17,17 @@ public class CiudadDTOf {
     
     private Long id;
     private String nombre;
-    private String fechaLLegada;
-    private String fechaSalida;
-    private ArrayList<EventoDTO> eventos;
-    private ArrayList<HotelDTO> hoteles;
-    private ArrayList<PuntoInteresDTO> puntosInteres;
+    private Date fechaLLegada;
+    private Date fechaSalida;
+    private List<EventoDTO> eventos;
+    private List<HotelDTO> hoteles;
+    private List<PuntoInteresDTO> puntosInteres;
     
     public CiudadDTOf(){
         
     }
     
-     public CiudadDTOf(Long idN, String nombreN, String fechaInicioN, String fechaSalidaN){
+     public CiudadDTOf(Long idN, String nombreN, Date fechaInicioN, Date fechaSalidaN){
       id=idN;
      nombre=nombreN;
      fechaLLegada=fechaInicioN;
@@ -50,19 +51,19 @@ public class CiudadDTOf {
         this.nombre = nombre;
     }
 
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaLLegada;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Date fechaInicio) {
         this.fechaLLegada = fechaInicio;
     }
 
-    public String getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -77,7 +78,7 @@ public class CiudadDTOf {
         this.eventos.add(evento);
     }
 
-    public ArrayList<HotelDTO> getHoteles() {
+    public List<HotelDTO> getHoteles() {
         return hoteles;
     }
 
@@ -87,7 +88,7 @@ public class CiudadDTOf {
         
     }
 
-    public ArrayList<PuntoInteresDTO> getPuntosInteres() {
+    public List<PuntoInteresDTO> getPuntosInteres() {
         return puntosInteres;
     }
 

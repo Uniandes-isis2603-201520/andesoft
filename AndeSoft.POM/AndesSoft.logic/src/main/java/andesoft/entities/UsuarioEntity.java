@@ -5,8 +5,10 @@
  */
 package andesoft.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -15,7 +17,8 @@ import javax.persistence.ManyToOne;
  *
  * @author js.arciniegas10
  */
-public class UsuarioEntity {
+@Entity
+public class UsuarioEntity implements Serializable{
 
   @Id
     @GeneratedValue(generator = "Usuario")

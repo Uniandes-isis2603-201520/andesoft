@@ -5,7 +5,7 @@
  */
 package AndeSoft.converters;
 
-import AndeSoft.rest.dtos.ciudadDTO;
+import AndeSoft.rest.dtos.CiudadDTOf;
 import andesoft.entities.CiudadEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +20,18 @@ public abstract class CiudadConverter {
 
     }
 
-     public static List<CiudadEntity> listDTO2Entity(List<ciudadDTO> dtos) {
+     public static List<CiudadEntity> listDTO2Entity(List<CiudadDTOf> dtos) {
         List<CiudadEntity> entities = new ArrayList<CiudadEntity>();
         if (dtos != null) {
-            for (ciudadDTO dto : dtos) {
+            for (CiudadDTOf dto : dtos) {
                 entities.add(basicDTO2Entity(dto));
             }
         }
         return entities;
     }
 
-     public static List<ciudadDTO> listEntity2DTO(List<CiudadEntity> entities) {
-        List<ciudadDTO> dtos = new ArrayList<ciudadDTO>();
+     public static List<CiudadDTOf> listEntity2DTO(List<CiudadEntity> entities) {
+        List<CiudadDTOf> dtos = new ArrayList<CiudadDTOf>();
         if (entities != null) {
             for (CiudadEntity entity : entities) {
                 dtos.add(fullEntity2DTO(entity));
@@ -40,19 +40,19 @@ public abstract class CiudadConverter {
         return dtos;
     }
 
-     public static CiudadEntity fullDTO2Entity(ciudadDTO dto) {
+     public static CiudadEntity fullDTO2Entity(CiudadDTOf dto) {
         CiudadEntity entity = basicDTO2Entity(dto);
         return entity;
     }
 
-       public static ciudadDTO fullEntity2DTO(CiudadEntity entity) {
-        ciudadDTO dto = basicEntity2DTO(entity);
+       public static CiudadDTOf fullEntity2DTO(CiudadEntity entity) {
+        CiudadDTOf dto = basicEntity2DTO(entity);
         return dto;
     }
 
-        public static ciudadDTO basicEntity2DTO(CiudadEntity entity) {
+        public static CiudadDTOf basicEntity2DTO(CiudadEntity entity) {
         if (entity != null) {
-            ciudadDTO dto = refEntity2DTO(entity);
+            CiudadDTOf dto = refEntity2DTO(entity);
 
             return dto;
         } else {
@@ -60,10 +60,10 @@ public abstract class CiudadConverter {
         }
     }
 
-         public static CiudadEntity refDTO2Entity(ciudadDTO dto) {
+         public static CiudadEntity refDTO2Entity(CiudadDTOf dto) {
         if (dto != null) {
             CiudadEntity entity = new CiudadEntity();
-            entity.setId(dto.getID());
+            entity.setId(dto.getId());
 
             return entity;
         } else {
@@ -71,13 +71,13 @@ public abstract class CiudadConverter {
         }
     }
 
-         public static ciudadDTO refEntity2DTO(CiudadEntity entity) {
+         public static CiudadDTOf refEntity2DTO(CiudadEntity entity) {
         if (entity != null) {
-            ciudadDTO dto = new ciudadDTO();
-            dto.setID(entity.getID());
-            dto.setName(entity.getName());
+            CiudadDTOf dto = new CiudadDTOf();
+            dto.setId(entity.getId());
+            dto.setNombre(entity.getName());
             dto.setFechaInicio(entity.getFechaInicio());
-            dto.setFechaFinal(entity.getFechaFinal());
+            dto.setFechaSalida(entity.getFechaFinal());
 
             return dto;
         } else {
@@ -85,13 +85,13 @@ public abstract class CiudadConverter {
         }
     }
 
-     public static CiudadEntity basicDTO2Entity(ciudadDTO dto) {
+     public static CiudadEntity basicDTO2Entity(CiudadDTOf dto) {
         if (dto != null) {
             CiudadEntity entity = new CiudadEntity();
-            entity.setID(dto.getID());
-            entity.setFechaInicio(dto.getFechaFinal());
-            entity.setFechaFinal(dto.getFechaFinal());
-            entity.setName(dto.getName());
+            entity.setId(dto.getId());
+            entity.setFechaInicio(dto.getFechaInicio());
+            entity.setFechaFinal(dto.getFechaSalida());
+            entity.setName(dto.getNombre());
 
             return entity;
         } else {

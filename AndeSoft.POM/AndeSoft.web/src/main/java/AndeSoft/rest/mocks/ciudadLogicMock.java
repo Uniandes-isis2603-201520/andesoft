@@ -8,6 +8,7 @@ package AndeSoft.rest.mocks;
 import AndeSoft.rest.dtos.ciudadDTO;
 import AndeSoft.rest.exceptions.ciudadLogicException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
 import java.util.Objects;
+import sun.util.calendar.CalendarDate;
 
 /**
  *
@@ -34,9 +36,9 @@ public class ciudadLogicMock {
 
     	if (cities == null) {
             cities = new ArrayList<>();
-            cities.add(new ciudadDTO(666L, "Bogota", "fechatest","fechadostest"));
-            cities.add(new ciudadDTO( 666L,"Cali","fechatest","fechadostest"));
-            cities.add(new ciudadDTO( 666L, "Medellin","fechatest","fechadostest"));
+            cities.add(new ciudadDTO(666L, "Bogota", new Date(15, 10, 1993),new Date(15, 10, 1993)));
+            cities.add(new ciudadDTO( 666L,"Cali",new Date(15, 10, 1993),new Date(15, 10, 1993)));
+            cities.add(new ciudadDTO( 666L, "Medellin",new Date(15, 10, 1993),new Date(15, 10, 1993)));
         }
         // indica que se muestren todos los mensajes
     	logger.setLevel(Level.INFO);

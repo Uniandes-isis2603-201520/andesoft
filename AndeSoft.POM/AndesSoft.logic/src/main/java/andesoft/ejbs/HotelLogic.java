@@ -48,7 +48,7 @@ public class HotelLogic implements IHotelLogic
 	public HotelEntity updateHotel (HotelEntity entity)
 	{
 		HotelEntity newEntity = entity;
-		HotelEntity oldEntity = persistence.find(entity.getId());
+		HotelEntity oldEntity = persistence.find(entity.getid());
 
             //Se deben actualizar las fechas?
 

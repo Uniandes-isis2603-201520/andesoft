@@ -37,7 +37,7 @@ public class HotelPersistence
 
 	public HotelEntity update(HotelEntity entity)
 	{
-		logger.log(Level.INFO, "Actualizando hotel con id={0}", entity.getId());
+		logger.log(Level.INFO, "Actualizando hotel con id={0}", entity.getid());
 		return em.merge(entity);
 	}
 

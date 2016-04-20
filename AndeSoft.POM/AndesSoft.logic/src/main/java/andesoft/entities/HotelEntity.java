@@ -21,7 +21,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class HotelEntity extends BaseEntity implements Serializable
 {
-	private Long id;
+	//private Long id;
 	private String nombre;
 
 
@@ -37,15 +37,15 @@ public class HotelEntity extends BaseEntity implements Serializable
 	private List<CiudadEntity> ciudades;
         */
 
-	public Long getId()
-	{
-		return id;
-	}
-
-	public void setId(Long id)
-	{
-		this.id = id;
-	}
+//	public Long getId()
+//	{
+//		return id;
+//	}
+//
+//	public void setId(Long id)
+//	{
+//		this.id = id;
+//	}
 
 	public String getNombre()
 	{

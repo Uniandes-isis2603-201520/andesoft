@@ -6,6 +6,7 @@
 package AndeSoft.rest.dtos;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
@@ -25,8 +26,8 @@ public class ciudadDTO {
     private HttpServletResponse response;
     private Long ID;
     private String name;
-    private String fechaInicio;
-    private String fechaFinal;
+    private Date fechaInicio;
+    private Date fechaFinal;
 
 
 
@@ -42,7 +43,7 @@ public class ciudadDTO {
      * identificador de la ciudad
      * @param name nombre de la ciudad
      */
-    public ciudadDTO(Long id, String name, String fechaInicio, String fechaFinal) {
+    public ciudadDTO(Long id, String name, Date fechaInicio, Date fechaFinal) {
 		super();
 		this.ID = id;
 		this.name = name;
@@ -85,25 +86,25 @@ public class ciudadDTO {
      /**
      * @return the name
      */
-    public String getFechaInicio() {
+    public Date getFechaInicio() {
         return fechaInicio;
     }
 
     /**
      * @param name the name to set
      */
-    public void setFechaInicio(String fecha) {
+    public void setFechaInicio(Date fecha) {
         this.fechaInicio = fecha;
     }
 
-     public String getFechaFinal() {
+     public Date getFechaFinal() {
         return fechaFinal;
     }
 
     /**
      * @param name the name to set
      */
-    public void setFechaFinal(String fecha) {
+    public void setFechaFinal(Date fecha) {
         this.fechaFinal = fecha;
     }
 

@@ -98,7 +98,7 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    public String getItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI )
+    public String getItinerario(@PathParam("idP") int idP, @PathParam("idI") Long idI )
     {
         System.out.println("Llega tener 1 itinerario");
         ItinerarioDTO itinerario = itinerarioLogic.getItinerario(idP, idI);

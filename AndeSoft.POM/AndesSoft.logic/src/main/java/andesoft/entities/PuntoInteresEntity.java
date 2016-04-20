@@ -12,8 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
@@ -33,6 +35,10 @@ public class PuntoInteresEntity implements Serializable{
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaSalida;
+    
+    @ManyToOne
+    @PodamExclude
+    private CiudadEntity ciudadPunto;
   
      public Date getFechaSalida() {
         return fechaSalida;
@@ -65,6 +71,14 @@ public class PuntoInteresEntity implements Serializable{
 
     public void setNombre(String name) {
        this.nombre=name;
+    }
+    
+     public CiudadEntity getCiudad() {
+        return ciudadPunto;
+    }
+
+    public void setCiudad(CiudadEntity book) {
+        this.ciudadPunto = ciudadPunto;
     }
 
   

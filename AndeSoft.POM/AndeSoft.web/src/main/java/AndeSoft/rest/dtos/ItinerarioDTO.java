@@ -7,6 +7,7 @@ package AndeSoft.rest.dtos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -18,9 +19,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ItinerarioDTO
 {
     
-     private ArrayList ciudades;
+     private List<CiudadDTOf> ciudades;
      
-     private int id;
+     private Long id;
      private Long idUsuarioDueño;
      private String nombreIt;
      
@@ -35,7 +36,7 @@ public class ItinerarioDTO
      public ItinerarioDTO(Long idD, int idp, String nombreItp, Date ini, Date fin, ArrayList ciudadesp)
      {
          idUsuarioDueño = idD;
-         id = idp;
+         id = idD;
          nombreIt = nombreItp;
          fechaIni = ini;
          fechaFin = fin;
@@ -43,7 +44,7 @@ public class ItinerarioDTO
          
          
      }
-        public int darId()
+        public Long darId()
         {
             return id;
         }
@@ -55,7 +56,7 @@ public class ItinerarioDTO
        {
            return nombreIt;
        }
-        public ArrayList darCiudades( )
+        public List<CiudadDTOf> darCiudades( )
         {
             return ciudades;
         }
@@ -71,7 +72,7 @@ public class ItinerarioDTO
         
         
         
-        public void setCiudades( ArrayList nuevaC)
+        public void setCiudades( List<CiudadDTOf> nuevaC)
         {
             ciudades = nuevaC;
         }
@@ -84,7 +85,7 @@ public class ItinerarioDTO
         {
             fechaFin = nuevaC;
         }
-        public void setId(int idN)
+        public void setId(Long idN)
         {
             id = idN;
         }

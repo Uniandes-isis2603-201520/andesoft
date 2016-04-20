@@ -5,9 +5,20 @@
  */
 package andesoft.entities;
 
+import co.edu.uniandes.csw.crud.api.podam.strategy.DateStrategy;
 import co.edu.uniandes.csw.crud.spi.entity.BaseEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -16,20 +27,23 @@ import javax.persistence.Entity;
 @Entity
 public class CiudadEntity extends BaseEntity implements Serializable
 {
-      private Long ID;
+    //private Long ID;
     private String name;
-    private String fechaInicio;
-    private String fechaFinal;
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fechaInicio; 
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fechaFinal;
+    
+    @ManyToOne
+    @PodamExclude
+    private ItinerarioEntity itinerario;
+    
+     @OneToMany(mappedBy = "ciudadPunto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PuntoInteresEntity> puntosInteres = new ArrayList<>();
+    
 
-    public Long getID()
-    {
-        return ID;
-    }
-
-    public void setID(Long id)
-    {
-        ID = id;
-    }
 
     public String getName ()
     {
@@ -41,24 +55,40 @@ public class CiudadEntity extends BaseEntity implements Serializable
         name = nme;
     }
 
-    public String getFechaInicio()
+    public Date getFechaInicio()
     {
         return fechaInicio;
     }
 
-    public void setFechaInicio(String fI)
+    public void setFechaInicio(Date fI)
     {
         fechaInicio = fI;
     }
 
-    public String getFechaFinal()
+    public Date getFechaFinal()
     {
         return fechaFinal;
     }
 
-    public void setFechaFinal(String fF)
+    public void setFechaFinal(Date fF)
     {
         fechaFinal = fF;
+    }
+    
+    public ItinerarioEntity getBook() {
+        return itinerario;
+    }
+
+    public void setItinerario(ItinerarioEntity itinerario) {
+        this.itinerario = itinerario;
+    }
+    
+     public List<PuntoInteresEntity> getPuntosInteres() {
+        return puntosInteres;
+    }
+
+    public void setPuntosInteres(List<PuntoInteresEntity> puntosInteres) {
+        this.puntosInteres = puntosInteres;
     }
 
 }

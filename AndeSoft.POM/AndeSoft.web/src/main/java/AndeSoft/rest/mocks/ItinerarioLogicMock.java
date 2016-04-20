@@ -39,7 +39,7 @@ public class ItinerarioLogicMock
         System.out.println("ITINERARIOSSSSS" + itinerarios.size());
         return itinerarios;
     }
-     public ItinerarioDTO getItinerario(int idP, int idI)
+     public ItinerarioDTO getItinerario(int idP, Long idI)
     {
         ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
         itinerarios = baseDatos.getItinerariosDeUsuario(idP);
