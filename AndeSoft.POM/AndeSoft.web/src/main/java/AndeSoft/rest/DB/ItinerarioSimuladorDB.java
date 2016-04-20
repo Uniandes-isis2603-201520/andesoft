@@ -53,7 +53,7 @@ public class ItinerarioSimuladorDB
         ciudades.add(new CiudadDTOf(Long.MIN_VALUE, "CALI ", new Date(25, 03, 2016), new Date(25, 03, 2016)));
         ciudades.add(new CiudadDTOf(Long.MAX_VALUE, "Palmira ", new Date(25, 03, 2016), new Date(25, 03, 2016)));
         ArrayList eventos = new ArrayList();
-        eventos.add(new EventoDTO(Long.MIN_VALUE, 0, "Evento ir a cafe del sol", "19 03 2016", "19 03 2016", "CALI"));
+        //eventos.add(new EventoDTO(Long.MIN_VALUE, 0, "Evento ir a cafe del sol", "19 03 2016", "19 03 2016", "CALI"));
         ArrayList puntos = new ArrayList();
         ArrayList hoteles = new ArrayList();
         

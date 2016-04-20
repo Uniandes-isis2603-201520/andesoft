@@ -21,7 +21,7 @@ public class EventoSimuladorDB
     {
         eventos = new ArrayList ();
         
-        EventoDTO evento1 = new EventoDTO ( Long.parseLong(""+0), (1), 
+       /* EventoDTO evento1 = new EventoDTO ( Long.parseLong(""+0), (1), 
                 "Ir a la feria", "25/12/2016", "05/01/2017", "Cali");
         EventoDTO evento2 = new EventoDTO ( Long.parseLong(""+1), 5,
                 "Ir a la playa", "06/07/2016", "06/07/2016", "Cartagena");
@@ -36,7 +36,7 @@ public class EventoSimuladorDB
         eventos.add(evento2);
         eventos.add(evento3);
         eventos.add(evento4);
-        eventos.add(evento5);
+        eventos.add(evento5);*/
         
     }
     public ArrayList getEventosDeItinerario(long idIt)
@@ -46,7 +46,7 @@ public class EventoSimuladorDB
         {
             EventoDTO actual = (EventoDTO) eventos.get(i);
             
-            if(actual.getIdItinerario() == idIt)
+            if(actual.getCiudad().getId() == idIt)
             {
                 eventosResp.add(actual);
             }
@@ -62,7 +62,7 @@ public class EventoSimuladorDB
         {
             EventoDTO actual = (EventoDTO) eventos.get(i);
             
-            if(actual.getIdItinerario()== idIt)
+            if(actual.getCiudad().getId()== idIt)
             {
                 eventos.remove(actual);
             }
