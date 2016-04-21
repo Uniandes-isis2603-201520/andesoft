@@ -8,11 +8,20 @@ package AndeSoft.rest.resources;
 
 
 
+import AndeSoft.converters.EventoConverter;
 import AndeSoft.rest.dtos.EventoDTO;
 import AndeSoft.rest.mocks.EventoLogicMock;
+import Andesoft.providers.StatusCreated;
+import andesoft.api.IEventoLogic;
+import andesoft.entities.EventoEntity;
+import andesoft.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,6 +30,7 @@ import javax.ws.rs.PUT;
 
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -35,89 +45,62 @@ import javax.ws.rs.core.Response;
  * 
  */
 @Path("Eventos")
-@Produces("application/json")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class EventoResource 
 {
 
-@Inject
-EventoLogicMock eventoLogic;
+private static final Logger logger = Logger.getLogger(EventoResource.class.getName());
 
-/**
-* Obtiene el listado de eventos dado el id de un itinerario. 
-         * @param idIt identificador del itinerario
-* @return lista de eventos 
-* @throws EventoLogicException excepción retornada por la lógica  
-*/
+    @Inject
+    private IEventoLogic eventoLogic;
+
+   
     @GET
-    @Path("/itinerarios/{idIt}/eventos")
-    public ArrayList getEventos(@PathParam("idIt") Long idIt) 
-    {
-        return eventoLogic.getTodosEventosIdItinerario(idIt);
+    public List<EventoDTO> getEventos() {
+        logger.info("Se ejecuta método getEventos");
+        List<EventoEntity> eventos = eventoLogic.getEventos();
+        return EventoConverter.listEntity2DTO(eventos);
     }
 
-    /**
-     * Obtiene un evento
-     * @param idIt identificador del itinerario
-     * @param idEv identificador del evento
-     * @return evento encontrado
-     * @throws EventoLogicException cuando el evento no existe
-     */
+ 
     @GET
-    @Path("/itinerarios/{idIt}/eventos/{idEv}")
-    public String getEvento(@PathParam("idIt") Long idIt, @PathParam("idEv") Long idEv )
-    {
-        EventoDTO eventico = eventoLogic.getEvento(idIt, idEv);
-        return eventico.toString();
+    @Path("{id: \\d+}")
+    public EventoDTO getEvento(@PathParam("id") Long id) {
+        logger.log(Level.INFO, "Se ejecuta método getEvento con id={0}", id);
+        EventoEntity evento = eventoLogic.getEvento(id);
+        return EventoConverter.fullEntity2DTO(evento);
     }
 
-    /**
-     * Agrega un evento
-     * @param evento evento por agregar
-     * @param idIt identificador del itinerario
-     * @return datos del evento a agregado
-     * @throws EventoLogicException cuando ya existe un evento con el id suministrado
-     */
+
     @POST
-    @Path("/itinerarios/{idIt}/createEvento")
-    public Response createEvento(@PathParam("idIt") Long idIt, EventoDTO evento )  
-    {
-        EventoDTO eventico=null;
-        try
-        {
-            eventico = eventoLogic.createEvento(evento, idIt);
-        }
-        catch (Exception e)
-        {
-            Response.status(500).entity((e.getMessage())).build();
-        }
-        return Response.status(200).entity(eventico).build();
+    @StatusCreated
+    public EventoDTO createEvento(EventoDTO dto) {
+        logger.info("Se ejecuta método createEvento");
+        EventoEntity entity = EventoConverter.fullDTO2Entity(dto);
+        EventoEntity newEntity;
+        newEntity = eventoLogic.createEvento(entity);
+        return EventoConverter.fullEntity2DTO(newEntity);
     }
 
-    /**
-     * Actualiza los datos de un evento
-     * @param idEv identificador del evento
-     * @param eventoNuevo evento a modificar
-     * @param idIt identificador del itinerario
-     * @return datos del evento modificado 
-     * @throws EventoLogicException cuando no existe una evento con el id suministrado
-     */
     @PUT
-    @Path("/itinerarios/{idIt}/cambiarEvento/{idEv}")
-    public EventoDTO updateEvento(@PathParam("idIt") Long idIt,@PathParam("idEv") Long idEv, EventoDTO eventoNuevo)
-    {
-        return eventoLogic.updateEvento(idIt,idEv, eventoNuevo);
+    @Path("{id: \\d+}")
+    public EventoDTO updateBook(@PathParam("id") Long id, EventoDTO dto) {
+        logger.log(Level.INFO, "Se ejecuta método updateEvento con id={0}", id);
+        EventoEntity entity = EventoConverter.fullDTO2Entity(dto);
+        entity.setId(id);
+        EventoEntity oldEntity = eventoLogic.getEvento(id);
+        entity.setCiudad(oldEntity.getCiudad());
+        EventoEntity savedBook = eventoLogic.updateEvento(entity);
+        return EventoConverter.fullEntity2DTO(savedBook);
     }
 
-    /**
-     * Elimina los datos de un evento
-     * @param idIt identificador del itinerario dueño del evento a eliminar
-     * @param idEv identificador del evento a eliminar
-     * @throws EventoLogicException cuando no existe una evento con el id suministrado
-     */
+   
     @DELETE
-    @Path("/itinerarios/{idIt}/eliminarEvento/{idEv}")
-    public void deleteEvento(@PathParam("idIt") Long idIt, @PathParam("idEv") Long idEv) 
-    {
-    eventoLogic.deleteEvento(idIt, idEv);
+    @Path("{id: \\d+}")
+    public void deleteBook(@PathParam("id") Long id) {
+        logger.log(Level.INFO, "Se ejecuta método deleteBook con id={0}", id);
+        eventoLogic.deleteEvento(id);
     }
+
 }
