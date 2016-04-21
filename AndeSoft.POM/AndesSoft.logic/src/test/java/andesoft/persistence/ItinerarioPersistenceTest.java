@@ -66,7 +66,7 @@ public class ItinerarioPersistenceTest {
 
     private void clearData() 
     {
-        em.createQuery("delete from ItinerarioEntity").executeUpdate();
+        em.createQuery("delete * from ItinerarioEntity").executeUpdate();
     }
 
     private List<ItinerarioEntity> data = new ArrayList<>();
