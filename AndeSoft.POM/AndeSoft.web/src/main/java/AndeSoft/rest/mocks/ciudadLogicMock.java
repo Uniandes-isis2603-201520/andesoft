@@ -61,6 +61,9 @@ public class ciudadLogicMock {
         logger.info("retornando todas las ciudades");
     	return cities;
     }
+    
+    
+    
 public ciudadDTO createCity(ciudadDTO newCity) throws ciudadLogicException {
     	logger.info("recibiendo solicitud de agregar ciudad " + newCity);
         logger.info("recibiendo solicitud de agregar ciudad con  " + newCity.getID());

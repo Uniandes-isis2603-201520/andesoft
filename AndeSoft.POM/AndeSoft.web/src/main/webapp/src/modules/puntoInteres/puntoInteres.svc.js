@@ -13,6 +13,7 @@ mod.service('puntoInteresSVC',["$http", "puntoInteresContext", function ($http, 
    
        var itinerario = [];
        var logueado=false;
+       var idCiudad=1;
 
        this.darLog= function()
         {

@@ -6,6 +6,7 @@
 (function(ng){
 
 var appCiudad = ng.module('AppCiudad',["ui.bootstrap"]);
-appCiudad.constant("contextoCiudad", "http://localhost:8080/AndeSoft.web/api/ciudades");
+//appCiudad.constant("contextoCiudad", "http://localhost:8080/AndeSoft.web/api/ciudades");
+ appCiudad.constant("contextoCiudad", "api/ciudades");
 
 })(window.angular);
