@@ -31,19 +31,19 @@ public class ItinerarioPersistence {
         return em.merge(entity);
     }
 
-    public void delete(int id) {
+    public void delete(Long id) {
         logger.log(Level.INFO, "Borrandoitinerario ", id);
         ItinerarioEntity entity = em.find(ItinerarioEntity.class, id);
         em.remove(entity);
     }
 
-    public ItinerarioEntity find(int id) 
+    public ItinerarioEntity find(Long id) 
     {
         logger.log(Level.INFO, "Consultando Itinerario ", id);
         return em.find(ItinerarioEntity.class, id);
     }
 
-    public List<ItinerarioEntity> findAll(int idUsuario)
+    public List<ItinerarioEntity> findAll(Long idUsuario)
     {
         logger.info("Consultando todos los Itinerarios");
         Query q = em.createQuery("select u from ItinerarioEntity u ");

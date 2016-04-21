@@ -24,7 +24,7 @@ public class ItinerarioLogic implements IItinerarioLogic
     private ItinerarioPersistence persistence;
     
     @Override
-    public ItinerarioEntity getItinerario(int idUser, int id) 
+    public ItinerarioEntity getItinerario(Long idUser, Long id) 
     {
         logger.log(Level.INFO, "Inicia proceso de consultar itinerario id={0}", id);
         ItinerarioEntity itinerario = persistence.find(id);
@@ -54,14 +54,14 @@ public class ItinerarioLogic implements IItinerarioLogic
     }
 
     @Override
-    public void deleteItinerario(int id) {
+    public void deleteItinerario(Long id) {
         logger.log(Level.INFO, "Inicia proceso de borrar itinerario con id={0}", id);
         persistence.delete(id);
         logger.log(Level.INFO, "Termina proceso de borrar itinerario con id={0}", id);
     }
     
       
-    public List<ItinerarioEntity> getItinerarios(int idUser) 
+    public List<ItinerarioEntity> getItinerarios(Long idUser) 
     {
         logger.info("Inicia proceso de consultar todos los itinerarios de un user");
         List<ItinerarioEntity> itinerarios = persistence.findAll(idUser);

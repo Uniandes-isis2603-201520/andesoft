@@ -96,7 +96,7 @@ public class ItinerarioPersistenceTest {
     @Test
     public void getItinerariosTest() 
     {
-        List<ItinerarioEntity> list = itinerarioPersistence.findAll(0);
+        List<ItinerarioEntity> list = itinerarioPersistence.findAll(Long.parseLong("0"));
         //Assert.assertEquals(data.size(), list.size());
         for (ItinerarioEntity ent : list) {
             ItinerarioEntity actual = null;

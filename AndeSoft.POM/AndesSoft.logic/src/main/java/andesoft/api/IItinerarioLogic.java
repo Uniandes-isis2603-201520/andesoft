@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface IItinerarioLogic {
     
-    public ItinerarioEntity getItinerario(int idUser, int id) ;
+    public ItinerarioEntity getItinerario(Long idUser, Long id) ;
 
     public ItinerarioEntity createItinerario(ItinerarioEntity entity);
 
     public ItinerarioEntity updateItinerario(ItinerarioEntity entity);
 
-    public void deleteItinerario(int id);
+    public void deleteItinerario(Long id);
 
     
 }

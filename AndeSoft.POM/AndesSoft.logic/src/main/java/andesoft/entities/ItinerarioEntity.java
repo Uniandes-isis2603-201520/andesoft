@@ -62,6 +62,10 @@ public class ItinerarioEntity implements Serializable
         {
             return id;
         }
+        public void setId(Long pid)
+        {
+            id=pid;
+        }
         public UsuarioEntity darIdUsuarioDueño()
         {
             return idUsuarioDueño;
