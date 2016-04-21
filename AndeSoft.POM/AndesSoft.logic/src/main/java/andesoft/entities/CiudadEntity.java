@@ -27,23 +27,42 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class CiudadEntity extends BaseEntity implements Serializable
 {
-    //private Long ID;
+    private Long ID;
     private String name;
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
-    private Date fechaInicio; 
+    private Date fechaInicio;
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaFinal;
-    
+
+
+
+
+
     @ManyToOne
     @PodamExclude
     private ItinerarioEntity itinerario;
-    
+
      @OneToMany(mappedBy = "ciudadPunto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PuntoInteresEntity> puntosInteres = new ArrayList<>();
-    
 
+
+     public Long getItinerarioId()
+            {
+        return itinerario.darId();
+    }
+
+
+     public Long getId ()
+    {
+        return ID;
+    }
+
+    public void setId(Long id)
+    {
+        ID = id;
+    }
 
     public String getName ()
     {
@@ -74,15 +93,15 @@ public class CiudadEntity extends BaseEntity implements Serializable
     {
         fechaFinal = fF;
     }
-    
-    public ItinerarioEntity getBook() {
+
+    public ItinerarioEntity getItinerario() {
         return itinerario;
     }
 
     public void setItinerario(ItinerarioEntity itinerario) {
         this.itinerario = itinerario;
     }
-    
+
      public List<PuntoInteresEntity> getPuntosInteres() {
         return puntosInteres;
     }

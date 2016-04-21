@@ -29,7 +29,7 @@ public class CiudadPersistence
         logger.log(Level.INFO, "Consultando ciudad con id={0}", name);
         return em.find(CiudadEntity.class, name);
     }
-    
+
     public CiudadEntity find(Long id) {
         logger.log(Level.INFO, "Consultando Ciudad con id={0}", id);
         return em.find(CiudadEntity.class, id);
