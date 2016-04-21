@@ -29,9 +29,9 @@ public class UsuarioEntity implements Serializable{
     private String usuario;
     private String correo;
     private String password;
-//    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
 //    private ItinerarioEntity itinerario;
-//    private List<ItinerarioDTO> itinerarios;
+    private List<ItinerarioEntity> itinerarios;
 //    private List<FotoDTO> fotos;
 
 
@@ -85,9 +85,14 @@ public class UsuarioEntity implements Serializable{
 //        return itinerario;
 //    }
 //
-//    public void setItinerario(ItinerarioEntity itinerario) {
-//        this.itinerario = itinerario;
-//    }
+      public void setnuevoItinerario(ItinerarioEntity itinerario) {
+         this.itinerarios.add( itinerario);
+    }
+      
+      public void setborrarItinerario(ItinerarioEntity itinerario) 
+      {
+         this.itinerarios.remove(itinerario);
+    }
 
 }
 
