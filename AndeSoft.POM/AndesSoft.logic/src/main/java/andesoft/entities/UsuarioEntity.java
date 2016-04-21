@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -29,9 +30,10 @@ public class UsuarioEntity implements Serializable{
     private String usuario;
     private String correo;
     private String password;
-    @ManyToOne(cascade = CascadeType.ALL)
-//    private ItinerarioEntity itinerario;
+    
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ItinerarioEntity> itinerarios;
+//    private ItinerarioEntity itinerario;
 //    private List<FotoDTO> fotos;
 
 

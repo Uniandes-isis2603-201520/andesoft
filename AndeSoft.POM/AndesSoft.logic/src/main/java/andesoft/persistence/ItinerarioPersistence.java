@@ -27,7 +27,7 @@ public class ItinerarioPersistence {
     }
 
     public ItinerarioEntity update(ItinerarioEntity entity) {
-        logger.log(Level.INFO, "Actualizando itinerario ", entity.darId());
+        logger.log(Level.INFO, "Actualizando itinerario ", entity.getId());
         return em.merge(entity);
     }
 

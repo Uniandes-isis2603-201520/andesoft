@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -15,7 +15,7 @@ import javax.persistence.Query;
 public class UsuarioPersistence {
  private static final Logger logger = Logger.getLogger(UsuarioPersistence.class.getName());
 
-    @PersistenceContext(unitName = "BookStorePU")
+    @PersistenceContext(unitName = "AndeSoftPU")
     protected EntityManager em;
 
     public UsuarioEntity create(UsuarioEntity entity) {
@@ -43,7 +43,7 @@ public class UsuarioPersistence {
 
     public List<UsuarioEntity> findAll() {
         logger.info("Consultando todos los usuarios");
-        Query q = em.createQuery("select u from UsuarioEntity u");
+        TypedQuery<UsuarioEntity> q = em.createQuery("select u from UsuarioEntity u", UsuarioEntity.class);
         return q.getResultList();
     }
 }

@@ -1,26 +1,26 @@
-
 package andesoft.ejbs;
 
 import java.util.logging.Logger;
 import javax.inject.Inject;
+
 import andesoft.api.IUsarioLogic;
 import andesoft.entities.UsuarioEntity;
-import andesoft.exceptions.BusinessLogicException;
 import andesoft.persistence.UsuarioPersistence;
+
 import java.util.List;
 import java.util.logging.Level;
+import javax.ejb.Stateless;
 /**
  *
  * @author js.arciniegas10
  */
+@Stateless
 public class UsuarioLogic implements IUsarioLogic {
- private static final Logger logger = Logger.getLogger(UsuarioLogic.class.getName());
+
+    private static final Logger logger = Logger.getLogger(UsuarioLogic.class.getName());
 
     @Inject
     private UsuarioPersistence persistence;
-
-    @Inject
-    IUsarioLogic UsuarioLogic;
 
     @Override
     public List<UsuarioEntity> getUsuarios() {
