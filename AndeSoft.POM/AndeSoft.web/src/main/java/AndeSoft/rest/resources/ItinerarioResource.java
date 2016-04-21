@@ -8,9 +8,12 @@ package AndeSoft.rest.resources;
 
 
 
+import AndeSoft.converters.ItinerarioConverter;
 import AndeSoft.rest.dtos.ItinerarioDTO;
 import AndeSoft.rest.mocks.ItinerarioLogicMock;
-import java.util.ArrayList;
+import andesoft.ejbs.ItinerarioLogic;
+import andesoft.entities.ItinerarioEntity;
+import java.util.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -43,7 +46,7 @@ public class ItinerarioResource
 {
 
 @Inject
-ItinerarioLogicMock itinerarioLogic;
+ItinerarioLogic itinerarioLogic;
         
         /**
          * 
@@ -59,7 +62,8 @@ ItinerarioLogicMock itinerarioLogic;
             System.out.println("Llega tener itinerarios");
             return "llego";
         }
-
+        
+    
 /**
          * 
          *  no se usa, no se necesita
@@ -74,16 +78,12 @@ ItinerarioLogicMock itinerarioLogic;
 */
     @GET
     @Path("/perfil/{idP}/itinerariosTodos")
-    public ArrayList getItinerarios(@PathParam("idP") int id) 
+    public List<ItinerarioDTO> getItinerarios(@PathParam("idP") long id) 
     {
         System.out.println("Llega tener itinerarios");
         
-       
-        ArrayList itinerarioL = new ArrayList();
-        
-        itinerarioL = itinerarioLogic.getTodosItinerariosIDPerfil(id);
-        
-        return itinerarioL;
+        List<ItinerarioDTO> temp= ItinerarioConverter.listEntity2DTO(itinerarioLogic.getItinerarios(id));
+     return temp;
         
     }
 
@@ -98,10 +98,12 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    public String getItinerario(@PathParam("idP") int idP, @PathParam("idI") Long idI )
+    public String getItinerario(@PathParam("idP") long idP, @PathParam("idI") Long idI )
     {
+        
         System.out.println("Llega tener 1 itinerario");
-        ItinerarioDTO itinerario = itinerarioLogic.getItinerario(idP, idI);
+        ItinerarioEntity itinerari = itinerarioLogic.getItinerario(idP, idI);
+        ItinerarioDTO  itinerario = ItinerarioConverter.refEntity2DTO(itinerari);
         
         return itinerario.toString();
     }
@@ -117,13 +119,15 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @POST
     @Path("/perfil/{idP}/createIt")
-    public  Response createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerario )  
+    public  Response createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerarior )  
     {
         System.out.println("Llega crear itinerario");
-        ItinerarioDTO itinerarioN;
+        ItinerarioEntity itinerarioN;
         try 
 	{
-               itinerarioN = itinerarioLogic.createItinerario(itinerario, idP);
+          
+                ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarior);
+               itinerarioN = itinerarioLogic.createItinerario(itinerario);
         } 
 	catch (Exception e) 
 	{
@@ -147,7 +151,7 @@ ItinerarioLogicMock itinerarioLogic;
     public ItinerarioDTO updateItinerario(@PathParam("idP") int idP,@PathParam("idI") int idI, ItinerarioDTO itNuevo)
     {
         System.out.println("Llega cambiar itinerario");
-        return itinerarioLogic.updateItinerario(idP,idI, itNuevo);
+        return ItinerarioConverter.refEntity2DTO(itinerarioLogic.updateItinerario(ItinerarioConverter.refDTO2Entity(itNuevo)));
     }
 
     /**
@@ -162,10 +166,10 @@ ItinerarioLogicMock itinerarioLogic;
      */
     @DELETE
     @Path("/perfil/{idP}/eliminarItinerario/{idI}")
-    public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") int idI) 
+    public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") long idI) 
     {
         System.out.println("Llega borrar itinerario");
-        itinerarioLogic.deleteItinerario(idP, idI);
+        itinerarioLogic.deleteItinerario( idI);
     }
 
 }
