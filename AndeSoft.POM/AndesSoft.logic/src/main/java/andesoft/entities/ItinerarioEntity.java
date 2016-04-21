@@ -34,14 +34,14 @@ public class ItinerarioEntity implements Serializable
      
           
      @ManyToOne
-     private UsuarioEntity idUsuarioDueño;
-     
-     
+     private UsuarioEntity usuario;
+  
      private String nombreIt;
      
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
      private Date fechaIni;
+    
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
      private Date fechaFin;
@@ -58,7 +58,7 @@ public class ItinerarioEntity implements Serializable
          
          
      }*/
-        public Long darId()
+        public Long getId()
         {
             return id;
         }
@@ -66,21 +66,21 @@ public class ItinerarioEntity implements Serializable
         {
             id=pid;
         }
-        public UsuarioEntity darIdUsuarioDueño()
+        public UsuarioEntity getUsuario()
         {
-            return idUsuarioDueño;
+            return usuario;
         }
-       public String darNombre()
+       public String getNombre()
        {
            return nombreIt;
        }
         
        
-        public Date darFechaIni( )
+        public Date getFechaIni( )
         {
             return fechaIni;
         }
-        public Date darFechaFin( )
+        public Date getFechaFin( )
         {
             return fechaFin;
         }

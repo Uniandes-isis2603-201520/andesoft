@@ -13,9 +13,11 @@ import andesoft.entities.UsuarioEntity;
  * @author js.arciniegas10
  */
 public interface IUsarioLogic {
-public UsuarioEntity  getUsuario(Long id);
+    
+    public UsuarioEntity  getUsuario(Long id);
     public List<UsuarioEntity> getUsuarios();
     public UsuarioEntity createUsuario(UsuarioEntity dto);
     public UsuarioEntity updateUsuario(UsuarioEntity entity);
     public void deleteUsuario(Long id);
+    
 }

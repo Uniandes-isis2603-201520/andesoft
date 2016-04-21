@@ -78,7 +78,7 @@ public class ItinerarioSimuladorDB
         {
             ItinerarioDTO actual = (ItinerarioDTO) itinerarios.get(i);
             
-            if(actual.darIdUsuarioDueño() == id)
+            //if(actual.darIdUsuarioDueño() == id)
             {
                 itinerariosResp.add(actual);
             }
@@ -94,7 +94,7 @@ public class ItinerarioSimuladorDB
         {
             ItinerarioDTO actual = (ItinerarioDTO) itinerarios.get(i);
             
-            if(actual.darIdUsuarioDueño() == idP)
+            //if(actual.darIdUsuarioDueño() == idP)
             {
                 itinerarios.remove(actual);
             }
@@ -115,7 +115,7 @@ public class ItinerarioSimuladorDB
         {
             ItinerarioDTO actual = (ItinerarioDTO) itinerarios.get(i);
             
-            if(actual.darIdUsuarioDueño() == id)
+            //if(actual.darIdUsuarioDueño() == id)
             {
                 itinerarios.remove(actual);
             }

@@ -22,7 +22,7 @@ public class ItinerarioDTO
      private List<CiudadDTOf> ciudades;
      
      private Long id;
-     private Long idUsuarioDueño;
+     private UsuarioDTO idUsuarioDueño;
      private String nombreIt;
      
      private Date fechaIni;
@@ -33,10 +33,10 @@ public class ItinerarioDTO
          
      }
      
-     public ItinerarioDTO(Long idD, int idp, String nombreItp, Date ini, Date fin, ArrayList ciudadesp)
+     public ItinerarioDTO(UsuarioDTO idD, long idIt, String nombreItp, Date ini, Date fin, ArrayList ciudadesp)
      {
          idUsuarioDueño = idD;
-         id = idD;
+         id = idIt;
          nombreIt = nombreItp;
          fechaIni = ini;
          fechaFin = fin;
@@ -48,7 +48,7 @@ public class ItinerarioDTO
         {
             return id;
         }
-        public Long darIdUsuarioDueño()
+        public UsuarioDTO darIdUsuarioDueño()
         {
             return idUsuarioDueño;
         }
@@ -89,7 +89,7 @@ public class ItinerarioDTO
         {
             id = idN;
         }
-        public void setIdDueño(Long idN)
+        public void setIdDueño(UsuarioDTO idN)
         {
             idUsuarioDueño = idN;
         }

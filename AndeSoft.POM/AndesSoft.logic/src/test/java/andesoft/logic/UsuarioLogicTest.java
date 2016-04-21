@@ -18,11 +18,13 @@ import javax.persistence.PersistenceContext;
 
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -30,13 +32,15 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author js.arciniegas10
  */
+@RunWith(Arquillian.class)
 public class UsuarioLogicTest {
- private PodamFactory factory = new PodamFactoryImpl();
+    
+    private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
     private IUsarioLogic usuarioLogic;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "AndeSoftPU")
     private EntityManager em;
 
     @Inject
@@ -49,10 +53,13 @@ public class UsuarioLogicTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
+                
+                .addClass(UsuarioLogic.class)
+                .addClass(IUsarioLogic.class)
+
                 .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioLogic.class.getPackage())
-                .addPackage(IUsarioLogic.class.getPackage())
                 .addPackage(UsuarioPersistenceTest.class.getPackage())
+                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -74,7 +81,7 @@ public class UsuarioLogicTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from ItineararioEntity").executeUpdate();
+        em.createQuery("delete from ItinerarioEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
@@ -98,15 +105,25 @@ public class UsuarioLogicTest {
 
     @Test
     public void createUsuarioTest() {
+        
+        // expected es generado -- id en null
         UsuarioEntity expected = factory.manufacturePojo(UsuarioEntity.class);
+        
+        // created es el que graba -- id es el de la BD
         UsuarioEntity created = usuarioLogic.createUsuario(expected);
 
+        // result es el que se lee de la base de datos
         UsuarioEntity result = em.find(UsuarioEntity.class, created.getId());
 
+        // lo leyó de la BD ?
         Assert.assertNotNull(result);
-        Assert.assertNotNull(result);
-        Assert.assertEquals(expected.getId(), result.getId());
+        
+        // coincide el id ?
+        Assert.assertEquals(created.getId(), result.getId());
 
+        // coincide los datos
+        Assert.assertEquals(expected.getNames(), result.getNames());
+        
     }
 
     @Test

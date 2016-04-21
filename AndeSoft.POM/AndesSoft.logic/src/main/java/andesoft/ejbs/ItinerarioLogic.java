@@ -47,9 +47,9 @@ public class ItinerarioLogic implements IItinerarioLogic
 
     @Override
     public ItinerarioEntity updateItinerario (ItinerarioEntity entity) {
-        logger.log(Level.INFO, "Inicia proceso de actualizar itinearario con id={0}", entity.darId());
+        logger.log(Level.INFO, "Inicia proceso de actualizar itinearario con id={0}", entity.getId());
         ItinerarioEntity newEntity = persistence.update(entity);
-        logger.log(Level.INFO, "Termina proceso de actualizar itinerario id={0}", entity.darId());
+        logger.log(Level.INFO, "Termina proceso de actualizar itinerario id={0}", entity.getId());
         return newEntity;
     }
 

@@ -32,7 +32,7 @@ public abstract class ItinerarioConverter
         {
             ItinerarioDTO dto = new ItinerarioDTO();
             dto.setId(entity.darId());
-            dto.setIdDueño(entity.darIdUsuarioDueño().getId());
+            dto.setIdDueño(UsuarioConverter.fullEntity2DTO(entity.darIdUsuarioDueño()));
             dto.setNom(entity.darNombre());
             dto.setFechaIni(entity.darFechaIni());
             dto.setFechaFin(entity.darFechaFin());
@@ -54,10 +54,18 @@ public abstract class ItinerarioConverter
      * @return instancia de AuthorEntity con los datos recibidos por parámetro
      * @generated
      */
-    public static PuntoInteresEntity refDTO2Entity(PuntoInteresDTO dto) {
-        if (dto != null) {
-            PuntoInteresEntity entity = new PuntoInteresEntity();
-            entity.setId(dto.getId());
+    public static ItinerarioEntity refDTO2Entity(ItinerarioDTO dto) {
+        if (dto != null) 
+        {
+            
+            ItinerarioEntity entity = new ItinerarioEntity();
+            entity.setId(dto.darId());
+            entity.setIdUsuarioDueño(    UsuarioConverter.fullDTO2Entity(dto.darIdUsuarioDueño()));
+            entity.setNom(entity.darNombre());
+            entity.setFechaIni(entity.darFechaIni());
+            entity.setFechaFin(entity.darFechaFin());
+         //   dto.setCiudades(entity.getCiudades());
+            entity.setCiudades(CiudadConverter.listDTO2Entity(dto.darCiudades()));
 
             return entity;
         } else {
@@ -154,15 +162,17 @@ public abstract class ItinerarioConverter
      * @return Collección de instancias de PuntoInteresDTO
      * @generated
      */
-    public static List<PuntoInteresDTO> listEntity2DTO(List<PuntoInteresEntity> entities) {
-        List<PuntoInteresDTO> dtos = new ArrayList<PuntoInteresDTO>();
+    public static List<ItinerarioDTO> listEntity2DTO(List<ItinerarioEntity> entities) {
+        
+        List<ItinerarioDTO> itinerarioL = new ArrayList<ItinerarioDTO>();
         if (entities != null) {
-            for (PuntoInteresEntity entity : entities) {
-                dtos.add(basicEntity2DTO(entity));
-            }
+                for(int i=0;i< entities.size();i++)
+                {
+                     itinerarioL.add(ItinerarioConverter.refEntity2DTO(entities.get(i)));
+                }
         }
         //System.out.println("dto: "+dtos.get(0).getNombre());
-        return dtos;
+        return itinerarioL;
     }
 
     /**

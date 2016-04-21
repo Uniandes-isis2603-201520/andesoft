@@ -66,7 +66,7 @@ public class ItinerarioPersistenceTest {
 
     private void clearData() 
     {
-        em.createQuery("delete from ItinerarioEntity").executeUpdate();
+        em.createQuery("delete * from ItinerarioEntity").executeUpdate();
     }
 
     private List<ItinerarioEntity> data = new ArrayList<>();
@@ -88,9 +88,9 @@ public class ItinerarioPersistenceTest {
 
         Assert.assertNotNull(result);
 
-        ItinerarioEntity entity = em.find(ItinerarioEntity.class, result.darId());
+        ItinerarioEntity entity = em.find(ItinerarioEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.darNombre(), entity.darNombre());
+        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
     }
 
     @Test
@@ -101,11 +101,11 @@ public class ItinerarioPersistenceTest {
         for (ItinerarioEntity ent : list) {
             ItinerarioEntity actual = null;
             for (ItinerarioEntity entityy : data) {
-                if (ent.darId().equals(entityy.darId())) {
+                if (ent.getId().equals(entityy.getId())) {
                     actual = entityy;
                 }
             }
-            Assert.assertEquals(actual.darIdUsuarioDueño(),0);
+            Assert.assertEquals(actual.getUsuario(),0);
         }
     }
 
@@ -113,19 +113,19 @@ public class ItinerarioPersistenceTest {
     public void getItinerarioTest()
     {
         ItinerarioEntity entity = data.get(0);
-        ItinerarioEntity newEntity = itinerarioPersistence.find(entity.darId());
+        ItinerarioEntity newEntity = itinerarioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.darNombre(), newEntity.darNombre());
-        Assert.assertEquals(entity.darFechaIni(), newEntity.darFechaIni());
-        Assert.assertEquals(entity.darFechaFin(), newEntity.darFechaFin());
+        Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
+        Assert.assertEquals(entity.getFechaIni(), newEntity.getFechaIni());
+        Assert.assertEquals(entity.getFechaFin(), newEntity.getFechaFin());
     }
 
     @Test
     public void deleteItinerarioTest() 
     {
         ItinerarioEntity entity = data.get(0);
-        itinerarioPersistence.delete(entity.darId());
-        ItinerarioEntity deleted = em.find(ItinerarioEntity.class, entity.darId());
+        itinerarioPersistence.delete(entity.getId());
+        ItinerarioEntity deleted = em.find(ItinerarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
@@ -134,12 +134,13 @@ public class ItinerarioPersistenceTest {
         ItinerarioEntity entity = data.get(0);
         ItinerarioEntity newEntity = factory.manufacturePojo(ItinerarioEntity.class);
 
-        newEntity.setId(entity.darId());
+        newEntity.setId(entity.getId());
 
         itinerarioPersistence.update(newEntity);
 
-        ItinerarioEntity resp = em.find(ItinerarioEntity.class, entity.darId());
+        ItinerarioEntity resp = em.find(ItinerarioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.darNombre(), resp.darNombre());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
 }
+
