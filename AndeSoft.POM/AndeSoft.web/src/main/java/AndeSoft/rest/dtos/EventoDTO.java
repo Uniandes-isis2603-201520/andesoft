@@ -1,5 +1,7 @@
 package AndeSoft.rest.dtos;
 
+import java.util.Date;
+
 /**
  *
  * @author mm.gomez10
@@ -10,12 +12,10 @@ package AndeSoft.rest.dtos;
 public class EventoDTO {
 
     private Long id;
-    private int idItinerario;
+    private CiudadDTOf ciudad;
     private String nombre;
-    private String fechaInicio;
-    private String fechaFinal;
-    private String ciudad;
-
+    private Date fechaInicio;
+    private Date fechaFinal;
     /**
      * Constructor por defecto
      */
@@ -25,16 +25,14 @@ public class EventoDTO {
     /**
      * Constructor con parámetros.
      * @param pId 
-     * @param pIdItinerario
      * @param pNombre 
      * @param pFechaInicio
      * @param pFechaFinal
      * @param pCiudad
      */
-    public EventoDTO(Long pId, int pIdItinerario, String pNombre, String pFechaInicio, String pFechaFinal, String pCiudad ) {
+    public EventoDTO(Long pId, CiudadDTOf pCiudad, String pNombre, Date pFechaInicio, Date pFechaFinal) {
 super();
 this.id = pId;
-                this.idItinerario = pIdItinerario;
 this.nombre = pNombre;
                 this.fechaInicio = pFechaInicio;
 this.fechaFinal = pFechaFinal;
@@ -51,15 +49,7 @@ this.fechaFinal = pFechaFinal;
         this.id = id;
     }
 
-    public int getIdItinerario() {
-        return idItinerario;
-    }
-
-  
-    public void setIdItinerario(int pIdItinerario) {
-        this.idItinerario = pIdItinerario;
-    }
-    
+ 
     public String getNombre() {
         return nombre;
     }
@@ -69,35 +59,36 @@ this.fechaFinal = pFechaFinal;
         this.nombre = pNombre;
     }
     
-     public String getFechaInicio(){
+     public Date getFechaInicio(){
         return fechaInicio;
     }
 
-    public void setFechaInicio(String pFechaInicio) {
+    public void setFechaInicio(Date pFechaInicio) {
         this.fechaInicio = pFechaInicio;
     }
 
-    public String getFechaFinal(){
+    public Date getFechaFinal(){
         return fechaFinal;
     }
 
-    public void setFechaFinal(String pFechaFinal) {
+    public void setFechaFinal(Date pFechaFinal) {
         this.fechaFinal = pFechaFinal;
     }
     
-    public String getCiudad(){
+    public CiudadDTOf getCiudad(){
         return ciudad;
     }
 
-    public void setCiudad(String pCiudad) {
+    public void setCiudad(CiudadDTOf pCiudad) {
         this.ciudad = pCiudad;
     }
 
    
     @Override
     public String toString() {
-        String total = "{\"id\":"+id+",\"idItinerario\":"+idItinerario+",\"nombre\":\""+nombre+"\",\"fechaInicio\":\""+fechaInicio+"\",\"fechaFinal\":\""+fechaFinal
-                    +"\",\"ciudad\":"+ciudad+"}";
+        String total = "{\"id\":"+id+",\"ciudad\":"+ciudad+",\"nombre\":\""+nombre+
+                "\",\"fechaInicio\":\""+fechaInicio+"\",\"fechaFinal\":\""+fechaFinal
+                    +"}";
         return total;
     }
 }
