@@ -29,10 +29,15 @@ public class CiudadPersistence
         logger.log(Level.INFO, "Consultando ciudad con id={0}", name);
         return em.find(CiudadEntity.class, name);
     }
+    
+    public CiudadEntity find(Long id) {
+        logger.log(Level.INFO, "Consultando Ciudad con id={0}", id);
+        return em.find(CiudadEntity.class, id);
+    }
 
     public List<CiudadEntity> findAll() {
         logger.info("Consultando todos las ciudades");
-        Query q = em.createQuery("select u from BookEntity u");
+        Query q = em.createQuery("select u from CiudadEntity u");
         return q.getResultList();
     }
 
@@ -48,9 +53,9 @@ public class CiudadPersistence
         return em.merge(entity);
     }
 
-    public void delete(String name) {
-        logger.log(Level.INFO, "Borrando ciudad con id={0}", name);
-        CiudadEntity entity = em.find(CiudadEntity.class, name);
+    public void delete(Long id) {
+        logger.log(Level.INFO, "Borrando punto de interes con id={0}", id);
+        CiudadEntity entity = em.find(CiudadEntity.class, id);
         em.remove(entity);
     }
 }

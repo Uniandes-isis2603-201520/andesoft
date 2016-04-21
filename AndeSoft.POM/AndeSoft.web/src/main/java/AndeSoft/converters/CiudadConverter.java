@@ -46,13 +46,22 @@ public abstract class CiudadConverter {
     }
 
        public static CiudadDTOf fullEntity2DTO(CiudadEntity entity) {
-        CiudadDTOf dto = basicEntity2DTO(entity);
-        return dto;
+        if (entity != null) {
+            CiudadDTOf dto = basicEntity2DTO(entity);
+            return dto;
+        } else {
+            return null;
+        }
     }
 
         public static CiudadDTOf basicEntity2DTO(CiudadEntity entity) {
         if (entity != null) {
-            CiudadDTOf dto = refEntity2DTO(entity);
+            CiudadDTOf dto = new CiudadDTOf();
+            dto.setId(entity.getId());
+            dto.setNombre(entity.getName());
+            dto.setFechaInicio(entity.getFechaInicio());
+            dto.setFechaSalida(entity.getFechaFinal());
+            
 
             return dto;
         } else {
