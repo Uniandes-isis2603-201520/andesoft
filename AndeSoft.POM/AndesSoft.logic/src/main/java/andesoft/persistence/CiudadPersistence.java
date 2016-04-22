@@ -10,6 +10,7 @@ import andesoft.entities.CiudadEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -18,6 +19,7 @@ import javax.persistence.Query;
  *
  * @author e.galvis10
  */
+@Stateless
 public class CiudadPersistence
 {
   private static final Logger logger = Logger.getLogger(CiudadPersistence.class.getName());
