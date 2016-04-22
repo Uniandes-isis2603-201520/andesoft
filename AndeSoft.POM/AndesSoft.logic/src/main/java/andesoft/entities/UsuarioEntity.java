@@ -31,7 +31,8 @@ public class UsuarioEntity implements Serializable{
     private String correo;
     private String password;
     
-    @OneToMany(cascade = CascadeType.ALL)
+  //  @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItinerarioEntity> itinerarios;
 //    private ItinerarioEntity itinerario;
 //    private List<FotoDTO> fotos;

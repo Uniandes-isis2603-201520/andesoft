@@ -11,7 +11,7 @@ package AndeSoft.rest.resources;
 import AndeSoft.converters.ItinerarioConverter;
 import AndeSoft.rest.dtos.ItinerarioDTO;
 import AndeSoft.rest.mocks.ItinerarioLogicMock;
-import andesoft.ejbs.ItinerarioLogic;
+import andesoft.api.IItinerarioLogic;
 import andesoft.entities.ItinerarioEntity;
 import java.util.*;
 
@@ -41,12 +41,15 @@ import javax.ws.rs.core.Response;
  * 
  */
 @Path("Itinerarios")
-@Produces("application/json")
+//@Produces("application/json")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+
 public class ItinerarioResource 
 {
 
 @Inject
-ItinerarioLogic itinerarioLogic;
+IItinerarioLogic itinerarioLogic;
         
         /**
          * 
@@ -82,7 +85,7 @@ ItinerarioLogic itinerarioLogic;
     {
         System.out.println("Llega tener itinerarios");
         
-        List<ItinerarioDTO> temp= ItinerarioConverter.listEntity2DTO(itinerarioLogic.getItinerarios(id));
+        List<ItinerarioDTO> temp= ItinerarioConverter.listEntity2DTO(itinerarioLogic.getItinerarios());
      return temp;
         
     }

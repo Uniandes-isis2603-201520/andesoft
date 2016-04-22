@@ -3,9 +3,7 @@ package andesoft.ejbs;
 
 import andesoft.api.IItinerarioLogic;
 import andesoft.entities.ItinerarioEntity;
-import andesoft.entities.PuntoInteresEntity;
 import andesoft.persistence.ItinerarioPersistence;
-import andesoft.persistence.PuntoInteresPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,11 +62,17 @@ public class ItinerarioLogic implements IItinerarioLogic
     public List<ItinerarioEntity> getItinerarios(Long idUser) 
     {
         logger.info("Inicia proceso de consultar todos los itinerarios de un user");
-        List<ItinerarioEntity> itinerarios = persistence.findAll(idUser);
+        List<ItinerarioEntity> itinerarios = persistence.findAll();
         logger.info("Termina proceso de consultar todos los puntos de interes");
         return itinerarios;
     }
    
 
+     public List<ItinerarioEntity> getItinerarios() {
+        logger.info("Inicia proceso de consultar todos los puntos de interes");
+        List<ItinerarioEntity> itinerarios = persistence.findAll();
+        logger.info("Termina proceso de consultar todos los puntos de interes");
+        return itinerarios;
+    }
 
 }

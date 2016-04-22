@@ -31,11 +31,11 @@ public abstract class ItinerarioConverter
         if (entity != null)
         {
             ItinerarioDTO dto = new ItinerarioDTO();
-            dto.setId(entity.darId());
-            dto.setIdDueño(UsuarioConverter.fullEntity2DTO(entity.darIdUsuarioDueño()));
-            dto.setNom(entity.darNombre());
-            dto.setFechaIni(entity.darFechaIni());
-            dto.setFechaFin(entity.darFechaFin());
+            dto.setId(entity.getId());
+         //   dto.setIdDueño(UsuarioConverter.fullEntity2DTO(entity.darIdUsuarioDueño()));
+            dto.setNom(entity.getNombre());
+            dto.setFechaIni(entity.getFechaIni());
+            dto.setFechaFin(entity.getFechaFin());
          //   dto.setCiudades(entity.getCiudades());
             dto.setCiudades(CiudadConverter.listEntity2DTO(entity.getCiudades()));
 
@@ -60,10 +60,10 @@ public abstract class ItinerarioConverter
             
             ItinerarioEntity entity = new ItinerarioEntity();
             entity.setId(dto.darId());
-            entity.setIdUsuarioDueño(    UsuarioConverter.fullDTO2Entity(dto.darIdUsuarioDueño()));
-            entity.setNom(entity.darNombre());
-            entity.setFechaIni(entity.darFechaIni());
-            entity.setFechaFin(entity.darFechaFin());
+           // entity.setIdUsuarioDueño(    UsuarioConverter.fullDTO2Entity(dto.darIdUsuarioDueño()));
+            entity.setNom(entity.getNombre());
+            entity.setFechaIni(entity.getFechaIni());
+            entity.setFechaFin(entity.getFechaFin());
          //   dto.setCiudades(entity.getCiudades());
             entity.setCiudades(CiudadConverter.listDTO2Entity(dto.darCiudades()));
 

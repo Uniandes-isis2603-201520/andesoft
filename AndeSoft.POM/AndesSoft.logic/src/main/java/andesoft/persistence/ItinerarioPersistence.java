@@ -2,7 +2,6 @@ package andesoft.persistence;
 
 
 import andesoft.entities.ItinerarioEntity;
-import andesoft.entities.PuntoInteresEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +13,7 @@ import javax.persistence.Query;
 @Stateless
 public class ItinerarioPersistence {
 
-    private static final Logger logger = Logger.getLogger(PuntoInteresPersistence.class.getName());
+    private static final Logger logger = Logger.getLogger(ItinerarioPersistence.class.getName());
 
     @PersistenceContext(unitName = "AndeSoftPU")
     protected EntityManager em;
@@ -43,7 +42,7 @@ public class ItinerarioPersistence {
         return em.find(ItinerarioEntity.class, id);
     }
 
-    public List<ItinerarioEntity> findAll(Long idUsuario)
+    public List<ItinerarioEntity> findAll()
     {
         logger.info("Consultando todos los Itinerarios");
         Query q = em.createQuery("select u from ItinerarioEntity u ");

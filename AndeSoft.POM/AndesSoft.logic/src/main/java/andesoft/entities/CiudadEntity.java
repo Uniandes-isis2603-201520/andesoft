@@ -27,7 +27,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class CiudadEntity extends BaseEntity implements Serializable
 {
-    private Long ID;
+   
     private String name;
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
@@ -50,19 +50,11 @@ public class CiudadEntity extends BaseEntity implements Serializable
 
      public Long getItinerarioId()
             {
-        return itinerario.darId();
+        return itinerario.getId();
     }
 
 
-     public Long getId ()
-    {
-        return ID;
-    }
-
-    public void setId(Long id)
-    {
-        ID = id;
-    }
+   
 
     public String getName ()
     {
