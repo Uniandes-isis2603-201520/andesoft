@@ -125,7 +125,7 @@ public class ItinerarioPersistenceTest {
     public void deleteItinerarioTest() 
     {
         ItinerarioEntity entity = data.get(0);
-        itinerarioPersistence.delete(entity.getId());
+        itinerarioPersistence.delete(entity.getUsuario().getId(),entity.getId());
         ItinerarioEntity deleted = em.find(ItinerarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

@@ -57,9 +57,9 @@ public class ItinerarioLogic implements IItinerarioLogic
     }
 
     @Override
-    public void deleteItinerario(Long id) {
+    public void deleteItinerario(Long idp, Long id) {
         logger.log(Level.INFO, "Inicia proceso de borrar itinerario con id={0}", id);
-        persistence.delete(id);
+        persistence.delete(idp,id);
         logger.log(Level.INFO, "Termina proceso de borrar itinerario con id={0}", id);
     }
     

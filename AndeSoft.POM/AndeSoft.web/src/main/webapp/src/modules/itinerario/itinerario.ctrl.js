@@ -76,6 +76,7 @@
             //si existe lo remplaza, si no, lo crea
             var resp= "{\"idUsuario\":"+0+""+",\"id\":"+$scope.idItinerario+",\"nombreIt\":\""+ $scope.nombreItinerario+"\",\"fechaIni\":\""+$scope.fechaInicio+"\",\"fechaFin\":\""+$scope.fechaFinal
                     +"\"}";
+            
             svc.guardarItineario(0, resp);
             
         };

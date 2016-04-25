@@ -15,7 +15,7 @@ public interface IItinerarioLogic {
 
     public ItinerarioEntity updateItinerario(ItinerarioEntity entity);
 
-    public void deleteItinerario(Long id);
+    public void deleteItinerario(Long idp, Long id);
 
     
 }

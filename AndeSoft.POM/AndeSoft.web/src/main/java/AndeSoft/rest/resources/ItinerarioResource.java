@@ -169,10 +169,10 @@ IItinerarioLogic itinerarioLogic;
      */
     @DELETE
     @Path("/perfil/{idP}/eliminarItinerario/{idI}")
-    public void deleteItinerario(@PathParam("idP") int idP, @PathParam("idI") long idI) 
+    public void deleteItinerario(@PathParam("idP") long idP, @PathParam("idI") long idI) 
     {
         System.out.println("Llega borrar itinerario");
-        itinerarioLogic.deleteItinerario( idI);
+        itinerarioLogic.deleteItinerario(idP, idI);
     }
 
 }

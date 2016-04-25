@@ -136,7 +136,7 @@ public class ItinerarioLogicTest
     public void deleteItinerarioTest() 
     {
         ItinerarioEntity entity = data.get(0);
-        itinerarioLogic.deleteItinerario(entity.getId());
+        itinerarioLogic.deleteItinerario(entity.getUsuario().getId() ,entity.getId());
         ItinerarioEntity deleted = em.find(ItinerarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

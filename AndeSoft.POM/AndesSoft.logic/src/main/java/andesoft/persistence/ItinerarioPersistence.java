@@ -2,6 +2,7 @@ package andesoft.persistence;
 
 
 import andesoft.entities.ItinerarioEntity;
+import andesoft.entities.UsuarioEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,9 +31,14 @@ public class ItinerarioPersistence {
         return em.merge(entity);
     }
 
-    public void delete(Long id) {
-        logger.log(Level.INFO, "Borrandoitinerario ", id);
-        ItinerarioEntity entity = em.find(ItinerarioEntity.class, id);
+    public void delete(Long idp, Long id) {
+        logger.log(Level.INFO, "Borrandoitinerario {0} ", id);
+        UsuarioEntity usuario = em.find(UsuarioEntity.class, idp);
+        Query q = em.createQuery("select u from ItinerarioEntity u where u.usuario = :idUser and u.id = :idIt", ItinerarioEntity.class);
+        q.setParameter("idUser", usuario);
+        q.setParameter("idIt",id);
+        logger.log(Level.INFO, " query= {0}", q.toString() );
+        ItinerarioEntity entity = (ItinerarioEntity)q.getSingleResult();
         em.remove(entity);
     }
 
