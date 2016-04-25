@@ -10,12 +10,9 @@ package AndeSoft.rest.resources;
 
 import AndeSoft.converters.EventoConverter;
 import AndeSoft.rest.dtos.EventoDTO;
-import AndeSoft.rest.mocks.EventoLogicMock;
 import Andesoft.providers.StatusCreated;
 import andesoft.api.IEventoLogic;
 import andesoft.entities.EventoEntity;
-import andesoft.exceptions.BusinessLogicException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,7 +82,7 @@ private static final Logger logger = Logger.getLogger(EventoResource.class.getNa
 
     @PUT
     @Path("{id: \\d+}")
-    public EventoDTO updateBook(@PathParam("id") Long id, EventoDTO dto) {
+    public EventoDTO updateEvento(@PathParam("id") Long id, EventoDTO dto) {
         logger.log(Level.INFO, "Se ejecuta método updateEvento con id={0}", id);
         EventoEntity entity = EventoConverter.fullDTO2Entity(dto);
         entity.setId(id);
@@ -98,8 +95,8 @@ private static final Logger logger = Logger.getLogger(EventoResource.class.getNa
    
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteBook(@PathParam("id") Long id) {
-        logger.log(Level.INFO, "Se ejecuta método deleteBook con id={0}", id);
+    public void deleteEvento(@PathParam("id") Long id) {
+        logger.log(Level.INFO, "Se ejecuta método Evento con id={0}", id);
         eventoLogic.deleteEvento(id);
     }
 

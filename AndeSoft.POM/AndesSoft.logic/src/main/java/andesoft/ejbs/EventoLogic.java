@@ -54,7 +54,7 @@ public class EventoLogic implements IEventoLogic {
         logger.log(Level.INFO, "Termina proceso de borrar evento con id={0}", id);
     }
 
-     @Override
+    @Override
     public List<EventoEntity> getEventos(){
         logger.info("Inicia proceso de consultar todos los eventos");
         List<EventoEntity> eventos = persistence.findAll();

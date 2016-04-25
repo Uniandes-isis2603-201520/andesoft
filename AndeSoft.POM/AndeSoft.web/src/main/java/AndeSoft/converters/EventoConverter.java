@@ -166,7 +166,7 @@ public abstract class EventoConverter {
      * @generated
      */
     public static List<EventoEntity> listDTO2Entity(List<EventoDTO> dtos) {
-        List<EventoEntity> entities = new ArrayList<EventoEntity>();
+        List<EventoEntity> entities = new ArrayList<>();
         if (dtos != null) {
             for (EventoDTO dto : dtos) {
                 entities.add(basicDTO2Entity(dto));
