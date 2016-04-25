@@ -98,12 +98,14 @@
                 then(function(response) 
         {
            $scope.idItinerario = response.data.idIt;
+           
+           this.actualizarItinerario();
         }, function myError(response) {
          console.log(response.statusText);
         });
             
             
-            this.actualizarItinerario();
+            
         };
         
    

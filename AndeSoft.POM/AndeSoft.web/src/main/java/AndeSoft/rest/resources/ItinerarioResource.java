@@ -131,8 +131,8 @@ IItinerarioLogic itinerarioLogic;
         try 
 	{
           
-                ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioD);
-                System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre());
+               ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioD);
+               System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre());
                itinerarioN = itinerarioLogic.createActualizarItinerario(itinerario);
                itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
         } 
