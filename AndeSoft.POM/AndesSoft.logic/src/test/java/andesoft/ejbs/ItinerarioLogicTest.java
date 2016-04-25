@@ -5,9 +5,7 @@
  */
 package andesoft.ejbs;
 
-import andesoft.entities.EventoEntity;
 import andesoft.entities.ItinerarioEntity;
-import andesoft.persistence.EventoPersistence;
 import andesoft.persistence.ItinerarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
