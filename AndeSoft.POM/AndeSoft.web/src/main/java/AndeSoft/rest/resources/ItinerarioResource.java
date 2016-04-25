@@ -107,7 +107,7 @@ IItinerarioLogic itinerarioLogic;
         System.out.println("Llega tener 1 itinerario");
         ItinerarioEntity itinerari = itinerarioLogic.getItinerario(idP, idI);
         ItinerarioDTO  itinerario = ItinerarioConverter.refEntity2DTO(itinerari);
-        
+        System.out.println(itinerario.getNombreIt() + "    "+ itinerario.getId());
         return itinerario;
     }
 

@@ -52,7 +52,7 @@ public class ItinerarioDTO
         {
             return idUsuarioDueño;
         }
-       public String getNombre()
+       public String getNombreIt()
        {
            return nombreIt;
        }
@@ -93,7 +93,7 @@ public class ItinerarioDTO
         {
             idUsuarioDueño = idN;
         }
-        public void setNom( String nuevaC)
+        public void setNombreIt( String nuevaC)
         {
             nombreIt = nuevaC;
         }
