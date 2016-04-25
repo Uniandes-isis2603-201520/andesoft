@@ -1,6 +1,10 @@
 package AndeSoft.rest.dtos;
 
+import co.edu.uniandes.csw.crud.api.podam.strategy.DateStrategy;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
+import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -9,12 +13,21 @@ import java.util.Date;
  * Objeto de transferencia de datos de Eventos.
  * Los DTO especifican los mensajes que se envían entre el cliente y el servidor.
  */
+
+@XmlRootElement
 public class EventoDTO {
 
     private Long id;
+    
+    @PodamExclude
     private CiudadDTOf ciudad;
+    
     private String nombre;
+    
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaInicio;
+    
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaFinal;
     /**
      * Constructor por defecto
@@ -31,13 +44,13 @@ public class EventoDTO {
      * @param pCiudad
      */
     public EventoDTO(Long pId, CiudadDTOf pCiudad, String pNombre, Date pFechaInicio, Date pFechaFinal) {
-super();
-this.id = pId;
-this.nombre = pNombre;
-                this.fechaInicio = pFechaInicio;
-this.fechaFinal = pFechaFinal;
-                this.ciudad = pCiudad;
-}
+        super();
+        this.id = pId;
+        this.nombre = pNombre;
+        this.fechaInicio = pFechaInicio;
+        this.fechaFinal = pFechaFinal;
+        this.ciudad = pCiudad;
+    }
 
 
     public Long getId() {
