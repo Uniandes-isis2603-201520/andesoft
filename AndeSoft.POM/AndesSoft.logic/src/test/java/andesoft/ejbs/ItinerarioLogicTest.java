@@ -8,6 +8,7 @@ package andesoft.ejbs;
 import andesoft.entities.EventoEntity;
 import andesoft.entities.ItinerarioEntity;
 import andesoft.persistence.EventoPersistence;
+import andesoft.persistence.ItinerarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -45,8 +46,8 @@ public class ItinerarioLogicTest
     @Deployment 
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EventoEntity.class.getPackage())
-                .addPackage(EventoPersistence.class.getPackage())
+                .addPackage(ItinerarioEntity.class.getPackage())
+                .addPackage(ItinerarioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
