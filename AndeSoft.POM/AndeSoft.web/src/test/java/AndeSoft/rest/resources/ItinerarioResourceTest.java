@@ -8,8 +8,6 @@ package AndeSoft.rest.resources;
 import AndeSoft.converters.EventoConverter;
 import AndeSoft.rest.dtos.EventoDTO;
 import AndeSoft.rest.dtos.ItinerarioDTO;
-import Andesoft.adapters.DateAdapter;
-import Andesoft.providers.CreatedFilter;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,8 +68,6 @@ public class ItinerarioResourceTest {
                 .addPackage(EventoResource.class.getPackage())
                 .addPackage(EventoDTO.class.getPackage())
                 .addPackage(EventoConverter.class.getPackage())
-                .addPackage(DateAdapter.class.getPackage())
-                .addPackage(CreatedFilter.class.getPackage())
                 // El archivo que contiene la configuracion a la base de datos.
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 // El archivo beans.xml es necesario para injeccion de dependencias.
