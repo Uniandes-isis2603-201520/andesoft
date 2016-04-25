@@ -30,7 +30,7 @@
         
 	$scope.fechaInicio = "";
 	$scope.fechaFinal = "";
-        
+       
         
         
         $scope.actualizarItinerario = function()
@@ -73,12 +73,37 @@
         
         $scope.crearActualizarItinerario = function()
         {
+            console.log("llega a crear o actualizar itinerario");
             //si existe lo remplaza, si no, lo crea
             var resp= "{\"idUsuario\":"+0+""+",\"id\":"+$scope.idItinerario+",\"nombreIt\":\""+ $scope.nombreItinerario+"\",\"fechaIni\":\""+$scope.fechaInicio+"\",\"fechaFin\":\""+$scope.fechaFinal
                     +"\"}";
+            var actuales = "";
+            for(var i=0; i< $scope.ciudades ;i++)
+            {
+                if(i != 0){actuales+= ",";}
+                var actual = $scope.ciudades[i];
+                actuales += " { id: "+actual.id+" , nombre: "+actual.nombre+" ,fechaSalida: "+actual.fechaSalida+" ,fechaLlegada: "+actual.fechaLlegada+" }";
+        
+            }
+            var currentItinerario = {
+                idItinerario: $scope.idItinerario,
+                nombreItinerario: $scope.nombreItinerario /*Tipo String*/,
+                fechaIni : $scope.fechaInicio,
+                fechaFin : $scope.fechaFinal,
+                ciudades: [actuales] 
+            };
             
-            svc.guardarItineario(0, resp);
+           console.log(currentItinerario);
+            svc.crearActualizarItinerario(0, currentItinerario).
+                then(function(response) 
+        {
+           $scope.idItinerario = response.data.idIt;
+        }, function myError(response) {
+         console.log(response.statusText);
+        });
             
+            
+            this.actualizarItinerario();
         };
         
    

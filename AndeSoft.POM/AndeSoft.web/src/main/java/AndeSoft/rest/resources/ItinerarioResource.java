@@ -122,21 +122,26 @@ IItinerarioLogic itinerarioLogic;
      */
     @POST
     @Path("/perfil/{idP}/createIt")
-    public  Response createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerarior )  
+    public  ItinerarioDTO createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerarioD )  
     {
         System.out.println("Llega crear itinerario");
+        System.out.println(" llega el itinerario a ser creado = "+ itinerarioD.getNombreIt());
+        ItinerarioDTO itinerarioDTO;
         ItinerarioEntity itinerarioN;
         try 
 	{
           
-                ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarior);
-               itinerarioN = itinerarioLogic.createItinerario(itinerario);
+                ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioD);
+                System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre());
+               itinerarioN = itinerarioLogic.createActualizarItinerario(itinerario);
+               itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
         } 
 	catch (Exception e) 
 	{
-		return Response.status(500).entity((e.getMessage())).build();
+            System.out.println(e.getMessage());
+		return null;
 	}
-        return Response.status(200).entity(itinerarioN).build();
+        return itinerarioDTO;
     }
 
     /**

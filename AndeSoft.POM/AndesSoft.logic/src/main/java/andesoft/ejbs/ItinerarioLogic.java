@@ -38,7 +38,23 @@ public class ItinerarioLogic implements IItinerarioLogic
         logger.log(Level.INFO, "Termina proceso de consultar itinerario con id={0}", id);
         return itinerario;
     }
-
+    
+    @Override
+    public ItinerarioEntity createActualizarItinerario(ItinerarioEntity entity) 
+    {
+        logger.info("Inicia proceso de creación o actualizacion de itinerario");
+        ItinerarioEntity existe = persistence.find(entity.getId());
+        ItinerarioEntity respuesta;
+        if(existe != null)
+        {
+            respuesta = this.createItinerario(entity);
+        }
+        else
+        {
+            respuesta =this.updateItinerario(entity);
+        }
+        return respuesta;
+    }
     @Override
     public ItinerarioEntity createItinerario(ItinerarioEntity entity) 
     {
