@@ -55,7 +55,7 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
         console.log(" PRUEBA guardar itinerario");
         //devuelve el itinerario creado
-        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idDueño+"/createIt/"+idIt+"/nombre/"+nombre+"/fechai/"+fechai+"/fechaf"+fechaFin );//, itinerario);
+        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt/"+idIt+"/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin );//, itinerario);
     };
     
     this.borrarItinerario = function(idPerfil , idItEliminar)
