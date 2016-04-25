@@ -50,36 +50,30 @@ mod.service('eventoSVC', ["$http", "contextoEvento",function ($http, context)
           console.log("hola"+this.logueado);
        };
        //-----------------------------------------------------------------------
-       this.fetchRecords = function () {
-            console.log("Entro a fetch records service");
-                return $http.get(context);
-            };
-       this.darEvento = function (idItinerario, idEvento)   
+       
+       
+       this.fetchRecords = function () 
        {
-         console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/{idItinerario}/eventos/{idEvento}");  
-         
-         return $http.get
-        ("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario +"/eventos/"+idEvento);
+           return $http.get(context);
+       };
+        
+       this.fetchRecord = function (id)   
+       {
+            return $http.get(context + "/" + id);
        };
        
-       this.agregarEvento = function(idItinerario,evento)
+       this.saveRecord = function(currentRecord)
        {
-            console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/0/createEvento");
-           
-            return $http.post("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario+"/createEvento" , evento);
+            if (currentRecord.id) {
+                    return $http.put(context + "/" + currentRecord.id, currentRecord);
+                } else {
+                    return $http.post(context, currentRecord);
+                }
        };
 
-       this.borrarEvento = function(idItinerario, idEvento)
-       {
-            console.log("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/0/eventos/0");
-        
-            $http.delete("http://localhost:8080/AndeSoft.web/api/Eventos/itinerarios/"+idItinerario+"/eliminarEvento/"+idEvento);
-       };
-
-       this.darListaEventos= function()
-        {
-           return listaEventos;
-       };
+       this.deleteRecord = function (id) {
+                return $http.delete(context + "/" + id);
+            };
 
    }
     ]);
