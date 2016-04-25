@@ -59,13 +59,13 @@ public abstract class ItinerarioConverter
         {
             
             ItinerarioEntity entity = new ItinerarioEntity();
-            entity.setId(dto.darId());
+            entity.setId(dto.getId());
            // entity.setIdUsuarioDueño(    UsuarioConverter.fullDTO2Entity(dto.darIdUsuarioDueño()));
             entity.setNom(entity.getNombre());
             entity.setFechaIni(entity.getFechaIni());
             entity.setFechaFin(entity.getFechaFin());
          //   dto.setCiudades(entity.getCiudades());
-            entity.setCiudades(CiudadConverter.listDTO2Entity(dto.darCiudades()));
+            entity.setCiudades(CiudadConverter.listDTO2Entity(dto.getCiudades()));
 
             return entity;
         } else {
@@ -81,13 +81,11 @@ public abstract class ItinerarioConverter
      * @return Instancia de AuthorDTO con los datos recibidos por parámetro
      * @generated
      */
-    private static PuntoInteresDTO basicEntity2DTO(PuntoInteresEntity entity) {
+    private static ItinerarioDTO basicEntity2DTO(ItinerarioEntity entity) {
         if (entity != null) {
-            PuntoInteresDTO dto = new PuntoInteresDTO();
+            ItinerarioDTO dto = new ItinerarioDTO();
             dto.setId(entity.getId());
-            dto.setNombre(entity.getNombre());
-            dto.setFechaLlegada(entity.getFechaLlegada());
-            dto.setFechaSalida(entity.getFechaSalida());
+            dto.setNom(entity.getNombre());
 
 
             return dto;
@@ -118,48 +116,14 @@ public abstract class ItinerarioConverter
             return null;
         }
     }
-
+    
     /**
-     * Convierte instancias de AuthorEntity a AuthorDTO incluyendo sus relaciones
-     * Uno a muchos y Muchos a muchos
-     *
-     * @param entity Instancia de AuthorEntity a convertir
-     * @return Instancia de AuthorDTO con los datos recibidos por parámetro
-     * @generated
-     */
-    public static PuntoInteresDTO fullEntity2DTO(PuntoInteresEntity entity) {
-        if (entity != null) {
-            PuntoInteresDTO dto = basicEntity2DTO(entity);
-            return dto;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Convierte una instancia de AuthorDTO a AuthorEntity.
-     * Incluye todos los atributos de AuthorEntity.
-     *
-     * @param dto Instancia de AuthorDTO a convertir
-     * @return Instancia de AuthorEntity con los datos recibidos por parámetro
-     * @generated
-     */
-    public static PuntoInteresEntity fullDTO2Entity(PuntoInteresDTO dto) {
-        if (dto != null) {
-            PuntoInteresEntity entity = basicDTO2Entity(dto);
-            return entity;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Convierte una colección de instancias de AuthorEntity a AuthorDTO. Para cada
-     * instancia de AuthorEntity en la lista, invoca basicEntity2DTO y añade el
+     * Convierte una colecciÃ³n de instancias de AuthorEntity a AuthorDTO. Para cada
+     * instancia de AuthorEntity en la lista, invoca basicEntity2DTO y aÃ±ade el
      * nuevo AuthorDTO a una nueva lista
      *
-     * @param entities Colección de entidades a convertir
-     * @return Collección de instancias de PuntoInteresDTO
+     * @param entities ColecciÃ³n de entidades a convertir
+     * @return CollecciÃ³n de instancias de PuntoInteresDTO
      * @generated
      */
     public static List<ItinerarioDTO> listEntity2DTO(List<ItinerarioEntity> entities) {
@@ -175,21 +139,4 @@ public abstract class ItinerarioConverter
         return itinerarioL;
     }
 
-    /**
-     * Convierte una colección de instancias de AuthorDTO a instancias de
-     * AuthorEntity Para cada instancia se invoca el método basicDTO2Entity
-     *
-     * @param dtos entities Colección de AuthorDTO a convertir
-     * @return Collección de instancias de AuthorEntity
-     * @generated
-     */
-    public static List<PuntoInteresEntity> listDTO2Entity(List<PuntoInteresDTO> dtos) {
-        List<PuntoInteresEntity> entities = new ArrayList<PuntoInteresEntity>();
-        if (dtos != null) {
-            for (PuntoInteresDTO dto : dtos) {
-                entities.add(basicDTO2Entity(dto));
-            }
-        }
-        return entities;
-    }
 }

@@ -40,6 +40,7 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
     this.darItinerario = function(idPerfil, idItinerario)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/{idPerfil}/itinerarios/{idIt}");
+        console.log(" PRUEBA 1 ");
         //return null;
         
         return $http.get

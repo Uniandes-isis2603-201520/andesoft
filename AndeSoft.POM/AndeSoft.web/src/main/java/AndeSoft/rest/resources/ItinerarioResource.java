@@ -101,14 +101,14 @@ IItinerarioLogic itinerarioLogic;
      */
     @GET
     @Path("/perfil/{idP}/itinerarios/{idI}")
-    public String getItinerario(@PathParam("idP") long idP, @PathParam("idI") Long idI )
+    public ItinerarioDTO getItinerario(@PathParam("idP") long idP, @PathParam("idI") Long idI )
     {
         
         System.out.println("Llega tener 1 itinerario");
         ItinerarioEntity itinerari = itinerarioLogic.getItinerario(idP, idI);
         ItinerarioDTO  itinerario = ItinerarioConverter.refEntity2DTO(itinerari);
         
-        return itinerario.toString();
+        return itinerario;
     }
 
     /**

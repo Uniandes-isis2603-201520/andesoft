@@ -49,7 +49,7 @@ public class ItinerarioLogicMock
         for(int i=0; i< itinerarios.size(); i++)
         {
             ItinerarioDTO actual =  (ItinerarioDTO) itinerarios.get(i);
-            if(actual.darId() == idI)
+            if(actual.getId() == idI)
             {
                 buscado = actual;
                 break;
@@ -64,9 +64,9 @@ public class ItinerarioLogicMock
          ItinerarioSimuladorDB baseDatos = new ItinerarioSimuladorDB();
         itinerarios = baseDatos.getItinerariosDeUsuario(idP);
          
-         ItinerarioDTO existe= getItinerario(idP, it.darId());
+         ItinerarioDTO existe= getItinerario(idP, it.getId());
          
-         if(existe != null){baseDatos.eliminar(existe.darId());}
+         if(existe != null){baseDatos.eliminar(existe.getId());}
          
          itinerarios.add(it);
          
@@ -84,7 +84,7 @@ public class ItinerarioLogicMock
          for(int i=0;i< itinerarios.size();i++)
          {
              ItinerarioDTO actual = ( ItinerarioDTO)itinerarios.get(i);
-             if(actual.darId() == idI)
+             if(actual.getId() == idI)
              {
                  itinerarios.remove(actual);
                  itinerarios.add(itN);
@@ -105,7 +105,7 @@ public class ItinerarioLogicMock
          for(int i=0;i< itinerarios.size();i++)
          {
              ItinerarioDTO actual = ( ItinerarioDTO)itinerarios.get(i);
-             if(actual.darId() == idI)
+             if(actual.getId() == idI)
              {
                  itinerarios.remove(i);
                  

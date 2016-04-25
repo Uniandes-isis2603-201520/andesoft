@@ -31,7 +31,6 @@
 	$scope.fechaInicio = "";
 	$scope.fechaFinal = "";
         
-       
         
         
         $scope.actualizarItinerario = function()

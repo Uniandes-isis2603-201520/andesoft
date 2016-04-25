@@ -44,28 +44,28 @@ public class ItinerarioDTO
          
          
      }
-        public Long darId()
+        public Long getId()
         {
             return id;
         }
-        public UsuarioDTO darIdUsuarioDueño()
+        public UsuarioDTO getIdUsuarioDueño()
         {
             return idUsuarioDueño;
         }
-       public String darNombre()
+       public String getNombre()
        {
            return nombreIt;
        }
-        public List<CiudadDTOf> darCiudades( )
+        public List<CiudadDTOf> getCiudades( )
         {
             return ciudades;
         }
        
-        public Date darFechaIni( )
+        public Date getFechaIni( )
         {
             return fechaIni;
         }
-        public Date darFechaFin( )
+        public Date getFechaFin( )
         {
             return fechaFin;
         }

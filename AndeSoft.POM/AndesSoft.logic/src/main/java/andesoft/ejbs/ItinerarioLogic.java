@@ -30,6 +30,11 @@ public class ItinerarioLogic implements IItinerarioLogic
             logger.log(Level.SEVERE, "El itinerario con id no existe  id={0}", id);
             throw new IllegalArgumentException("El itinerario no existe");
         }
+        if (!itinerario.getUsuario().getId().equals(idUser)) // verificaciones
+        {
+            logger.log(Level.SEVERE, "El itinerario no es del padre  id={0}", id);
+            throw new IllegalArgumentException("El itinerario no existe");
+        }
         logger.log(Level.INFO, "Termina proceso de consultar itinerario con id={0}", id);
         return itinerario;
     }
