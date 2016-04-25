@@ -122,11 +122,11 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
      */
     @POST
-    @Path("/perfil/{idP}/createIt/{idIt}/nombre/{nombre}/fechai/{fechai}/fechaf{fechaFin}")
+    @Path("/perfil/{idP}/createIt/{idIt}/nombre/{nombre}/fechai/{fechaini}/fechaf/{fechaFin}")
     public  ItinerarioDTO createItinerario(@PathParam("idP") long idP,
                                            @PathParam("idIt") long idIt ,
                                            @PathParam("nombre") String nomb,
-                                           @PathParam("fechai") Date fechai,
+                                           @PathParam("fechaini") Date fechai,
                                            @PathParam("fechaFin") Date fechaf)  
     {
         System.out.println("Llega crear itinerario");
