@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 (function(ng){
-
-var appEvento = ng.module('AppEvento',["ui.bootstrap"]);
+    var appEvento = ng.module("AppEvento",["ui.bootstrap", "ngMessages"]);
+    mod.constant("contextoEvento", "api/books");
 
 })(window.angular);

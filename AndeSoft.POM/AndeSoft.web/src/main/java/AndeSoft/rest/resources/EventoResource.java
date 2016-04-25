@@ -41,7 +41,7 @@ import javax.ws.rs.core.Response;
  * ruta "/api/eventos" 
  * 
  */
-@Path("Eventos")
+@Path("eventos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EventoResource 

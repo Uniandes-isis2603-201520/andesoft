@@ -6,32 +6,111 @@
 (function(ng)
 {
     var mod = ng.module("AppEvento");
+    
     mod.controller('eventoCtrl', ['$scope','eventoSVC','itinerarioSVC', function ($scope,svc, svcItinerario){
-    $scope.eventos =  svc.darListaEventos();
-    $scope.newEvento = function ()
-        {
-           svc.agregarEvento({nombre:$scope.nombreEvento, 
-               fechaInicio: $scope.fechaInicio, fechaFinal:$scope.fechaFinal});
-           
-        console.log($scope.eventos[0].nombre);
+        $scope.alerts =[];
+        $scope.currentRecord = {
+            id: undefined,
+            nombre: '',
+            fechaInicio: '',
+            fechaFinal: '',
+            ciudad:{}
+        };
         
-        $scope.nombreEvento="";
-	$scope.fechaInicio="";
-	$scope.fechaFinal="";
-        $scope.eventos =  svc.darListaEventos();
+        $scope.records = [];
+        
+        $scope.today = function () {
+            $scope.value = new Date();
         };
 
-        $scope.borrar = function()
-        {
-            svc.borrarEvento($scope.eventoSeleccionada);
-            $scope.eventos =  svc.darItinerario();
+        $scope.clear = function () {
+            $scope.value = null;
         };
-       
-       $scope.guardarTodosLosEventos = function()
-       {
-           var itActual = svcItinerario.darItinerarioActualID();
-           svcItinerario.agregarEventoaItinerarioPorId(itActual,$scope.eventos);
-       };
+
+        $scope.open = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            $scope.opened = true;
+        };
+
+            //Alertas
+        this.closeAlert = function (index) {
+            $scope.alerts.splice(index, 1);
+        };
+
+        // Función showMessage: Recibe el mensaje en String y su tipo con el fin de almacenarlo en el array $scope.alerts.
+            function showMessage(msg, type) {
+                var types = ["info", "danger", "warning", "success"];
+                if (types.some(function (rc) {
+                    return type === rc;
+                })) {
+                    $scope.alerts.push({type: type, msg: msg});
+                }
+            }
+
+            this.showError = function (msg) {
+                showMessage(msg, "danger");
+            };
+
+            this.showSuccess = function (msg) {
+                showMessage(msg, "success");
+            };
+
+            var self = this;
+            function responseError(response) {
+                self.showError(response.data);
+            }
+
+            //Variables para el controlador
+            this.readOnly = false;
+            this.editMode = false;
+            
+        
+            this.createRecord = function () {
+                this.editMode = true;
+                $scope.currentRecord = {};
+            };
+
+            
+
+            this.editRecord = function (record) {
+                return svc.fetchRecord(record.id).then(function (response) {
+                    $scope.currentRecord = response.data;
+                    self.editMode = true;
+                    return response;
+                }, responseError);
+            };
+
+            
+
+            this.fetchRecords = function () {
+                return svc.fetchRecords().then(function (response) {
+                    $scope.records = response.data;
+                    $scope.currentRecord = {};
+                    self.editMode = false;
+                    return response;
+                }, responseError);
+            };
+
+            
+            this.saveRecord = function () {
+                return svc.saveRecord($scope.currentRecord).then(function () {
+                    self.fetchRecords();
+                }, responseError);
+            };
+
+            
+            this.deleteRecord = function (record) {
+                return svc.deleteRecord(record.id).then(function () {
+                    self.fetchRecords();
+                }, responseError);
+            };
+
+
+           
+            this.fetchRecords();
+
 
 }]);
 

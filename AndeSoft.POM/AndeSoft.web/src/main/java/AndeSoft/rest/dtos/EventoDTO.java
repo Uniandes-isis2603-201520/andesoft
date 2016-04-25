@@ -33,7 +33,7 @@ public class EventoDTO {
      * Constructor por defecto
      */
     public EventoDTO() {
-}
+    }
 
     /**
      * Constructor con parámetros.
