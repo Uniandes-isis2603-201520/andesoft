@@ -94,12 +94,12 @@
             };
             
            console.log(currentItinerario);
-            svc.crearActualizarItinerario(0, currentItinerario).
+            svc.crearActualizarItinerario(0,$scope.idItinerario, $scope.nombreItinerario,$scope.fechaInicio,$scope.fechaFinal, currentItinerario).
                 then(function(response) 
         {
            $scope.idItinerario = response.data.idIt;
            
-           this.actualizarItinerario();
+           $scope.actualizarItinerario();
         }, function myError(response) {
          console.log(response.statusText);
         });

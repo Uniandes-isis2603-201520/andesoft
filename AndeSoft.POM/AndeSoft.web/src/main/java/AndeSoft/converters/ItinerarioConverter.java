@@ -4,6 +4,7 @@ import AndeSoft.rest.dtos.ItinerarioDTO;
 import AndeSoft.rest.dtos.PuntoInteresDTO;
 import andesoft.entities.ItinerarioEntity;
 import andesoft.entities.PuntoInteresEntity;
+import andesoft.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,8 @@ public abstract class ItinerarioConverter
         {
             
             ItinerarioEntity entity = new ItinerarioEntity();
+            UsuarioEntity user = UsuarioConverter.fullDTO2Entity(dto.getIdUsuarioDueño());
+            entity.setUsuario(user);
             entity.setId(dto.getId());
            // entity.setIdUsuarioDueño(    UsuarioConverter.fullDTO2Entity(dto.darIdUsuarioDueño()));
             entity.setNom(dto.getNombreIt());

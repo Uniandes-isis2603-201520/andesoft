@@ -10,6 +10,7 @@ package AndeSoft.rest.resources;
 
 import AndeSoft.converters.ItinerarioConverter;
 import AndeSoft.rest.dtos.ItinerarioDTO;
+import AndeSoft.rest.dtos.UsuarioDTO;
 import AndeSoft.rest.mocks.ItinerarioLogicMock;
 import andesoft.api.IItinerarioLogic;
 import andesoft.entities.ItinerarioEntity;
@@ -121,17 +122,22 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
      */
     @POST
-    @Path("/perfil/{idP}/createIt")
-    public  ItinerarioDTO createItinerario(@PathParam("idP") int idP,ItinerarioDTO itinerarioD )  
+    @Path("/perfil/{idP}/createIt/{idIt}/nombre/{nombre}/fechai/{fechai}/fechaf{fechaFin}")
+    public  ItinerarioDTO createItinerario(@PathParam("idP") long idP,
+                                           @PathParam("idIt") long idIt ,
+                                           @PathParam("nombre") String nomb,
+                                           @PathParam("fechai") Date fechai,
+                                           @PathParam("fechaFin") Date fechaf)  
     {
         System.out.println("Llega crear itinerario");
-        System.out.println(" llega el itinerario a ser creado = "+ itinerarioD.getNombreIt());
+        System.out.println(" llega el itinerario a ser creado = "+ nomb);
+        UsuarioDTO user = new UsuarioDTO(idP, null, null, null,null,null);
+        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(user, idIt, nomb, fechai,fechaf, null);
         ItinerarioDTO itinerarioDTO;
         ItinerarioEntity itinerarioN;
         try 
 	{
-          
-               ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioD);
+               ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioDTOO);
                System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre());
                itinerarioN = itinerarioLogic.createActualizarItinerario(itinerario);
                itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);

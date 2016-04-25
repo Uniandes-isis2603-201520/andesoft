@@ -50,11 +50,11 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
         //ctrllIti.$scope.setFechaIni();
         //ctrllIti.$scope.setNombre();
     };
-    this.crearActualizarItinerario = function(idDueño, itinerario)
+    this.crearActualizarItinerario = function(idDueño,idIt, nombre, fechai, fechaFin, itinerario)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
         //devuelve el itinerario creado
-        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idDueño+"/createIt" , itinerario);
+        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idDueño+"/createIt/"+idIt+"/nombre/"+nombre+"/fechai/"+fechai+"/fechaf"+fechaFin );//, itinerario);
     };
     
     this.borrarItinerario = function(idPerfil , idItEliminar)

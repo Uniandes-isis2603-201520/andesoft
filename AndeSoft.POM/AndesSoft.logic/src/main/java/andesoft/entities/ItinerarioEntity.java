@@ -100,7 +100,10 @@ public class ItinerarioEntity implements Serializable
         {
             nombreIt = nuevaC;
         }
-        
+        public void setUsuario( UsuarioEntity nuevaC)
+        {
+            usuario = nuevaC;
+        }
         
         public List<CiudadEntity> getCiudades() {
            return ciudades;
