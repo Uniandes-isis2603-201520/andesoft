@@ -98,7 +98,7 @@
                 then(function(response) 
         {
            $scope.idItinerario = response.data.idIt;
-           
+           console.log("termina de traer el itinerario guardado: "+ $scope.idItinerario);
            $scope.actualizarItinerario();
         }, function myError(response) {
          console.log(response.statusText);

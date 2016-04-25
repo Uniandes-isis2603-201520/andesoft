@@ -40,7 +40,7 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
     this.darItinerario = function(idPerfil, idItinerario)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/{idPerfil}/itinerarios/{idIt}");
-        console.log(" PRUEBA 1 ");
+        console.log(" PRUEBA recuperar itinerario");
         //return null;
         
         return $http.get
@@ -53,6 +53,7 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
     this.crearActualizarItinerario = function(idDueño,idIt, nombre, fechai, fechaFin, itinerario)
     {
         console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
+        console.log(" PRUEBA guardar itinerario");
         //devuelve el itinerario creado
         return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idDueño+"/createIt/"+idIt+"/nombre/"+nombre+"/fechai/"+fechai+"/fechaf"+fechaFin );//, itinerario);
     };
