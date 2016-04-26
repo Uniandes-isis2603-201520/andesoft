@@ -144,7 +144,7 @@ public class ItinerarioLogicTest
     public void getItinerarioTest()
     {
         ItinerarioEntity entity = data.get(0);
-        ItinerarioEntity newEntity = itinerarioLogic.getItinerario((long)0,entity.getId());
+        ItinerarioEntity newEntity = itinerarioLogic.getItinerario(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNombre(), newEntity.getNombre());
         Assert.assertEquals(entity.getFechaIni(), newEntity.getFechaIni());

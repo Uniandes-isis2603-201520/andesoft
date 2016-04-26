@@ -22,7 +22,7 @@ public class ItinerarioLogic implements IItinerarioLogic
     private ItinerarioPersistence persistence;
     
     @Override
-    public ItinerarioEntity getItinerario(Long idUser, Long id) 
+    public ItinerarioEntity getItinerario( Long id) 
     {
         logger.log(Level.INFO, "Inicia proceso de consultar itinerario id={0}", id);
         ItinerarioEntity itinerario = persistence.find(id);
@@ -30,7 +30,7 @@ public class ItinerarioLogic implements IItinerarioLogic
             logger.log(Level.SEVERE, "El itinerario con id no existe  id={0}", id);
             throw new IllegalArgumentException("El itinerario no existe");
         }
-        if (!itinerario.getUsuario().getId().equals(idUser)) // verificaciones
+        if (itinerario == null ) // verificaciones
         {
             logger.log(Level.SEVERE, "El itinerario no es del padre  id={0}", id);
             throw new IllegalArgumentException("El itinerario no existe");
@@ -79,11 +79,11 @@ public class ItinerarioLogic implements IItinerarioLogic
         logger.log(Level.INFO, "Termina proceso de borrar itinerario con id={0}", id);
     }
     
-      
+    @Override
     public List<ItinerarioEntity> getItinerarios(Long idUser) 
     {
         logger.info("Inicia proceso de consultar todos los itinerarios de un user");
-        List<ItinerarioEntity> itinerarios = persistence.findAll();
+        List<ItinerarioEntity> itinerarios = persistence.findAll(idUser);
         logger.info("Termina proceso de consultar todos los puntos de interes");
         return itinerarios;
     }

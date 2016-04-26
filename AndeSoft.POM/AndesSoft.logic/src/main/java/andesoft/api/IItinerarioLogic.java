@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IItinerarioLogic {
     
-    public List<ItinerarioEntity> getItinerarios();
+    public List<ItinerarioEntity> getItinerarios(Long id);
     
-    public ItinerarioEntity getItinerario(Long idUser, Long id) ;
+    public ItinerarioEntity getItinerario( Long id) ;
 
     public ItinerarioEntity createItinerario(ItinerarioEntity entity);
 

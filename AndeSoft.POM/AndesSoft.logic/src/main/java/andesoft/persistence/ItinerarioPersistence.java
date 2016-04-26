@@ -48,6 +48,12 @@ public class ItinerarioPersistence {
         return em.find(ItinerarioEntity.class, id);
     }
 
+    public List<ItinerarioEntity> findAll(Long idUser)
+    {
+        logger.info("Consultando todos los Itinerarios");
+        Query q = em.createQuery("select u from ItinerarioEntity u where u.usuario.id="+idUser);
+        return q.getResultList();
+    }
     public List<ItinerarioEntity> findAll()
     {
         logger.info("Consultando todos los Itinerarios");

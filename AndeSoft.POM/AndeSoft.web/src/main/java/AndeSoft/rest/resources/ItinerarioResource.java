@@ -41,7 +41,6 @@ import javax.ws.rs.core.Response;
  * ruta "/api/itinerarios" 
  * 
  */
-@Path("Itinerarios")
 //@Produces("application/json")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -51,21 +50,6 @@ public class ItinerarioResource
 
 @Inject
 IItinerarioLogic itinerarioLogic;
-        
-        /**
-         * 
-         * solo para veficar
-         * 
-         * funciona
-         * http://localhost:8080/AndeSoft.web/api/Itinerarios/itinerarios
-         */
-        @GET
-        @Path("/itinerarios")
-        public String getPrueba() 
-        {
-            System.out.println("Llega tener itinerarios");
-            return "llego";
-        }
         
     
 /**
@@ -81,12 +65,12 @@ IItinerarioLogic itinerarioLogic;
          * 
 */
     @GET
-    @Path("/perfil/{idP}/itinerariosTodos")
+    @Path("/perfil/{idP}/itinerarios")
     public List<ItinerarioDTO> getItinerarios(@PathParam("idP") long id) 
     {
         System.out.println("Llega tener itinerarios");
         
-        List<ItinerarioDTO> temp= ItinerarioConverter.listEntity2DTO(itinerarioLogic.getItinerarios());
+        List<ItinerarioDTO> temp= ItinerarioConverter.listEntity2DTO(itinerarioLogic.getItinerarios(id));
      return temp;
         
     }
@@ -101,12 +85,12 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando la ciudad no existe
      */
     @GET
-    @Path("/perfil/{idP}/itinerarios/{idI}")
-    public ItinerarioDTO getItinerario(@PathParam("idP") long idP, @PathParam("idI") Long idI )
+    @Path("/itinerarios/{idI}")
+    public ItinerarioDTO getItinerario( @PathParam("idI") Long idI )
     {
         
         System.out.println("Llega tener 1 itinerario");
-        ItinerarioEntity itinerari = itinerarioLogic.getItinerario(idP, idI);
+        ItinerarioEntity itinerari = itinerarioLogic.getItinerario( idI);
         ItinerarioDTO  itinerario = ItinerarioConverter.refEntity2DTO(itinerari);
         System.out.println(itinerario.getNombreIt() + "    "+ itinerario.getId());
         return itinerario;
@@ -116,23 +100,17 @@ IItinerarioLogic itinerarioLogic;
      * Agrega un itinerario
      * http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt
      * 
-     * 
-     * @param itinerario itinerario a agregar
      * @return datos del itinerario a agregado
      * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
      */
     @POST
-    @Path("/perfil/{idP}/createIt/{idIt}/nombre/{nombre}/fechai/{fechaini}/fechaf/{fechaFin}")
-    public  ItinerarioDTO createItinerario(@PathParam("idP") long idP,
-                                           @PathParam("idIt") long idIt ,
-                                           @PathParam("nombre") String nomb,
-                                           @PathParam("fechaini") Date fechai,
-                                           @PathParam("fechaFin") Date fechaf)  
+    @Path("perfil/{idP}/itinerarios")
+    public  ItinerarioDTO createItinerario( @PathParam("idP") Long idP, ItinerarioDTO iti)  
     {
         System.out.println("Llega crear itinerario");
-        System.out.println(" llega el itinerario a ser creado = "+ nomb);
+        System.out.println(" llega el itinerario a ser creado = "+ iti.getNombreIt());
         UsuarioDTO user = new UsuarioDTO(idP, null, null, null,null,null);
-        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(user, idIt, nomb, fechai,fechaf, null);
+        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(user, iti.getId(), iti.getNombreIt(), iti.getFechaIni(),iti.getFechaFin(), null);
         ItinerarioDTO itinerarioDTO;
         ItinerarioEntity itinerarioN;
         try 
