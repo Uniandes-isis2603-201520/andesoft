@@ -36,7 +36,14 @@ public class UsuarioEntity implements Serializable{
     private List<ItinerarioEntity> itinerarios;
 //    private ItinerarioEntity itinerario;
 //    private List<FotoDTO> fotos;
-
+    public UsuarioEntity()
+    {
+        
+    }
+    public UsuarioEntity(long idn)
+    {
+        id = idn;
+    }
 
     public Long getId() {
         return id;
