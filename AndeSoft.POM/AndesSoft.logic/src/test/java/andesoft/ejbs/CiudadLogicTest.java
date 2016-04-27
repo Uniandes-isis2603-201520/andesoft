@@ -51,10 +51,14 @@ public class CiudadLogicTest
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
+
+                .addClass(CiudadLogic.class)
+                .addClass(ICiudad.class)
+
                 .addPackage(CiudadEntity.class.getPackage())
-                .addPackage(CiudadLogic.class.getPackage())
-                .addPackage(ICiudad.class.getPackage())
                 .addPackage(CiudadPersistence.class.getPackage())
+                .addPackage(BusinessLogicException.class.getPackage())
+
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -130,7 +134,7 @@ public class CiudadLogicTest
     }
 
     @Test
-    public void getBookTest() {
+    public void getCiudadTest() {
         CiudadEntity result = ciudadLogic.getCiudad((data.get(0).getId()));
         CiudadEntity expected = em.find(CiudadEntity.class, data.get(0).getId());
 
@@ -149,7 +153,7 @@ public class CiudadLogicTest
     }
 
     @Test
-    public void updateBookTest() {
+    public void updateCiudadTest() {
         CiudadEntity entity = data.get(0);
         CiudadEntity pojoEntity = factory.manufacturePojo(CiudadEntity.class);
         pojoEntity.setId(entity.getId());
