@@ -7,13 +7,12 @@ package andesoft.api;
 
 import andesoft.entities.HotelEntity;
 import java.util.List;
-import andesoft.exceptions.BusinessLogicException;
 
 public interface IHotelLogic
 {
 	public List<HotelEntity> getHoteles();
 
-	public HotelEntity getHotel(Long id) throws BusinessLogicException;
+	public HotelEntity getHotel(Long id);
 
 	public HotelEntity createHotel(HotelEntity entity);
 
