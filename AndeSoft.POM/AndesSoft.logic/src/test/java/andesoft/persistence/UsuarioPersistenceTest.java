@@ -9,11 +9,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -21,17 +23,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author js.arciniegas10
  */
-public class UsuarioPersistenceTest {
-@Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioPersistenceTest.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+@RunWith(Arquillian.class)
+public class UsuarioPersistenceTest 
+{
 
-    @Inject
+     @Inject
     private UsuarioPersistence usuarioPersistence;
 
     @PersistenceContext
@@ -41,7 +37,17 @@ public class UsuarioPersistenceTest {
     UserTransaction utx;
 
     private final PodamFactory factory = new PodamFactoryImpl();
+    
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistenceTest.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
 
+   
     @Before
     public void configTest() {
         try {
@@ -78,12 +84,9 @@ public class UsuarioPersistenceTest {
     public void createUsuarioTest() {
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
         UsuarioEntity result = usuarioPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-
-
+        Assert.assertNotNull(result);
+        Assert.assertEquals(newEntity.getNames(), entity.getNames());
     }
 
     @Test
@@ -125,12 +128,10 @@ public class UsuarioPersistenceTest {
     public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-
         newEntity.setId(entity.getId());
-
         usuarioPersistence.update(newEntity);
-
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+        Assert.assertEquals(newEntity.getNames(), resp.getNames());
 
 
     }

@@ -2,20 +2,15 @@ package andesoft.logic;
 
 
 import andesoft.api.IUsarioLogic;
-
 import andesoft.ejbs.UsuarioLogic;
-
 import andesoft.entities.UsuarioEntity;
-
+import andesoft.exceptions.BusinessLogicException;
 import andesoft.persistence.UsuarioPersistenceTest;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -56,10 +51,9 @@ public class UsuarioLogicTest {
                 
                 .addClass(UsuarioLogic.class)
                 .addClass(IUsarioLogic.class)
-
                 .addPackage(UsuarioEntity.class.getPackage())
                 .addPackage(UsuarioPersistenceTest.class.getPackage())
-                
+                .addPackage(BusinessLogicException.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -69,7 +63,9 @@ public class UsuarioLogicTest {
         try {
             utx.begin();
             clearData();
+            insertData();
             utx.commit();
+           
         } catch (Exception e) {
             e.printStackTrace();
             try {
@@ -81,27 +77,17 @@ public class UsuarioLogicTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from ItinerarioEntity").executeUpdate();
         em.createQuery("delete from UsuarioEntity").executeUpdate();
+        
     }
 
-//    private void insertData() {
-//        for (int i = 0; i < 3; i++) {
-//            ItinerarioEntity itinerarios = factory.manufacturePojo(ItinerarioEntity.class);
-//            itinerarios.setPublishDate(getMaxDate());
-//            em.persist(itinerarios);
-//            ItinerarioData.add(itinerarios);
-//        }
-//
-//        for (int i = 0; i < 3; i++) {
-//            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
-//
-//            em.persist(entity);
-//            data.add(entity);
-//
-//            ItinerariosData.get(0).getAuthors().add(entity);
-//        }
-//    }
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            UsuarioEntity usuario = factory.manufacturePojo(UsuarioEntity.class);
+            em.persist(usuario);
+            data.add(usuario);
+        }
+    }
 
     @Test
     public void createUsuarioTest() {
@@ -145,12 +131,11 @@ public class UsuarioLogicTest {
     @Test
     public void getUsuarioTest() {
         UsuarioEntity result = usuarioLogic.getUsuario(data.get(0).getId());
-
         UsuarioEntity expected = em.find(UsuarioEntity.class, data.get(0).getId());
-
         Assert.assertNotNull(expected);
         Assert.assertNotNull(result);
         Assert.assertEquals(expected.getId(), result.getId());
+        Assert.assertEquals(expected.getNames(), result.getNames());
 
     }
 
@@ -158,23 +143,19 @@ public class UsuarioLogicTest {
     public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(1);
         usuarioLogic.deleteUsuario(entity.getId());
-        UsuarioEntity expected = em.find(UsuarioEntity.class, entity.getId());
-        Assert.assertNull(expected);
+        UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 
     @Test
     public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
-        UsuarioEntity expected = factory.manufacturePojo(UsuarioEntity.class);
-
-        expected.setId(entity.getId());
-
-        usuarioLogic.updateUsuario(expected);
-
+        UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
+        pojoEntity.setId(entity.getId());
+        usuarioLogic.updateUsuario(pojoEntity);
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
-
-        Assert.assertNotNull(expected);
-        Assert.assertEquals(expected.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getNames(), resp.getNames());
     }
 
 //    @Test

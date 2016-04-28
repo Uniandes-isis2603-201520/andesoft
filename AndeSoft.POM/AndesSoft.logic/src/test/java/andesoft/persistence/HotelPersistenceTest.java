@@ -48,6 +48,8 @@ public class HotelPersistenceTest {
     
     
     
+    
+    
     @Before
     public void configTest() {
         try {
@@ -85,7 +87,6 @@ public class HotelPersistenceTest {
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
         HotelEntity result = hotelPersistence.create(newEntity);
         HotelEntity entity = em.find(HotelEntity.class, result.getid());
-        
         Assert.assertNotNull(result);
         Assert.assertEquals(newEntity.getName(), entity.getName());
     }

@@ -4,14 +4,16 @@ import andesoft.entities.UsuarioEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.Query;
 
 /**
  *
  * @author js.arciniegas10
  */
+@Stateless
 public class UsuarioPersistence {
  private static final Logger logger = Logger.getLogger(UsuarioPersistence.class.getName());
 
@@ -43,7 +45,7 @@ public class UsuarioPersistence {
 
     public List<UsuarioEntity> findAll() {
         logger.info("Consultando todos los usuarios");
-        TypedQuery<UsuarioEntity> q = em.createQuery("select u from UsuarioEntity u", UsuarioEntity.class);
+        Query q = em.createQuery("select u from UsuarioEntity u", UsuarioEntity.class);
         return q.getResultList();
     }
 }
