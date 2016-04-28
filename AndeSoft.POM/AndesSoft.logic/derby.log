@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Wed Apr 27 14:11:30 COT 2016:
- Iniciando instancia a816c00e-0154-5922-250f-000007b02478 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\estudiante\AppData\Local\Temp\gfembed177611844111896634tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@75b84c92
-Cargado desde file:/C:/Users/estudiante/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1.1/glassfish-embedded-all-4.1.1.jar
+Thu Apr 28 11:20:28 COT 2016:
+ Iniciando instancia a816c00e-0154-5dab-ea1c-0000034dfcb8 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\Usuario\AppData\Local\Temp\gfembed5139566396619861843tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+Cargado desde file:/C:/Users/Usuario/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1.1/glassfish-embedded-all-4.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_66-b18
-user.dir=C:\Users\estudiante\Documents\NetBeansProjects\Ciclo3\TryToMergePruebasLogic\andesoft\AndeSoft.POM\AndesSoft.logic
-os.name=Windows 7
+java.runtime.version=1.8.0_91-b14
+user.dir=C:\Users\Usuario\Documents\NetBeansProjects\andesoft2.0\andesoft\AndeSoft.POM\AndesSoft.logic
+os.name=Windows 10
 os.arch=amd64
-os.version=6.1
+os.version=10.0
 derby.system.home=null
 Cargador de clases de base de datos iniciado - derby.database.classpath=''

@@ -79,6 +79,7 @@ public class ItinerarioPersistenceTest {
             ItinerarioEntity entity = factory.manufacturePojo(ItinerarioEntity.class);
             UsuarioEntity nuevaC = new UsuarioEntity(0);
             nuevaC.setId((long)0);
+            em.persist(nuevaC);
             System.out.println("itinerario creado con dueño "+ nuevaC.getId() );
             entity.setUsuario(nuevaC);
             em.persist(entity);
@@ -115,7 +116,7 @@ public class ItinerarioPersistenceTest {
             Assert.assertTrue( 0== actual.getUsuario().getId());
         }
     }
-    /**
+    
     @Test
     public void getItinerarioTest()
     {
@@ -149,6 +150,6 @@ public class ItinerarioPersistenceTest {
 
         Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
     }
-    * */
+    
 }
 
