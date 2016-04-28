@@ -68,6 +68,7 @@ public class ItinerarioPersistenceTest {
     private void clearData() 
     {
         em.createQuery("delete from ItinerarioEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
     private List<ItinerarioEntity> data = new ArrayList<>();
@@ -91,6 +92,7 @@ public class ItinerarioPersistenceTest {
     public void createItinerarioTest() 
     {
         ItinerarioEntity newEntity = factory.manufacturePojo(ItinerarioEntity.class);
+        newEntity.setUsuario(null);
         ItinerarioEntity result = itinerarioPersistence.create(newEntity);
 
         Assert.assertNotNull(result);

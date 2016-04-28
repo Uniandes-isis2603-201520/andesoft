@@ -5,7 +5,9 @@
  */
 package andesoft.ejbs;
 
+import andesoft.api.IItinerarioLogic;
 import andesoft.entities.ItinerarioEntity;
+import andesoft.entities.UsuarioEntity;
 import andesoft.persistence.ItinerarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class ItinerarioLogicTest
 {
     
     @Inject 
-    private ItinerarioLogic itinerarioLogic;
+    private IItinerarioLogic itinerarioLogic;
     @PersistenceContext
     private EntityManager em;
     private final PodamFactory factory = new PodamFactoryImpl();
@@ -44,21 +46,35 @@ public class ItinerarioLogicTest
     @Deployment 
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class)
+                
+                .addClass(ItinerarioLogic.class)
+                .addClass(IItinerarioLogic.class)
+
                 .addPackage(ItinerarioEntity.class.getPackage())
                 .addPackage(ItinerarioPersistence.class.getPackage())
+                
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
     
-    private void clearData(){
-        em.createQuery("delete from EventoEntity").executeUpdate();
+        private void clearData() 
+    {
+        em.createQuery("delete from ItinerarioEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
-    
-    private List <ItinerarioEntity> data = new ArrayList<>();
-    
-    private void insertData (){
-        for (int i = 0; i < 3; i++){
+
+    private List<ItinerarioEntity> data = new ArrayList<>();
+
+    private void insertData() 
+    {
+        for (int i = 0; i < 3; i++)
+        {
             ItinerarioEntity entity = factory.manufacturePojo(ItinerarioEntity.class);
+            UsuarioEntity nuevaC = new UsuarioEntity(0);
+            nuevaC.setId((long)0);
+            em.persist(nuevaC);
+            System.out.println("itinerario creado con dueño "+ nuevaC.getId() );
+            entity.setUsuario(nuevaC);
             em.persist(entity);
             data.add(entity);
         }
@@ -92,7 +108,8 @@ public class ItinerarioLogicTest
     {
         List<ItinerarioEntity> list = itinerarioLogic.getItinerarios(Long.parseLong("0"));
         //Assert.assertEquals(data.size(), list.size());
-        for (ItinerarioEntity ent : list) {
+        for (ItinerarioEntity ent : list) 
+        {
             ItinerarioEntity actual = null;
             for (ItinerarioEntity entityy : data) {
                 if (ent.getId().equals(entityy.getId())) {
@@ -108,7 +125,7 @@ public class ItinerarioLogicTest
     {
         ItinerarioEntity newEntity = factory.manufacturePojo(ItinerarioEntity.class);
         ItinerarioEntity result = itinerarioLogic.createItinerario(newEntity);
-
+        newEntity.setUsuario(null);
         Assert.assertNotNull(result);
 
         ItinerarioEntity entity = em.find(ItinerarioEntity.class, result.getId());
