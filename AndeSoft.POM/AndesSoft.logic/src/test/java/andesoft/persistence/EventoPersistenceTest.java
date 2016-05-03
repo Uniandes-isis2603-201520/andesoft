@@ -119,7 +119,10 @@ public class EventoPersistenceTest {
     public void findTest(){
         EventoEntity ent = data.get(2);
         EventoEntity result = eventoPersistence.find(ent.getId());
-        Assert.assertEquals(ent, result);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(ent.getNombre(), result.getNombre());
+        Assert.assertEquals(ent.getFechaFinal(), result.getFechaFinal());
+        Assert.assertEquals(ent.getFechaInicio(), result.getFechaInicio());
     }
     
     @Test
