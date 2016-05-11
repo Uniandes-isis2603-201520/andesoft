@@ -1,4 +1,4 @@
-
+    <!DOCTYPE HTML>
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <header class="intro-header" style="background-image: url('resources/img/post-bg.jpg')">
@@ -13,130 +13,90 @@
             </div>
         </div>
     </header>
+    
+    
 
-    <!-- Post Content -->
-
-          <!--<article>-->
-<div class="container" ng-controller="eventoCtrl as ctrl"  >
-   
-        <div style="float:left; width:100%;">
-    <!--Left  Column some text goes here -->
-        <div class="tab-content">
-            <div id="tab1" class="tab active">
-
-
+    <div id="evento-header">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#evento-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">Eventos</a>
             </div>
 
-            <div id="tab2" class="tab">
-
-
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="evento-navbar">
+                
+                <button id="create-evento" class="btn btn-default navbar-btn" ng-hide="ctrl.editMode" ng-click="ctrl.createRecord()"><span class="glyphicon glyphicon-plus"></span> Create</button>
+                <button id="refresh-evento" class="btn btn-default navbar-btn" ng-hide="ctrl.editMode" ng-click="ctrl.fetchRecords()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+                <button id="save-evento" type="submit" form="evento-form" class="btn btn-default navbar-btn" ng-show="ctrl.editMode"><span class="glyphicon glyphicon-save"></span> Save</button>
+                <button id="cancel-evento" type="button" form="evento-form" class="btn btn-default navbar-btn" ng-show="ctrl.editMode" ng-click="form.$setPristine(); ctrl.fetchRecords();"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
             </div>
 
-            <div id="tab3" class="tab">
-
-            </div>
-
-            <div id="tab4" class="tab">
-
-            </div>
-            <div id="tab5" class="tab">
-
-            </div>
-        </div>
 
         </div>
-
-     <div style="float:right; width:100%;"  >
-      <!--Right Column-->
-    <fieldset>
-      <legend ><b>Eventos</b></legend>
-    <select id="ciudadesSelect" size="10" ng-model="ciudadSeleccionada">
-      <option ng-repeat="evento in eventos">{{evento}}</option>
-    </select>
-    </fieldset>
-
-    <div>
-    <!--<button type="button" ng-click="nuevoPunto()">Guardar!</button>-->
-    <input type ="submit" value="Guardar!" ng-click="nuevoPunto()">
-    <button type="button" ng-click="cambiar()">Borrar!</button>
-    
-    
-    
-
-    </div>
-
-     </div>
-
-
-
-    <div  class="col-md-12">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Fecha de Llegada</th>
-                    <th>Fecha de Salida</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-           
-                <tr ng-repeat="record in records">
-                    <td>{{record.nombre}}</td>
-                    <td>{{record.fechaLlegada | date}}</td>
-                    <td>{{record.fechaSalida | date}}</td>
-                    <td>
-                        <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editRecord(record)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                        <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>   
-    
-    <div>
-        <button id="create-punto"  ng-hide="editMode" ng-click="ctrl.createRecord()">Create</button>
-     {{currentRecord}}
-    </div>
-             
-       <!--Tabla para agregar, modificar y eliminar-->
-   
-    
-       <div class="col-md-12 well" ng-show="ctrl.editMode">
-    <form novalidate name="form" id="author-form" role="form" ng-submit="form.$valid && saveRecord()">
+    </nav>
+</div>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
+<div ng-hide="ctrl.editMode" class="col-md-12">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha final</th>
+                <th>Ciudad</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                <td id="{{$index}}-fechaInicio">{{record.fechaInicio}}</td>
+                <td id="{{$index}}-fechaFinal">{{record.fechaFinal}}</td>
+                <td id="{{$index}}-ciudad">{{record.ciudad}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editRecord(record)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div ng-show="ctrl.editMode" class="col-md-12 well">
+    <form novalidate name="form" id="evento-form" role="form" ng-submit="form.$valid && ctrl.saveRecord()">
         <alert ng-messages="form.$error" type="danger" close="" ng-hide="!form.$error.required">
-                <div ng-message="required">
-                    Please, Fill the required fields!
-                </div>
-            </alert>
+            <div ng-message="required">
+                Please, Fill the required field!
+            </div>
+        </alert>
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                <label for="name" class="col-md-2 control-label">Name</label>
+                <label for="name" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-10">
-                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.nombre" required >
+                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.nombre" required />
+                </div>
+                <label for="fechaInicio" class="col-md-2 control-label">Fecha inicio</label>
+                <div class="col-md-10">
+                    <input id="fechaInicio" name="fechaInicio" class="form-control" type="date" ng-model="currentRecord.fechaInicio" required />
+                </div>
+                <label for="fechaFinal" class="col-md-2 control-label">Fecha final</label>
+                <div class="col-md-10">
+                    <input id="fechaFinal" name="fechaFinal" class="form-control" type="date" ng-model="currentRecord.fechaFinal" required />
+                </div>
+                <label for="ciudad" class="col-md-2 control-label">Ciudad</label>
+                <div class="col-md-10">
+                    <input id="ciudad" name="ciudad" class="form-control" type="text" ng-model="currentRecord.ciudad" required />
                 </div>
             </div>
-            
-            <p id="label1">Escribir fecha inicio:</p>
-             <input id="date" name="date" class="form-control" type="date" ng-model="currentRecord.fechaInicio" required >
-             
-             <p id="label2">Escribir fecha final:</p>
-             <input id="date2" name="date2" class="form-control" type="date" ng-model="currentRecord.fechaFinal" required >
-
         </fieldset>
-        <div>
-            <button type="button" ng-click="ctrl.saveRecord()">Guardar</button>
-        </div>
     </form>
-        
 </div>
-   
-     
-             
-   </div>
-
-   
-</body>
-
-</html>
+    

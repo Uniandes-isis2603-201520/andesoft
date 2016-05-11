@@ -1,12 +1,10 @@
 /*
  * ItinerarioResource.java
- * Clase que representa el recurso "/itinerario"
+ * Clase que representa el recurso "/evento"
  * Implementa varios métodos para manipular los itinerarios
  * @autor: mm.gomez10
  */
 package AndeSoft.rest.resources;
-
-
 
 import AndeSoft.converters.EventoConverter;
 import AndeSoft.rest.dtos.EventoDTO;

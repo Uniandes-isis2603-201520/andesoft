@@ -65,9 +65,9 @@
                         templateUrl:"src/modules/hotel/nuevo.html"
                     })
                      .state('evento',{
-                        url:'/evento',
-//                        controller: "AndesoftCtrl",
-//                        controllerAs: "ctrl",
+                        url:'/eventos',
+                        controller: "eventoCtrl",
+                        controllerAs: "ctrl",
                         templateUrl:"src/modules/evento/nuevo.html"
                     })
                     .state('ciudad',{

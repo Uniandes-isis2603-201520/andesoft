@@ -1,15 +1,12 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 (function(ng)
 {
     var mod = ng.module("AppEvento");
     
     mod.controller('eventoCtrl', ['$scope','eventoSVC','itinerarioSVC', function ($scope,svc, svcItinerario){
+            
         $scope.alerts =[];
+        
         $scope.currentRecord = {
             id: undefined,
             nombre: '',
@@ -71,6 +68,7 @@
             this.createRecord = function () {
                 this.editMode = true;
                 $scope.currentRecord = {};
+                $scope.$broadcast("post-create", $scope.currentRecord);
             };
 
             
@@ -79,6 +77,7 @@
                 return svc.fetchRecord(record.id).then(function (response) {
                     $scope.currentRecord = response.data;
                     self.editMode = true;
+                    $scope.$broadcast("post-edit", $scope.currentRecord);
                     return response;
                 }, responseError);
             };
@@ -93,7 +92,6 @@
                     return response;
                 }, responseError);
             };
-
             
             this.saveRecord = function () {
                 return svc.saveRecord($scope.currentRecord).then(function () {
@@ -101,7 +99,6 @@
                 }, responseError);
             };
 
-            
             this.deleteRecord = function (record) {
                 return svc.deleteRecord(record.id).then(function () {
                     self.fetchRecords();
@@ -111,7 +108,13 @@
 
            
             this.fetchRecords();
+            
+            function updateCiudad(event, args) {
+                $scope.currentRecord.ciudad = args;
+            }
+            ;
 
+            $scope.$on('updateCiudad', updateCiudad);
 
 }]);
 
