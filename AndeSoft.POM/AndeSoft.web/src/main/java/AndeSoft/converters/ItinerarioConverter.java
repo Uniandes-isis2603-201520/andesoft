@@ -1,9 +1,7 @@
 package AndeSoft.converters;
 
 import AndeSoft.rest.dtos.ItinerarioDTO;
-import AndeSoft.rest.dtos.PuntoInteresDTO;
 import andesoft.entities.ItinerarioEntity;
-import andesoft.entities.PuntoInteresEntity;
 import andesoft.entities.UsuarioEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,9 +87,7 @@ public abstract class ItinerarioConverter
             ItinerarioDTO dto = new ItinerarioDTO();
             dto.setId(entity.getId());
             dto.setNombreIt(entity.getNombre());
-
-
-            return dto;
+           return dto;
         } else {
             return null;
         }
@@ -106,13 +102,13 @@ public abstract class ItinerarioConverter
      * @return Instancia de AuthorEntity creada a partir de los datos de dto
      * @generated
      */
-    private static PuntoInteresEntity basicDTO2Entity(PuntoInteresDTO dto) {
+    private static ItinerarioEntity basicDTO2Entity(ItinerarioDTO dto) {
         if (dto != null) {
-            PuntoInteresEntity entity = new PuntoInteresEntity();
+            ItinerarioEntity entity = new ItinerarioEntity();
             entity.setId(dto.getId());
-            entity.setNombre(dto.getNombre());
-            entity.setFechaLlegada(dto.getFechaLlegada());
-            entity.setFechaSalida(dto.getFechaSalida());
+            entity.setNom(dto.getNombreIt());
+            entity.setFechaFin(dto.getFechaFin());
+            entity.setFechaIni(dto.getFechaIni());
 
             return entity;
         } else {
