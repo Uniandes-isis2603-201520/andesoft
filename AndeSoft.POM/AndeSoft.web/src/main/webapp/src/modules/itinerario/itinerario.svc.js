@@ -61,7 +61,7 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
     {
         console.log(" PRUEBA update itinerario");
         //devuelve el itinerario creado
-        return $http.put("http://localhost:8080/AndeSoft.web/api/modI/perfil/0/itinerario/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin);//, itinerario);
+        return $http.put("http://localhost:8080/AndeSoft.web/api/modI/perfil/0/itinerario/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin+"/viejoIt/"+this.idActual);//, itinerario);
     };
     
     this.borrarItinerario = function(idPerfil , nomItEliminar)

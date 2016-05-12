@@ -163,11 +163,12 @@ IUsarioLogic usuarioLogic;
      * @throws ItinerarioLogicException cuando no existe una ciudad con el id suministrado
      */
     @PUT
-    @Path("/perfil/{idP}/itinerario/nombre/{nombreIt}/fechai/{fechait}/fechaf/{fechaFin}")
+    @Path("/perfil/{idP}/itinerario/nombre/{nombreIt}/fechai/{fechait}/fechaf/{fechaFin}/viejoIt/{idV}")
     public  ItinerarioDTO updateItinerario( @PathParam("idP") Long idP,
                                             @PathParam("nombreIt") String nom,
                                             @PathParam("fechait") String fechaI,
-                                            @PathParam("fechaFin") String fechaF)  
+                                            @PathParam("fechaFin") String fechaF,
+                                            @PathParam("idV") long viejoIt)  
     {
        System.out.println("Llega crear itinerario");
         System.out.println(" llega el itinerario a ser creado = "+ nom);
@@ -188,6 +189,7 @@ IUsarioLogic usuarioLogic;
                itinerario.setUsuario(user);
                System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre() + "  "+ itinerario.getId() + "  "+ itinerario.getUsuario().getId());
                itinerarioN = itinerarioLogic.updateItinerario(itinerario);
+               itinerarioLogic.deleteItinerario(idP, viejoIt);
                itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
         } 
 	catch (Exception e) 
