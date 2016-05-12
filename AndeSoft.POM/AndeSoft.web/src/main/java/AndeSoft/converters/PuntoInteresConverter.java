@@ -15,12 +15,12 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Realiza la conversión de AuthorEntity a AuthorDTO.
-     * Se invoca cuando otra entidad tiene una referencia a AuthorEntity.
+     * Realiza la conversión de PuntoInteresEntity a PuntoInteresDTO.
+     * Se invoca cuando otra entidad tiene una referencia a PuntoInteresEntity.
      * Entrega únicamente los atributos proprios de la entidad.
      *
-     * @param entity instancia de AuthorEntity a convertir
-     * @return instancia de AuthorDTO con los datos recibidos por parámetro
+     * @param entity instancia de PuntoInteresEntity a convertir
+     * @return instancia de PuntoInteresDTO con los datos recibidos por parámetro
      * @generated
      */
     public static PuntoInteresDTO refEntity2DTO(PuntoInteresEntity entity) {
@@ -38,12 +38,12 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Realiza la conversión de AuthorDTO a AuthorEntity Se invoca cuando otro DTO
-     * tiene una referencia a AuthorDTO Convierte únicamente el ID ya que es el
+     * Realiza la conversión de PuntoInteresDTO a PuntoInteresEntity Se invoca cuando otro DTO
+     * tiene una referencia a PuntoInteresDTO Convierte únicamente el ID ya que es el
      * único atributo necesario para guardar la relación en la base de datos
      *
-     * @param dto instancia de AuthorDTO a convertir
-     * @return instancia de AuthorEntity con los datos recibidos por parámetro
+     * @param dto instancia de PuntoInteresDTO a convertir
+     * @return instancia de PuntoInteresEntity con los datos recibidos por parámetro
      * @generated
      */
     public static PuntoInteresEntity refDTO2Entity(PuntoInteresDTO dto) {
@@ -58,11 +58,11 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Convierte una instancia de AuthorEntity a AuthorDTO Se invoca cuando se desea
+     * Convierte una instancia de PuntoInteresEntity a PuntoInteresDTO Se invoca cuando se desea
      * consultar la entidad y sus relaciones muchos a uno o uno a uno
      *
-     * @param entity instancia de AuthorEntity a convertir
-     * @return Instancia de AuthorDTO con los datos recibidos por parámetro
+     * @param entity instancia de PuntoInteresEntity a convertir
+     * @return Instancia de PuntoInteresDTO con los datos recibidos por parámetro
      * @generated
      */
     private static PuntoInteresDTO basicEntity2DTO(PuntoInteresEntity entity) {
@@ -81,12 +81,12 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Convierte una instancia de AuthorDTO a AuthorEntity Se invoca cuando se
-     * necesita convertir una instancia de AuthorDTO con los atributos propios de
+     * Convierte una instancia de PuntoInteresDTO a PuntoInteresEntity Se invoca cuando se
+     * necesita convertir una instancia de PuntoInteresDTO con los atributos propios de
      * la entidad y con las relaciones uno a uno o muchos a uno
      *
-     * @param dto instancia de AuthorDTO a convertir
-     * @return Instancia de AuthorEntity creada a partir de los datos de dto
+     * @param dto instancia de PuntoInteresDTO a convertir
+     * @return Instancia de PuntoInteresEntity creada a partir de los datos de dto
      * @generated
      */
     private static PuntoInteresEntity basicDTO2Entity(PuntoInteresDTO dto) {
@@ -104,11 +104,11 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Convierte instancias de AuthorEntity a AuthorDTO incluyendo sus relaciones
+     * Convierte instancias de PuntoInteresEntity a PuntoInteresDTO incluyendo sus relaciones
      * Uno a muchos y Muchos a muchos
      *
-     * @param entity Instancia de AuthorEntity a convertir
-     * @return Instancia de AuthorDTO con los datos recibidos por parámetro
+     * @param entity Instancia de PuntoInteresEntity a convertir
+     * @return Instancia de PuntoInteresDTO con los datos recibidos por parámetro
      * @generated
      */
     public static PuntoInteresDTO fullEntity2DTO(PuntoInteresEntity entity) {
@@ -121,11 +121,11 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Convierte una instancia de AuthorDTO a AuthorEntity.
-     * Incluye todos los atributos de AuthorEntity.
+     * Convierte una instancia de PuntoInteresDTO a PuntoInteresEntity.
+     * Incluye todos los atributos de PuntoInteresEntity.
      *
-     * @param dto Instancia de AuthorDTO a convertir
-     * @return Instancia de AuthorEntity con los datos recibidos por parámetro
+     * @param dto Instancia de PuntoInteresDTO a convertir
+     * @return Instancia de PuntoInteresEntity con los datos recibidos por parámetro
      * @generated
      */
     public static PuntoInteresEntity fullDTO2Entity(PuntoInteresDTO dto) {
@@ -138,9 +138,9 @@ public abstract class PuntoInteresConverter {
     }
 
     /**
-     * Convierte una colección de instancias de AuthorEntity a AuthorDTO. Para cada
-     * instancia de AuthorEntity en la lista, invoca basicEntity2DTO y añade el
-     * nuevo AuthorDTO a una nueva lista
+     * Convierte una colección de instancias de PuntoInteresEntity a PuntoInteresDTO. Para cada
+     * instancia de PuntoInteresEntity en la lista, invoca basicEntity2DTO y añade el
+     * nuevo PuntoInteresDTO a una nueva lista
      *
      * @param entities Colección de entidades a convertir
      * @return Collección de instancias de PuntoInteresDTO
@@ -153,16 +153,15 @@ public abstract class PuntoInteresConverter {
                 dtos.add(basicEntity2DTO(entity));
             }
         }
-        //System.out.println("dto: "+dtos.get(0).getNombre());
         return dtos;
     }
 
     /**
-     * Convierte una colección de instancias de AuthorDTO a instancias de
-     * AuthorEntity Para cada instancia se invoca el método basicDTO2Entity
+     * Convierte una colección de instancias de PuntoInteresDTO a instancias de
+     * PuntoInteresEntity Para cada instancia se invoca el método basicDTO2Entity
      *
-     * @param dtos entities Colección de AuthorDTO a convertir
-     * @return Collección de instancias de AuthorEntity
+     * @param dtos entities Colección de PuntoInteresDTO a convertir
+     * @return Collección de instancias de PuntoInteresEntity
      * @generated
      */
     public static List<PuntoInteresEntity> listDTO2Entity(List<PuntoInteresDTO> dtos) {
