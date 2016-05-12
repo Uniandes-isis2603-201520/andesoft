@@ -47,28 +47,29 @@
                                          
                                           <fieldset>
                                        <h1>Mostrar estado itinerario:</h1>
-                                       <button ng-click="mostrarCiudades()"   style='width:300px; height:50px'> >Mostrar lista ciudades    </button>
+                                       <a ui-sref="ciudad"><button  style='width:300px; height:50px'> >Mostrar lista ciudades    </button></a>
                                        <br>
                                        <br>
-                                       <button ng-click="mostrarEventos()"   style='width:300px; height:50px'>Mostrar lista eventos      </button>
+                                       <a ui-sref="evento"><button    style='width:300px; height:50px'>Mostrar lista eventos      </button></a>
                                        <br>
                                        <br>
-                                       <button ng-click="mostrarHoteles()"   style='width:300px; height:50px'>Mostrar lista hoteles      </button>
+                                       <a ui-sref="hotel"><button    style='width:300px; height:50px'>Mostrar lista hoteles      </button></a>
                                        <br>
                                        <br>
-                                       <button ng-click="mostrarPuntos()"   style='width:300px; height:50px' >Mostrar lista puntos interes</button>
+                                       <a ui-sref="punto interes"><button   style='width:300px; height:50px' >Mostrar lista puntos interes</button></a>
                                        <br>
                                        <br>
                                        <p id="label">Nombre del itinerario:</p> <input type="string" ng-model="nombreItinerario" style='width:300px; height:50px'>
-                                       <p id="label">ID del itinerario:</p> <input  type="number" ng-model="idItinerario"  style='width:300px; height:50px'>
+                                       <!--<p id="label">ID del itinerario:</p> <input  type="number" ng-model="idItinerario"  style='width:300px; height:50px'>-->
                                        <p id="label">Escribir fecha inicio:</p><input type="string"  ng-model="fechaInicio" style='width:300px; height:50px'>
                                        <p id="label">Escribir fecha final:</p><input type="string"  ng-model="fechaFinal"  style='width:300px; height:50px'>
                                        <br>
                                        <br>
                                        
-                                      <button onClick="alert('Tu itinerario ha sido guardado')" ng-click="crearActualizarItinerario()"> Guardar/ actualizar itinerario    </button>
-                                      <button onClick="alert('Tu itinerario ha sido borrado')" ng-click="borrarItinerario()"> Borrar itinerario     </button>
-                                      <button onClick="alert('Tu itinerario ha sido recuperado si existia')" ng-click="actualizarItinerario()">Recuperar itinerario por id    </button>
+                                      <button onClick="alert('Tu itinerario ha sido actualizado')" ng-click="updateItinerario()"> Actualizar itinerario    </button>
+                                      <button onClick="alert('Tu itinerario ha sido borrado')" ng-click="borrarItinerario()"> Borrar itinerario por nombre     </button>
+                                      <button onClick="alert('Tu itinerario ha sido recuperado si existia')" ng-click="actualizarItinerario()">Recuperar itinerario por nombre    </button>
+                                      <button onClick="alert('Tu itinerario ha sido creado')" ng-click="crearItinerario()">Crear itinerario    </button>
                                       </fieldset>
                                      
                                     </div>

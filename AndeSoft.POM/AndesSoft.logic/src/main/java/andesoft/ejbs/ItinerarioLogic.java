@@ -30,33 +30,29 @@ public class ItinerarioLogic implements IItinerarioLogic
             logger.log(Level.SEVERE, "El itinerario con id no existe  id={0}", id);
             throw new IllegalArgumentException("El itinerario no existe");
         }
-        if (itinerario == null ) // verificaciones
-        {
-            logger.log(Level.SEVERE, "El itinerario no es del padre  id={0}", id);
-            throw new IllegalArgumentException("El itinerario no existe");
-        }
+        
         logger.log(Level.INFO, "Termina proceso de consultar itinerario con id={0}", id);
         return itinerario;
     }
-    
     @Override
-    public ItinerarioEntity createActualizarItinerario(ItinerarioEntity entity) 
+    public Long getItinerarioId( String nombre) 
     {
-        logger.info("Inicia proceso de creación o actualizacion de itinerario");
-        ItinerarioEntity existe = persistence.find(entity.getId());
-        ItinerarioEntity respuesta;
-        if(existe != null)
+        logger.log(Level.INFO, "Inicia proceso de consultar itinerario nombre ={0}", nombre);
+        List<ItinerarioEntity>  lista  = persistence.findPorNombre(nombre);
+        if (lista == null) 
         {
-            respuesta = this.createItinerario(entity);
+            logger.log(Level.SEVERE, "El itinerario con nombre no existe  id={0}", nombre);
+            throw new IllegalArgumentException("El itinerario no existe");
         }
-        else
-        {
-            respuesta =this.updateItinerario(entity);
-        }
-        return respuesta;
+        ItinerarioEntity it = lista.get(0);
+        Long itinerario = it.getId();
+        logger.log(Level.INFO, "Termina proceso de consultar itinerario con id={0}", nombre);
+        return itinerario;
     }
+    
+   
     @Override
-    public ItinerarioEntity createItinerario(ItinerarioEntity entity) 
+    public ItinerarioEntity crearItinerario(ItinerarioEntity entity) 
     {
         logger.info("Inicia proceso de creación itinerario");
         persistence.create(entity);

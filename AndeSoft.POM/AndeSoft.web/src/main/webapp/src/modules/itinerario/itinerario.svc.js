@@ -9,18 +9,18 @@
 var mod = ng.module("AppItinerario");
 mod.service('itinerarioSVC', ["$http" ,function ($http)
    {
-       var idItinerarioActual = 0;
        
-       this.darIdItinerarioActual = function()
-       {
-           return idItinerarioActual;
-       };
-       this.setItinerarioActual = function( idN)
-       {
-           idItinerarioActual = idN;
-       };
+      var idActual =0;
+      
        var logueado=false;
-       
+       this.darIdItActual = function()
+       {
+           return this.idActual;
+       };
+       this.setIdItActual = function(nuevo)
+       {
+           this.idActual = nuevo;
+       };
        this.darLog= function()
         {
           // console.log("hola"+logueado);
@@ -37,32 +37,38 @@ mod.service('itinerarioSVC', ["$http" ,function ($http)
           console.log("hola"+this.logueado);
        };
        
-    this.darItinerario = function(idPerfil, idItinerario)
+    this.darItinerario = function(idPerfil, nomItinerario)
     {
-        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/{idPerfil}/itinerarios/{idIt}");
+        console.log("http://localhost:8080/AndeSoft.web/api/modI/perfil/{idPerfil}/itinerarios/{idIt}");
         console.log(" PRUEBA recuperar itinerario");
         //return null;
         
         return $http.get
-        ("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil +"/itinerarios/"+idItinerario);
+        ("http://localhost:8080/AndeSoft.web/api/modI/perfil/"+idPerfil +"/itinerarios/"+nomItinerario);
 
        // ctrllIti.$scope.setFechaFin();
         //ctrllIti.$scope.setFechaIni();
         //ctrllIti.$scope.setNombre();
     };
-    this.crearActualizarItinerario = function(idDueño,idIt, nombre, fechai, fechaFin, itinerario)
+    this.crearItinerario = function(idDueño, nombre, fechai, fechaFin, itinerario)
     {
-        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt");
-        console.log(" PRUEBA guardar itinerario");
+        console.log(" PRUEBA crear itinerario " + nombre + fechai+fechaFin);
         //devuelve el itinerario creado
-        return $http.post("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/createIt/"+idIt+"/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin );//, itinerario);
+        //                                                            "/perfil/{idP}/itinerario/nombre/{nombreIt}/fechai/{fechait}/fechaf/{fechaFin}"
+        return $http.post("http://localhost:8080/AndeSoft.web/api/modI/perfil/0/itinerario/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin);//, itinerario);
+    };
+    this.actualizarItinerario = function(idDueño, nombre, fechai, fechaFin, itinerario)
+    {
+        console.log(" PRUEBA update itinerario");
+        //devuelve el itinerario creado
+        return $http.put("http://localhost:8080/AndeSoft.web/api/modI/perfil/0/itinerario/nombre/"+nombre+"/fechai/"+fechai+"/fechaf/"+fechaFin);//, itinerario);
     };
     
-    this.borrarItinerario = function(idPerfil , idItEliminar)
+    this.borrarItinerario = function(idPerfil , nomItEliminar)
     {
-        console.log("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/0/eliminarItinerario/0");
+        console.log("http://localhost:8080/AndeSoft.web/api/modI/perfil/0/eliminarItinerario/0");
         
-        $http.delete("http://localhost:8080/AndeSoft.web/api/Itinerarios/perfil/"+idPerfil+"/eliminarItinerario/"+idItEliminar);
+        $http.delete("http://localhost:8080/AndeSoft.web/api/modI/perfil/"+idPerfil+"/eliminarItinerario/"+nomItEliminar);
     };
     
        

@@ -124,7 +124,7 @@ public class ItinerarioLogicTest
     public void createItinerarioTest() 
     {
         ItinerarioEntity newEntity = factory.manufacturePojo(ItinerarioEntity.class);
-        ItinerarioEntity result = itinerarioLogic.createItinerario(newEntity);
+        ItinerarioEntity result = itinerarioLogic.crearItinerario(newEntity);
         newEntity.setUsuario(null);
         Assert.assertNotNull(result);
 

@@ -10,14 +10,16 @@ public interface IItinerarioLogic {
     public List<ItinerarioEntity> getItinerarios(Long id);
     
     public ItinerarioEntity getItinerario( Long id) ;
+    
+    public Long getItinerarioId(String nombre);
 
-    public ItinerarioEntity createItinerario(ItinerarioEntity entity);
+    public ItinerarioEntity crearItinerario(ItinerarioEntity entity);
 
     public ItinerarioEntity updateItinerario(ItinerarioEntity entity);
 
     public void deleteItinerario(Long idp, Long id);
     
-    public ItinerarioEntity createActualizarItinerario(ItinerarioEntity entity) ;
+    //public ItinerarioEntity createActualizarItinerario(ItinerarioEntity entity) ;
 
     
 }

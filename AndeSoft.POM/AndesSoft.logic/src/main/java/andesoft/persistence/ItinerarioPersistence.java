@@ -47,7 +47,12 @@ public class ItinerarioPersistence {
         logger.log(Level.INFO, "Consultando Itinerario ", id);
         return em.find(ItinerarioEntity.class, id);
     }
-
+     public List<ItinerarioEntity> findPorNombre(String nom) 
+    {
+        logger.log(Level.INFO, "Consultando Itinerarario por nombre "+ nom);
+        Query q = em.createQuery("select u from ItinerarioEntity u where u.nombreIt = '"+nom+"'");
+        return q.getResultList();
+    }
     public List<ItinerarioEntity> findAll(Long idUser)
     {
         logger.info("Consultando todos los Itinerarios");

@@ -13,7 +13,10 @@ import AndeSoft.rest.dtos.ItinerarioDTO;
 import AndeSoft.rest.dtos.UsuarioDTO;
 import AndeSoft.rest.mocks.ItinerarioLogicMock;
 import andesoft.api.IItinerarioLogic;
+import andesoft.api.IUsarioLogic;
 import andesoft.entities.ItinerarioEntity;
+import andesoft.entities.UsuarioEntity;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.inject.Inject;
@@ -26,6 +29,7 @@ import javax.ws.rs.PUT;
 
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -44,14 +48,22 @@ import javax.ws.rs.core.Response;
 //@Produces("application/json")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
+@Path("/modI")
 public class ItinerarioResource 
 {
 
 @Inject
 IItinerarioLogic itinerarioLogic;
+@Inject
+IUsarioLogic usuarioLogic;
         
-    
+    /**@GET
+    @Path("/perfil/itinerarios")
+    public void getItinerariosPrueba() 
+    {
+        System.out.println("LLEGAAAAA");
+        
+    }*/ 
 /**
          * 
          *  no se usa, no se necesita
@@ -85,12 +97,15 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando la ciudad no existe
      */
     @GET
-    @Path("/itinerarios/{idI}")
-    public ItinerarioDTO getItinerario( @PathParam("idI") Long idI )
+    @Path("/perfil/{idP}/itinerarios/{idI}")
+    public ItinerarioDTO getItinerario(  @PathParam("idP") long idP,
+                                        @PathParam("idI") String nombreIt )
     {
         
-        System.out.println("Llega tener 1 itinerario");
-        ItinerarioEntity itinerari = itinerarioLogic.getItinerario( idI);
+        System.out.println("Llega tener 1 itinerario" + nombreIt);
+        
+        Long idIt = itinerarioLogic.getItinerarioId(nombreIt);
+        ItinerarioEntity itinerari = itinerarioLogic.getItinerario( idIt);
         ItinerarioDTO  itinerario = ItinerarioConverter.refEntity2DTO(itinerari);
         System.out.println(itinerario.getNombreIt() + "    "+ itinerario.getId());
         return itinerario;
@@ -104,20 +119,29 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando ya existe una ciudad con el id suministrado
      */
     @POST
-    @Path("perfil/{idP}/itinerarios")
-    public  ItinerarioDTO createItinerario( @PathParam("idP") Long idP, ItinerarioDTO iti)  
+     @Path("/perfil/{idP}/itinerario/nombre/{nombreIt}/fechai/{fechait}/fechaf/{fechaFin}")
+    public  ItinerarioDTO createItinerario( @PathParam("idP") long idP,
+                                            @PathParam("nombreIt") String nom,
+                                            @PathParam("fechait") String fechaI,
+                                            @PathParam("fechaFin") String fechaF)  
     {
         System.out.println("Llega crear itinerario");
-        System.out.println(" llega el itinerario a ser creado = "+ iti.getNombreIt());
-        UsuarioDTO user = new UsuarioDTO(idP, null, null, null,null,null);
-        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(user, iti.getId(), iti.getNombreIt(), iti.getFechaIni(),iti.getFechaFin(), null);
+        System.out.println(" llega el itinerario a ser creado = "+ nom);
+        UsuarioEntity user = usuarioLogic.getUsuario(idP);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         ItinerarioDTO itinerarioDTO;
-        ItinerarioEntity itinerarioN;
         try 
 	{
+        Date fechaIn = formatter.parse(fechaI);
+        Date fechaFi = formatter.parse(fechaI);
+        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(null, -1, nom, fechaIn,fechaFi, null);
+        
+        ItinerarioEntity itinerarioN;
+        
                ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioDTOO);
-               System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre());
-               itinerarioN = itinerarioLogic.createActualizarItinerario(itinerario);
+               itinerario.setUsuario(user);
+               System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre() + "  "+ itinerario.getId() + "  "+ itinerario.getUsuario().getId());
+               itinerarioN = itinerarioLogic.crearItinerario(itinerario);
                itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
         } 
 	catch (Exception e) 
@@ -139,11 +163,39 @@ IItinerarioLogic itinerarioLogic;
      * @throws ItinerarioLogicException cuando no existe una ciudad con el id suministrado
      */
     @PUT
-    @Path("/perfil/{idP}/cambiarItinerario/{idI}")
-    public ItinerarioDTO updateItinerario(@PathParam("idP") int idP,@PathParam("idI") int idI, ItinerarioDTO itNuevo)
+    @Path("/perfil/{idP}/itinerario/nombre/{nombreIt}/fechai/{fechait}/fechaf/{fechaFin}")
+    public  ItinerarioDTO updateItinerario( @PathParam("idP") Long idP,
+                                            @PathParam("nombreIt") String nom,
+                                            @PathParam("fechait") String fechaI,
+                                            @PathParam("fechaFin") String fechaF)  
     {
-        System.out.println("Llega cambiar itinerario");
-        return ItinerarioConverter.refEntity2DTO(itinerarioLogic.updateItinerario(ItinerarioConverter.refDTO2Entity(itNuevo)));
+       System.out.println("Llega crear itinerario");
+        System.out.println(" llega el itinerario a ser creado = "+ nom);
+        UsuarioEntity user = usuarioLogic.getUsuario(idP);
+        
+        //UsuarioDTO user = new UsuarioDTO(idP, null, null, null,null,null);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        ItinerarioDTO itinerarioDTO;
+        try 
+	{
+        Date fechaIn = formatter.parse(fechaI);
+        Date fechaFi = formatter.parse(fechaI);
+        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(null, -1, nom, fechaIn,fechaFi, null);
+        
+        ItinerarioEntity itinerarioN;
+        
+               ItinerarioEntity itinerario = ItinerarioConverter.refDTO2Entity(itinerarioDTOO);
+               itinerario.setUsuario(user);
+               System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombre() + "  "+ itinerario.getId() + "  "+ itinerario.getUsuario().getId());
+               itinerarioN = itinerarioLogic.updateItinerario(itinerario);
+               itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
+        } 
+	catch (Exception e) 
+	{
+            System.out.println(e.getMessage());
+		return null;
+	}
+        return itinerarioDTO;
     }
 
     /**
@@ -158,10 +210,11 @@ IItinerarioLogic itinerarioLogic;
      */
     @DELETE
     @Path("/perfil/{idP}/eliminarItinerario/{idI}")
-    public void deleteItinerario(@PathParam("idP") long idP, @PathParam("idI") long idI) 
+    public void deleteItinerario(@PathParam("idP") long idP, @PathParam("idI") String nombreI) 
     {
+        Long idIt = itinerarioLogic.getItinerarioId(nombreI);
         System.out.println("Llega borrar itinerario");
-        itinerarioLogic.deleteItinerario(idP, idI);
+        itinerarioLogic.deleteItinerario(idP, idIt);
     }
 
 }

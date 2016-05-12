@@ -11,7 +11,7 @@
   mod.controller('itinerarioCtrl', ['$scope','itinerarioSVC', function ($scope,svc){
     //Acordarse que estas variables no son universales, falta implementar
     //un servicio que las vuelvas de este carácter
-        $scope.idItinerario = 0;
+    
     
         $scope.verCiudades = false;
         $scope.verEventos = false;
@@ -33,17 +33,19 @@
        
         
         
-        $scope.actualizarItinerario = function()
+        $scope.actualizarItinerario = function()// recuperar itinerario
         {
             console.log("Llegaaaa ");
-            svc.setItinerarioActual($scope.idItinerario);
             
-            svc.darItinerario(0, $scope.idItinerario).
+            
+            svc.darItinerario(0, $scope.nombreItinerario).
                 then(function(response) 
         {
            $scope.nombreItinerario = response.data.nombreIt;
            $scope.fechaInicio = response.data.fechaIni;
            $scope.fechaFinal = response.data.fechaFin;
+           
+           svc.setIdItActual(response.data.id);
            
            console.log($scope.nombreItinerario + "    "+ $scope.fechaInicio + "    "+ $scope.fechaFinal);
            
@@ -67,45 +69,51 @@
         
         $scope.borrarItinerario = function()
         {
-            svc.borrarItinerario(0, $scope.idItinerario);
-            
+            svc.borrarItinerario(0, $scope.nombreItinerario);
+            //svc.setIdItActual(-1);
         };
         
-        $scope.crearActualizarItinerario = function()
+        $scope.crearItinerario = function()
         {
-            console.log("llega a crear o actualizar itinerario");
-            //si existe lo remplaza, si no, lo crea
-            var resp= "{\"idUsuario\":"+0+""+",\"id\":"+$scope.idItinerario+",\"nombreIt\":\""+ $scope.nombreItinerario+"\",\"fechaIni\":\""+$scope.fechaInicio+"\",\"fechaFin\":\""+$scope.fechaFinal
-                    +"\"}";
-            var actuales = "";
-            for(var i=0; i< $scope.ciudades ;i++)
-            {
-                if(i != 0){actuales+= ",";}
-                var actual = $scope.ciudades[i];
-                actuales += " { id: "+actual.id+" , nombre: "+actual.nombre+" ,fechaSalida: "+actual.fechaSalida+" ,fechaLlegada: "+actual.fechaLlegada+" }";
-        
-            }
+            console.log("llega a crear itinerario");
             var currentItinerario = {
-                idItinerario: $scope.idItinerario,
                 nombreItinerario: $scope.nombreItinerario /*Tipo String*/,
                 fechaIni : $scope.fechaInicio,
-                fechaFin : $scope.fechaFinal,
-                ciudades: [actuales] 
+                fechaFin : $scope.fechaFinal
+                //,ciudades: [actuales] 
             };
             
            console.log(currentItinerario);
-            svc.crearActualizarItinerario(0,$scope.idItinerario, $scope.nombreItinerario,$scope.fechaInicio,$scope.fechaFinal, currentItinerario).
+            svc.crearItinerario(0, $scope.nombreItinerario,$scope.fechaInicio,$scope.fechaFinal, currentItinerario).
                 then(function(response) 
         {
-           $scope.idItinerario = response.data.idIt;
-           console.log("termina de traer el itinerario guardado: "+ $scope.idItinerario);
+           $scope.nombreItinerario = response.data.nombreIt;
+           console.log("termina de traer el itinerario guardado: "+ $scope.nombreItinerario);
            $scope.actualizarItinerario();
         }, function myError(response) {
          console.log(response.statusText);
         });
+        };
+        $scope.updateItinerario = function()
+        {
+            console.log("llega a crear o actualizar itinerario");
+            var currentItinerario = {
+                nombreItinerario: $scope.nombreItinerario /*Tipo String*/,
+                fechaIni : $scope.fechaInicio,
+                fechaFin : $scope.fechaFinal
+                //,ciudades: [actuales] 
+            };
             
-            
-            
+           console.log(currentItinerario);
+            svc.actualizarItinerario(0, $scope.nombreItinerario,$scope.fechaInicio,$scope.fechaFinal, currentItinerario).
+                then(function(response) 
+        {
+           $scope.nombreItinerario = response.data.nombreIt;
+           console.log("termina de traer el itinerario guardado: "+ $scope.nombreItinerario);
+           $scope.actualizarItinerario();
+        }, function myError(response) {
+         console.log(response.statusText);
+        });
         };
         
    
