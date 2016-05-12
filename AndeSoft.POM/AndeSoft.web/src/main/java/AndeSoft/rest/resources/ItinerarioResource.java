@@ -133,7 +133,7 @@ IUsarioLogic usuarioLogic;
         try 
 	{
         Date fechaIn = formatter.parse(fechaI);
-        Date fechaFi = formatter.parse(fechaI);
+        Date fechaFi = formatter.parse(fechaF);
         ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(null, -1, nom, fechaIn,fechaFi, null);
         
         ItinerarioEntity itinerarioN;
@@ -215,6 +215,41 @@ IUsarioLogic usuarioLogic;
         Long idIt = itinerarioLogic.getItinerarioId(nombreI);
         System.out.println("Llega borrar itinerario");
         itinerarioLogic.deleteItinerario(idP, idIt);
+    }
+    
+    
+    // desde postman
+    
+    
+    @POST
+     @Path("/perfil/{idP}/itinerario")
+    public  ItinerarioDTO createItinerarioP( @PathParam("idP") long idP,ItinerarioDTO itinerario)  
+    {
+        System.out.println("Llega crear itinerario");
+        System.out.println(" llega el itinerario a ser creado = "+ itinerario.getNombreIt());
+        UsuarioEntity user = usuarioLogic.getUsuario(idP);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        ItinerarioDTO itinerarioDTO;
+        try 
+	{
+        Date fechaIn = (itinerario.getFechaIni());
+        Date fechaFi = itinerario.getFechaFin();
+        ItinerarioDTO itinerarioDTOO = new ItinerarioDTO(null, -1, itinerario.getNombreIt(), fechaIn,fechaFi, null);
+        
+        ItinerarioEntity itinerarioN;
+        
+               ItinerarioEntity itinerarioE = ItinerarioConverter.refDTO2Entity(itinerarioDTOO);
+               itinerarioE.setUsuario(user);
+               System.out.println(" llega el itinerario a ser creado = "+ itinerarioE.getNombre() + "  "+ itinerario.getId() + "  "+ itinerarioE.getUsuario().getId());
+               itinerarioN = itinerarioLogic.crearItinerario(itinerarioE);
+               itinerarioDTO = ItinerarioConverter.refEntity2DTO(itinerarioN);
+        } 
+	catch (Exception e) 
+	{
+            System.out.println(e.getMessage());
+		return null;
+	}
+        return itinerarioDTO;
     }
 
 }
