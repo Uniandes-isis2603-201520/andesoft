@@ -13,8 +13,8 @@
             </div>
         </div>
     </header>
-    
-    
+
+
 
     <div id="evento-header">
     <nav class="navbar navbar-default" role="navigation">
@@ -32,7 +32,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="evento-navbar">
-                
+
                 <button id="create-evento" class="btn btn-default navbar-btn" ng-hide="ctrl.editMode" ng-click="ctrl.createRecord()"><span class="glyphicon glyphicon-plus"></span> Create</button>
                 <button id="refresh-evento" class="btn btn-default navbar-btn" ng-hide="ctrl.editMode" ng-click="ctrl.fetchRecords()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
                 <button id="save-evento" type="submit" form="evento-form" class="btn btn-default navbar-btn" ng-show="ctrl.editMode"><span class="glyphicon glyphicon-save"></span> Save</button>
@@ -51,7 +51,6 @@
                 <th>Nombre</th>
                 <th>Fecha Inicio</th>
                 <th>Fecha final</th>
-                <th>Ciudad</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -60,7 +59,6 @@
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                 <td id="{{$index}}-fechaInicio">{{record.fechaInicio}}</td>
                 <td id="{{$index}}-fechaFinal">{{record.fechaFinal}}</td>
-                <td id="{{$index}}-ciudad">{{record.ciudad}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ng-click="ctrl.editRecord(record)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Remove</button>
@@ -91,12 +89,8 @@
                 <div class="col-md-10">
                     <input id="fechaFinal" name="fechaFinal" class="form-control" type="date" ng-model="currentRecord.fechaFinal" required />
                 </div>
-                <label for="ciudad" class="col-md-2 control-label">Ciudad</label>
-                <div class="col-md-10">
-                    <input id="ciudad" name="ciudad" class="form-control" type="text" ng-model="currentRecord.ciudad" required />
-                </div>
             </div>
         </fieldset>
     </form>
 </div>
-    
+
